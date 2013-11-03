@@ -1,0 +1,1 @@
+../../../../ompi/mpi/f77/type_struct_f.c

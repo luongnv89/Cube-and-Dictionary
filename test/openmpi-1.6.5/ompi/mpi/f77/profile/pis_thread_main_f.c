@@ -1,0 +1,1 @@
+../../../../ompi/mpi/f77/is_thread_main_f.c

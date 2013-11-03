@@ -1,0 +1,1 @@
+../../../../ompi/mpi/f77/ssend_init_f.c
