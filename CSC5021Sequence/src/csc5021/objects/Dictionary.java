@@ -16,8 +16,10 @@ import csc5021.utilities.Utilities;
 public class Dictionary implements HasInvariant {
 
 	/**
-	 * The maximum number of word of dictionary </br>The minimum of size is: A2_25 =
-	 * 600 when the length of word is 2. <br> If the length of word is bigger than 2, the maximum of size of dictionary is 1000
+	 * The maximum number of word of dictionary </br>The minimum of size is:
+	 * A2_25 = 600 when the length of word is 2. <br>
+	 * If the length of word is bigger than 2, the maximum of size of dictionary
+	 * is 1000
 	 */
 	private static int MAX_SIZE;
 	/**
@@ -55,7 +57,7 @@ public class Dictionary implements HasInvariant {
 			MAX_SIZE = 600;
 		else
 			MAX_SIZE = 1000;
-		
+
 		if (lengthOfWord < MIN_LENGTH || lengthOfWord > MAX_LENGTH) {
 			System.out
 					.println("The length of word isnt valid. The default value will be set for dictionary");
@@ -64,6 +66,29 @@ public class Dictionary implements HasInvariant {
 			this.lengthOfWord = lengthOfWord;
 		}
 		listWord = new ArrayList<>();
+	}
+
+	/**
+	 * Constructor a dictionary by input list word
+	 * @param listWord
+	 * @throws Exception 
+	 */
+	public Dictionary(ArrayList<String> listWord) throws Exception {
+		boolean ok = true;
+		int length = listWord.get(0).length();
+		for (int i = 0; i < listWord.size(); i++) {
+			if (listWord.get(i).length() != length
+					|| Utilities.validWord(listWord.get(i))) {
+				ok = false;
+				break;
+			}
+		}
+		if (ok) {
+			this.listWord = listWord;
+			this.lengthOfWord = length;
+		} else {
+			throw new Exception("The input listword is invalid");
+		}
 	}
 
 	/**

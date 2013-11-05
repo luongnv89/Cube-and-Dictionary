@@ -14,6 +14,10 @@ import csc5021.utilities.Utilities;
  * 
  */
 public class Lattice implements HasInvariant {
+	
+	public static final int MAX_SIZE = 10000;
+	public static final int MIN_SIZE= 4;
+	
 	/**
 	 * Size of lattice
 	 */
@@ -134,6 +138,12 @@ public class Lattice implements HasInvariant {
 				}
 			}
 		}
+	}
+
+
+	public boolean associated(String string) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 
 }
