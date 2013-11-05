@@ -96,7 +96,7 @@ public class LatticeTest {
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Lattice#initialRandomly()}.
+	 * Test method for {@link csc5021.objects.Lattice#initRandomly()}.
 	 */
 	@Test
 	public void testInitialRandomly() {

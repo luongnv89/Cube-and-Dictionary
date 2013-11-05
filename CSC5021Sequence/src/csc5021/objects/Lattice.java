@@ -36,7 +36,7 @@ public class Lattice implements HasInvariant {
 			this.size = size;
 		}
 		values = new char[this.size][this.size][this.size];
-		initialRandomly();
+		initRandomly();
 	}
 	
 
@@ -126,7 +126,7 @@ public class Lattice implements HasInvariant {
 	/**
 	 * create randomly values for lattice
 	 */
-	public void initialRandomly(){
+	public void initRandomly(){
 		for(int i=0;i<this.size;i++){
 			for(int j=0;j<this.size;j++){
 				for(int k=0;k<this.size;k++){
