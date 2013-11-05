@@ -3,6 +3,8 @@
  */
 package csc5021.objects;
 
+import java.util.ArrayList;
+
 import csc5021.interfaces.HasInvariant;
 import csc5021.utilities.Utilities;
 
@@ -129,12 +131,21 @@ public class Lattice implements HasInvariant {
 	
 	/**
 	 * create randomly values for lattice
+	 * TODO: Init randomly
 	 */
 	public void initRandomly(){
+		ArrayList<MyCharacter> listCharacter = new ArrayList<>();
 		for(int i=0;i<this.size;i++){
 			for(int j=0;j<this.size;j++){
 				for(int k=0;k<this.size;k++){
-					values[i][j][k] = Utilities.getRandomCharater();
+					char newChar = Utilities.getRandomCharater();
+					for(int l=0;l<listCharacter.size();l++){
+						if(listCharacter.get(l).getC()==newChar){
+							listCharacter.get(l).increase();
+							break;
+						}
+					}
+					values[i][j][k] = 
 				}
 			}
 		}
@@ -146,4 +157,31 @@ public class Lattice implements HasInvariant {
 		return false;
 	}
 
+}
+
+class MyCharacter{
+	char c;
+	int nb;
+	/**
+	 * @return the nb
+	 */
+	public int getNb() {
+		return nb;
+	}
+	/**
+	 * @param nb the nb to set
+	 */
+	public void setNb(int nb) {
+		this.nb = nb;
+	}
+	/**
+	 * @return the c
+	 */
+	public char getC() {
+		return c;
+	}
+	
+	public void increase(){
+		this.nb++;
+	}
 }

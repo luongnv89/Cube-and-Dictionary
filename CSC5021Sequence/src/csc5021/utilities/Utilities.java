@@ -3,7 +3,6 @@
  */
 package csc5021.utilities;
 
-import java.nio.charset.Charset;
 import java.util.Random;
 
 /**
