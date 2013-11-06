@@ -5,7 +5,7 @@ package csc5021.simulations;
 
 import csc5021.interfaces.HasInvariant;
 import csc5021.objects.Dictionary;
-import csc5021.objects.Lattice;
+import csc5021.objects.Cube;
 
 /**
  * @author luongnv89
@@ -13,7 +13,7 @@ import csc5021.objects.Lattice;
  */
 public class Simulation implements HasInvariant{
 
-	Lattice latice;
+	Cube latice;
 	Dictionary dictionary;
 	
 	
@@ -21,7 +21,7 @@ public class Simulation implements HasInvariant{
 	 * @param latice
 	 * @param dictionary
 	 */
-	public Simulation(Lattice latice, Dictionary dictionary) {
+	public Simulation(Cube latice, Dictionary dictionary) {
 		this.latice = latice;
 		this.dictionary = dictionary;
 	}

@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import csc5021.objects.Lattice;
+import csc5021.objects.Cube;
 
 /**
  * @author luongnv89
@@ -16,26 +16,26 @@ import csc5021.objects.Lattice;
  */
 public class LatticeTest {
 
-	Lattice lattice;
+	Cube lattice;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		lattice = new Lattice(3);
+		lattice = new Cube(3);
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Lattice#Lattice(int)}.
+	 * Test method for {@link csc5021.objects.Cube#Lattice(int)}.
 	 */
 	@Test
 	public void testLatticeInt() {
-		Lattice latticeInt = new Lattice(4);
+		Cube latticeInt = new Cube(4);
 		latticeInt.showLatice();
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Lattice#Lattice(char[][][])}.
+	 * Test method for {@link csc5021.objects.Cube#Lattice(char[][][])}.
 	 */
 	@Test
 	public void testLatticeCharArrayArrayArray() {
@@ -43,28 +43,28 @@ public class LatticeTest {
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Lattice#Lattice(java.lang.String)}.
+	 * Test method for {@link csc5021.objects.Cube#Lattice(java.lang.String)}.
 	 * @throws Exception 
 	 */
 	@Test
 	public void testLatticeString() throws Exception {
-		Lattice stringLattice = new Lattice("ABCDEFGHKABCDEFGHKABCDEFGHK");
+		Cube stringLattice = new Cube("ABCDEFGHKABCDEFGHKABCDEFGHK");
 		stringLattice.showLatice();
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Lattice#Lattice(csc5021.objects.Lattice)}.
+	 * Test method for {@link csc5021.objects.Cube#Lattice(csc5021.objects.Cube)}.
 	 */
 	@Test
 	public void testLatticeLattice() {
-		Lattice latticeCoppy = new Lattice(lattice);
+		Cube latticeCoppy = new Cube(lattice);
 		lattice.showLatice();
 		System.out.println("Coppy:");
 		latticeCoppy.showLatice();
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Lattice#getSize()}.
+	 * Test method for {@link csc5021.objects.Cube#getSize()}.
 	 */
 	@Test
 	public void testGetSize() {
@@ -72,7 +72,7 @@ public class LatticeTest {
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Lattice#getValues()}.
+	 * Test method for {@link csc5021.objects.Cube#getValues()}.
 	 */
 	@Test
 	public void testGetValues() {
@@ -80,7 +80,7 @@ public class LatticeTest {
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Lattice#invariant()}.
+	 * Test method for {@link csc5021.objects.Cube#invariant()}.
 	 */
 	@Test
 	public void testInvariant() {
@@ -88,7 +88,7 @@ public class LatticeTest {
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Lattice#showLatice()}.
+	 * Test method for {@link csc5021.objects.Cube#showLatice()}.
 	 */
 	@Test
 	public void testShowLatice() {
@@ -96,11 +96,12 @@ public class LatticeTest {
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Lattice#initRandomly()}.
+	 * Test method for {@link csc5021.objects.Cube#initRandomly()}.
 	 */
 	@Test
 	public void testInitialRandomly() {
-		fail("Not yet implemented");
+		Cube myLattice = new Cube(1000);
+		myLattice.showLatice();
 	}
 
 }
