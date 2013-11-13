@@ -8,46 +8,40 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import csc5021.objects.Dictionary;
-
 /**
  * @author luongnv89
  *
  */
 public class DictionaryTest {
-	Dictionary dictionary;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		dictionary = new Dictionary(5,5);
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Dictionary#Dictionary(int)}.
-	 * @throws Exception 
+	 * Test method for {@link csc5021.objects.Dictionary#Dictionary(int, int)}.
 	 */
 	@Test
-	public void testDictionaryString() throws Exception {
-		Dictionary newDictionary = new Dictionary("dictionary_3_5.txt");
-		newDictionary.showContent();
-	}
-
-
-	/**
-	 * Test method for {@link csc5021.objects.Dictionary#modifyWord(java.lang.String, java.lang.String)}.
-	 */
-	@Test
-	public void testModifyWord() {
+	public void testDictionaryIntInt() {
 		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Dictionary#addNewWord(java.lang.String)}.
+	 * Test method for {@link csc5021.objects.Dictionary#Dictionary(java.util.ArrayList)}.
 	 */
 	@Test
-	public void testAddNewWord() {
+	public void testDictionaryArrayListOfString() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link csc5021.objects.Dictionary#Dictionary(java.lang.String)}.
+	 */
+	@Test
+	public void testDictionaryString() {
 		fail("Not yet implemented");
 	}
 
@@ -55,15 +49,23 @@ public class DictionaryTest {
 	 * Test method for {@link csc5021.objects.Dictionary#getLength()}.
 	 */
 	@Test
-	public void testGetLengthOfWord() {
+	public void testGetLength() {
 		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Dictionary#getListWord()}.
+	 * Test method for {@link csc5021.objects.Dictionary#getSize()}.
 	 */
 	@Test
-	public void testGetListWord() {
+	public void testGetSize() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link csc5021.objects.Dictionary#getWordByIndex(int)}.
+	 */
+	@Test
+	public void testGetWordByIndex() {
 		fail("Not yet implemented");
 	}
 
@@ -72,6 +74,14 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testInvariant() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link csc5021.objects.Dictionary#showContent()}.
+	 */
+	@Test
+	public void testShowContent() {
 		fail("Not yet implemented");
 	}
 

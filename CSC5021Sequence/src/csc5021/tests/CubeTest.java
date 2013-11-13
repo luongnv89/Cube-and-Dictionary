@@ -53,16 +53,6 @@ public class CubeTest {
 		stringLattice.showLatice();
 	}
 
-	/**
-	 * Test method for {@link csc5021.objects.Cube#Lattice(csc5021.objects.Cube)}.
-	 */
-	@Test
-	public void testLatticeLattice() {
-		Cube latticeCoppy = new Cube(lattice);
-		lattice.showLatice();
-		System.out.println("Coppy:");
-		latticeCoppy.showLatice();
-	}
 
 	/**
 	 * Test method for {@link csc5021.objects.Cube#getSize()}.

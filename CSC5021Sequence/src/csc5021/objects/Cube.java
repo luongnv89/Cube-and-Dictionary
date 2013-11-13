@@ -4,9 +4,7 @@
 package csc5021.objects;
 
 import java.io.BufferedReader;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
-import java.io.IOException;
 
 import csc5021.interfaces.HasInvariant;
 import csc5021.utilities.Utilities;
@@ -50,31 +48,10 @@ public class Cube implements HasInvariant {
 	}
 
 	/**
-	 * Constructor a Lattice by values
-	 * 
-	 * @param values
-	 */
-	public Cube(char[][][] values) {
-		this.values = values;
-		this.size = values[0][0].length;
-	}
-
-
-	/**
-	 * Coppy a Lattice
-	 * 
-	 * @param copy
-	 */
-	public Cube(Cube copy) {
-		this.size = copy.getSize();
-		this.values = copy.getValues();
-	}
-
-	/**
 	 * Create a cube from text file
 	 * 
 	 * @param pathFile
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public Cube(String pathFile) throws Exception {
 		BufferedReader br = new BufferedReader(new FileReader(pathFile));
@@ -116,14 +93,16 @@ public class Cube implements HasInvariant {
 		return values;
 	}
 
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see csc5021.interfaces.HasInvariant#invariant()
-	 * @return 
-	 * <br> false if the size of cube is invalid
+	 * 
+	 * @return <br> false if the size of cube is invalid
 	 */
 	@Override
 	public boolean invariant() {
-		if(this.size<MIN_SIZE||this.size>MAX_SIZE){
+		if (this.size < MIN_SIZE || this.size > MAX_SIZE) {
 			System.out.println("The size of cube is invalid");
 			return false;
 		}
@@ -150,30 +129,9 @@ public class Cube implements HasInvariant {
 	 */
 	public void initRandomly() {
 		for (int i = 0; i < this.size; i++) {
-			// System.out.println("Lattice number: " + i);
-			// ArrayList<MyCharacter> listCharacter = new ArrayList<>();
 			for (int j = 0; j < this.size; j++) {
 				for (int k = 0; k < this.size; k++) {
-					// boolean ok = false;
-					// boolean exist = false;
 					char newChar = Utilities.getRandomCharater();
-					// while (!ok) {
-					// for (int l = 0; l < listCharacter.size(); l++) {
-					// if (listCharacter.get(l).getC() == newChar) {
-					// if (listCharacter.get(l).getNb() < 100) {
-					// listCharacter.get(l).increase();
-					// ok = true;
-					// }
-					// exist = true;
-					// break;
-					// }
-					// }
-					// if (!exist) {
-					// listCharacter.add(new MyCharacter(newChar));
-					// } else {
-					// newChar = Utilities.getRandomCharater();
-					// }
-					// }
 					values[i][j][k] = newChar;
 				}
 			}
@@ -182,6 +140,7 @@ public class Cube implements HasInvariant {
 
 	/**
 	 * Check is the cube associated with a dictionary
+	 * 
 	 * @param dic
 	 * @return
 	 */
@@ -197,8 +156,15 @@ public class Cube implements HasInvariant {
 		return true;
 	}
 
+	/**
+	 * Check is the cube associated with a word?
+	 * @param string
+	 * @return true if the cube is associated with the input word
+	 * <br> false otherwise
+	 */
 	public boolean associated_word(String string) {
 		boolean word_associated = false;
+		
 		if (!word_associated)
 			word_associated = associated_directionOX(string);
 		if (!word_associated)

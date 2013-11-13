@@ -50,9 +50,10 @@ public class Dictionary implements HasInvariant {
 	ArrayList<String> listWord;
 
 	/**
-	 * Constructor a new dictionary with the list word is empty at the beginning
+	 * Constructor a new dictionary
 	 * 
-	 * @param lengthOfWord
+	 * @param lengthOfWord length of words of dictionary
+	 * @param size the initial size of dictionary. The initial words of dictionary are generated randomly
 	 */
 	public Dictionary(int lengthOfWord, int size) {
 		if (lengthOfWord == 2)
