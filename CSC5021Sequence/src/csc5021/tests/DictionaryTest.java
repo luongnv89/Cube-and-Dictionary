@@ -8,17 +8,21 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
+import csc5021.objects.Dictionary;
+
 /**
  * @author luongnv89
  *
  */
 public class DictionaryTest {
 
+	Dictionary dic1;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
+		dic1 = new Dictionary(10, 20);
 	}
 
 	/**
@@ -84,5 +88,14 @@ public class DictionaryTest {
 	public void testShowContent() {
 		fail("Not yet implemented");
 	}
+	
+	/**
+	 * Test method for {@link csc5021.objects.Dictionary#saveToFile(String)}
+	 */
+	@Test
+	public void testSaveToFile() {
+		dic1.saveToFile("dic_"+String.valueOf(System.currentTimeMillis())+".txt");
+	}
+	
 
 }

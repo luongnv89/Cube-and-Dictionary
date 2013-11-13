@@ -4,7 +4,10 @@
 package csc5021.objects;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Random;
 
@@ -226,6 +229,22 @@ public class Dictionary implements HasInvariant {
 			str += i + " \t " + listWord.get(i) + "\n";
 		}
 		System.out.println(str);
+	}
+	
+	/**
+	 * Save the content of dictionary to a file
+	 * @param pathFile
+	 * 
+	 */
+	public void saveToFile(String pathFile) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(pathFile));
+			for (int i = 0; i < listWord.size(); i++) {
+				out.write(getWordByIndex(i)+"\n");
+			}
+			out.close();
+		} catch (IOException e) {
+		}
 	}
 
 }

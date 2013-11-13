@@ -17,22 +17,23 @@ import csc5021.objects.Dictionary;
  */
 public class CubeTest {
 
-	Cube lattice;
+	Cube cube100;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		lattice = new Cube(3);
+		cube100 = new Cube(100);
 	}
 
 	/**
 	 * Test method for {@link csc5021.objects.Cube#Lattice(int)}.
+	 * @throws Exception 
 	 */
 	@Test
-	public void testLatticeInt() {
+	public void testLatticeInt() throws Exception {
 		Cube latticeInt = new Cube(4);
-		latticeInt.showLatice();
+		latticeInt.showValues();
 	}
 
 	/**
@@ -50,7 +51,7 @@ public class CubeTest {
 	@Test
 	public void testLatticeString() throws Exception {
 		Cube stringLattice = new Cube("cube5.txt");
-		stringLattice.showLatice();
+		stringLattice.showValues();
 	}
 
 
@@ -59,7 +60,7 @@ public class CubeTest {
 	 */
 	@Test
 	public void testGetSize() {
-		assertTrue(lattice.getSize()==3);
+		assertTrue(cube100.getSize()==3);
 	}
 
 	/**
@@ -67,7 +68,7 @@ public class CubeTest {
 	 */
 	@Test
 	public void testGetValues() {
-		assertTrue(lattice.getValues().length>0);
+		assertTrue(cube100.getValues().length>0);
 	}
 
 	/**
@@ -75,26 +76,27 @@ public class CubeTest {
 	 */
 	@Test
 	public void testInvariant() {
-		assertTrue(lattice.invariant());
+		assertTrue(cube100.invariant());
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Cube#showLatice()}.
+	 * Test method for {@link csc5021.objects.Cube#showValues()}.
 	 */
 	@Test
 	public void testShowLatice() {
-		lattice.showLatice();
+		cube100.showValues();
 	}
 
 	/**
 	 * Test method for {@link csc5021.objects.Cube#initRandomly()}.
+	 * @throws Exception 
 	 */
 	@Test
-	public void testInitialRandomly() {
+	public void testInitialRandomly() throws Exception {
 		long startTime = System.currentTimeMillis();
 		Cube myLattice = new Cube(1000);
 		long totalTime = System.currentTimeMillis() - startTime;
-		myLattice.showLatice();
+		myLattice.showValues();
 		System.out.println(totalTime);
 	}
 	
@@ -110,6 +112,14 @@ public class CubeTest {
 		Cube myCube = new Cube("cube5.txt");
 		Dictionary myDic = new Dictionary("dictionary_3_5.txt");
 		System.out.println(myCube.associated(myDic));
+	}
+	
+	/**
+	 * Test method for {@link csc5021.objects.Cube#saveToFile(String)}.
+	 */
+	@Test
+	public void testSaveToFile() {
+		cube100.saveToFile("cube_"+String.valueOf(System.currentTimeMillis())+".txt");
 	}
 
 }

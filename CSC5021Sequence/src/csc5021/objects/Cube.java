@@ -4,7 +4,10 @@
 package csc5021.objects;
 
 import java.io.BufferedReader;
+import java.io.BufferedWriter;
 import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
 
 import csc5021.interfaces.HasInvariant;
 import csc5021.utilities.Utilities;
@@ -34,12 +37,11 @@ public class Cube implements HasInvariant {
 	 * Constructor a Lattice by size. The values of Lattice is randomly
 	 * 
 	 * @param size
+	 * @throws Exception 
 	 */
-	public Cube(int size) {
-		if (size < 3) {
-			System.out
-					.println("The input size of lattice is invalid (It should be greater than 2). The size will be default: 3");
-			this.size = 3;
+	public Cube(int size) throws Exception {
+		if (size < MIN_SIZE) {
+			throw new Exception("The size of cube is invalid: " + size+"\nIt must be bigger than 3 and smaller than 1001");
 		} else {
 			this.size = size;
 		}
@@ -112,7 +114,7 @@ public class Cube implements HasInvariant {
 	/**
 	 * Show the value of lattice
 	 */
-	public void showLatice() {
+	public void showValues() {
 		for (int i = 0; i < this.size; i++) {
 			for (int j = 0; j < this.size; j++) {
 				for (int k = 0; k < this.size; k++) {
@@ -121,6 +123,27 @@ public class Cube implements HasInvariant {
 				System.out.println();
 			}
 			System.out.println();
+		}
+	}
+
+	/**
+	 * Save the value of cube to a file
+	 * @param pathFile
+	 * 
+	 */
+	public void saveToFile(String pathFile) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(pathFile));
+			for (int i = 0; i < this.size; i++) {
+				for (int j = 0; j < this.size; j++) {
+					for (int k = 0; k < this.size; k++) {
+						out.write(values[i][j][k]);
+					}
+					out.write("\n");
+				}
+			}
+			out.close();
+		} catch (IOException e) {
 		}
 	}
 
@@ -158,13 +181,14 @@ public class Cube implements HasInvariant {
 
 	/**
 	 * Check is the cube associated with a word?
+	 * 
 	 * @param string
-	 * @return true if the cube is associated with the input word
-	 * <br> false otherwise
+	 * @return true if the cube is associated with the input word <br>
+	 *         false otherwise
 	 */
 	public boolean associated_word(String string) {
 		boolean word_associated = false;
-		
+
 		if (!word_associated)
 			word_associated = associated_directionOX(string);
 		if (!word_associated)
@@ -191,7 +215,6 @@ public class Cube implements HasInvariant {
 	private boolean associated_directionOYZ2(String string) {
 		for (int subYZ = -(this.size - string.length()); subYZ < this.size
 				- string.length(); subYZ++) {
-
 			// From x = 0 to x = size of cube
 			for (int i = 0; i < this.size; i++) {
 				String string_lattice1 = getStringOYZ2(i, subYZ,
@@ -591,42 +614,4 @@ public class Cube implements HasInvariant {
 		return str;
 	}
 
-}
-
-class MyCharacter {
-	char c;
-	int nb;
-
-	/**
-	 * @param c
-	 */
-	public MyCharacter(char c) {
-		this.c = c;
-	}
-
-	/**
-	 * @return the nb
-	 */
-	public int getNb() {
-		return nb;
-	}
-
-	/**
-	 * @param nb
-	 *            the nb to set
-	 */
-	public void setNb(int nb) {
-		this.nb = nb;
-	}
-
-	/**
-	 * @return the c
-	 */
-	public char getC() {
-		return c;
-	}
-
-	public void increase() {
-		this.nb++;
-	}
 }
