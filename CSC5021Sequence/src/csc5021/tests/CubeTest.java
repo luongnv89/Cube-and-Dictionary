@@ -9,6 +9,7 @@ import org.junit.Before;
 import org.junit.Test;
 
 import csc5021.objects.Cube;
+import csc5021.objects.Dictionary;
 
 /**
  * @author luongnv89
@@ -48,7 +49,7 @@ public class CubeTest {
 	 */
 	@Test
 	public void testLatticeString() throws Exception {
-		Cube stringLattice = new Cube("ABCDEFGHKABCDEFGHKABCDEFGHK");
+		Cube stringLattice = new Cube("cube5.txt");
 		stringLattice.showLatice();
 	}
 
@@ -115,8 +116,10 @@ public class CubeTest {
 	}
 	
 	@Test
-	public void testAssociated(){
-		
+	public void testAssociated() throws Exception{
+		Cube myCube = new Cube("cube5.txt");
+		Dictionary myDic = new Dictionary("dictionary_3_5.txt");
+		System.out.println(myCube.associated(myDic));
 	}
 
 }

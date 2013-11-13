@@ -21,26 +21,19 @@ public class DictionaryTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		dictionary = new Dictionary(5);
-		dictionary.initRandomly(5);
+		dictionary = new Dictionary(5,5);
 	}
 
 	/**
 	 * Test method for {@link csc5021.objects.Dictionary#Dictionary(int)}.
+	 * @throws Exception 
 	 */
 	@Test
-	public void testDictionary() {
-		fail("Not yet implemented");
+	public void testDictionaryString() throws Exception {
+		Dictionary newDictionary = new Dictionary("dictionary_3_5.txt");
+		newDictionary.showContent();
 	}
 
-	/**
-	 * Test method for {@link csc5021.objects.Dictionary#initRandomly()}.
-	 */
-	@Test
-	public void testInitRandomly() {
-		dictionary.initRandomly(4);
-		dictionary.showContent();
-	}
 
 	/**
 	 * Test method for {@link csc5021.objects.Dictionary#modifyWord(java.lang.String, java.lang.String)}.
@@ -59,15 +52,7 @@ public class DictionaryTest {
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Dictionary#findWord(java.lang.String)}.
-	 */
-	@Test
-	public void testFindWord() {
-		System.out.println(dictionary.findWord("ABCDE"));
-	}
-
-	/**
-	 * Test method for {@link csc5021.objects.Dictionary#getLengthOfWord()}.
+	 * Test method for {@link csc5021.objects.Dictionary#getLength()}.
 	 */
 	@Test
 	public void testGetLengthOfWord() {

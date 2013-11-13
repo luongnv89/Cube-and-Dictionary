@@ -3,6 +3,11 @@
  */
 package csc5021.objects;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+
 import csc5021.interfaces.HasInvariant;
 import csc5021.utilities.Utilities;
 
@@ -41,7 +46,6 @@ public class Cube implements HasInvariant {
 			this.size = size;
 		}
 		values = new char[this.size][this.size][this.size];
-		// System.out.println("Allocated!");
 		initRandomly();
 	}
 
@@ -55,32 +59,6 @@ public class Cube implements HasInvariant {
 		this.size = values[0][0].length;
 	}
 
-	/**
-	 * Constructor a Lattice by an input string which present the values of
-	 * Lattice
-	 * 
-	 * @param str
-	 * @throws Exception
-	 */
-	public Cube(String str) throws Exception {
-		int mySize = Utilities.getCubeSize(str.length());
-		if (mySize != -1) {
-			this.size = mySize;
-			values = new char[this.size][this.size][this.size];
-			char[] array = str.toUpperCase().toCharArray();
-			for (int i = 0; i < mySize; i++) {
-				for (int j = 0; j < mySize; j++) {
-					for (int k = 0; k < mySize; k++) {
-						values[i][j][k] = array[i * mySize * mySize + j
-								* mySize + k];
-					}
-				}
-
-			}
-		} else {
-			throw new Exception("The input string has invalid length!");
-		}
-	}
 
 	/**
 	 * Coppy a Lattice
@@ -90,6 +68,38 @@ public class Cube implements HasInvariant {
 	public Cube(Cube copy) {
 		this.size = copy.getSize();
 		this.values = copy.getValues();
+	}
+
+	/**
+	 * Create a cube from text file
+	 * 
+	 * @param pathFile
+	 * @throws Exception 
+	 */
+	public Cube(String pathFile) throws Exception {
+		BufferedReader br = new BufferedReader(new FileReader(pathFile));
+		try {
+			String line = br.readLine();
+			if (line == null || line.length() < 3) {
+				throw new Exception("The input file is invalid!");
+			} else {
+				this.size = line.length();
+				values = new char[this.size][this.size][this.size];
+				// for each lattice
+				for (int i = 0; i < this.size; i++) {
+					// for each row of lattice
+					for (int j = 0; j < this.size; j++) {
+						char[] array = line.toCharArray();
+						for (int k = 0; k < this.size; k++) {
+							values[i][j][k] = array[k];
+						}
+						line = br.readLine();
+					}
+				}
+			}
+		} finally {
+			br.close();
+		}
 	}
 
 	/**
@@ -106,10 +116,18 @@ public class Cube implements HasInvariant {
 		return values;
 	}
 
+	/* (non-Javadoc)
+	 * @see csc5021.interfaces.HasInvariant#invariant()
+	 * @return 
+	 * <br> false if the size of cube is invalid
+	 */
 	@Override
 	public boolean invariant() {
-		// TODO Auto-generated method stub
-		return false;
+		if(this.size<MIN_SIZE||this.size>MAX_SIZE){
+			System.out.println("The size of cube is invalid");
+			return false;
+		}
+		return true;
 	}
 
 	/**
@@ -132,7 +150,7 @@ public class Cube implements HasInvariant {
 	 */
 	public void initRandomly() {
 		for (int i = 0; i < this.size; i++) {
-//			System.out.println("Lattice number: " + i);
+			// System.out.println("Lattice number: " + i);
 			// ArrayList<MyCharacter> listCharacter = new ArrayList<>();
 			for (int j = 0; j < this.size; j++) {
 				for (int k = 0; k < this.size; k++) {
@@ -161,18 +179,25 @@ public class Cube implements HasInvariant {
 			}
 		}
 	}
-	
-	public boolean associated(Dictionary dic){
-		if(dic.getLengthOfWord()>this.size) return false;
+
+	/**
+	 * Check is the cube associated with a dictionary
+	 * @param dic
+	 * @return
+	 */
+	public boolean associated(Dictionary dic) {
+		if (dic.getLength() > this.size)
+			return false;
 		else {
-			for(int i=0;i<dic.getListWord().size();i++){
-				if(!associated(dic.getListWord().get(i))) return false;
+			for (int i = 0; i < dic.getSize(); i++) {
+				if (!associated_word(dic.getWordByIndex(i)))
+					return false;
 			}
 		}
 		return true;
 	}
 
-	public boolean associated(String string) {
+	public boolean associated_word(String string) {
 		boolean word_associated = false;
 		if (!word_associated)
 			word_associated = associated_directionOX(string);
@@ -192,7 +217,8 @@ public class Cube implements HasInvariant {
 			word_associated = associated_directionOYZ1(string);
 		if (!word_associated)
 			word_associated = associated_directionOYZ2(string);
-		System.out.println("Word: " + string+" associated? " + String.valueOf(word_associated));
+		System.out.println("Word: " + string + " associated? "
+				+ String.valueOf(word_associated));
 		return word_associated;
 	}
 
@@ -281,16 +307,15 @@ public class Cube implements HasInvariant {
 					str += this.values[i][y][sumOYZ - y];
 				}
 			}
-		} 
-		else {
+		} else {
 			if (b) {
 				// from y to z
-				for (int y = sumOYZ-this.size+1; y < this.size; y++) {
+				for (int y = sumOYZ - this.size + 1; y < this.size; y++) {
 					str += this.values[i][y][sumOYZ - y];
 				}
 			} else {
 				// from z to y
-				for (int y = this.size-1; y >= sumOYZ-this.size+1; y--) {
+				for (int y = this.size - 1; y >= sumOYZ - this.size + 1; y--) {
 					str += this.values[i][y][sumOYZ - y];
 				}
 			}
@@ -383,16 +408,15 @@ public class Cube implements HasInvariant {
 					str += this.values[x][i][sumOXZ - x];
 				}
 			}
-		} 
-		else {
+		} else {
 			if (b) {
 				// from x to z
-				for (int x = sumOXZ-this.size+1; x < this.size; x++) {
+				for (int x = sumOXZ - this.size + 1; x < this.size; x++) {
 					str += this.values[x][i][sumOXZ - x];
 				}
 			} else {
 				// from z to x
-				for (int x = this.size-1; x >= sumOXZ-this.size+1; x--) {
+				for (int x = this.size - 1; x >= sumOXZ - this.size + 1; x--) {
 					str += this.values[x][i][sumOXZ - x];
 				}
 			}
@@ -486,17 +510,16 @@ public class Cube implements HasInvariant {
 					str += this.values[x][sumXY - x][i];
 				}
 			}
-		} 
-		else {
+		} else {
 			if (direction) {
 				// from x to y
-				for (int x = sumXY-this.size+1; x < this.size; x++) {
+				for (int x = sumXY - this.size + 1; x < this.size; x++) {
 					str += this.values[x][sumXY - x][i];
 				}
 			} else {
 				// /from y to x
 				// from x to y
-				for (int x = this.size-1; x >= sumXY-this.size+1; x--) {
+				for (int x = this.size - 1; x >= sumXY - this.size + 1; x--) {
 					str += this.values[x][sumXY - x][i];
 				}
 			}
