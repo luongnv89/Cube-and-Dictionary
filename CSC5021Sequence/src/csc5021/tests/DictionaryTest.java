@@ -22,7 +22,7 @@ public class DictionaryTest {
 	@Before
 	public void setUp() throws Exception {
 		dictionary = new Dictionary(5);
-		dictionary.initRandomly();
+		dictionary.initRandomly(5);
 	}
 
 	/**
@@ -38,7 +38,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testInitRandomly() {
-		dictionary.initRandomly();
+		dictionary.initRandomly(4);
 		dictionary.showContent();
 	}
 

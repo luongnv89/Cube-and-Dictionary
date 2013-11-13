@@ -14,7 +14,7 @@ import csc5021.objects.Cube;
  * @author luongnv89
  *
  */
-public class LatticeTest {
+public class CubeTest {
 
 	Cube lattice;
 	/**
@@ -100,8 +100,23 @@ public class LatticeTest {
 	 */
 	@Test
 	public void testInitialRandomly() {
+		long startTime = System.currentTimeMillis();
 		Cube myLattice = new Cube(1000);
+		long totalTime = System.currentTimeMillis() - startTime;
 		myLattice.showLatice();
+		System.out.println(totalTime);
+	}
+	
+	@Test
+	public void testMaxMemory(){
+		System.out.println(java.lang.Runtime.getRuntime().availableProcessors());
+		System.out.println(java.lang.Runtime.getRuntime().totalMemory());
+		System.out.println(java.lang.Runtime.getRuntime().maxMemory());
+	}
+	
+	@Test
+	public void testAssociated(){
+		
 	}
 
 }

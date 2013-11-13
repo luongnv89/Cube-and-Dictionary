@@ -78,7 +78,7 @@ public class Dictionary implements HasInvariant {
 		int length = listWord.get(0).length();
 		for (int i = 0; i < listWord.size(); i++) {
 			if (listWord.get(i).length() != length
-					|| Utilities.validWord(listWord.get(i))) {
+					|| !Utilities.validWord(listWord.get(i))) {
 				ok = false;
 				break;
 			}
@@ -91,13 +91,14 @@ public class Dictionary implements HasInvariant {
 		}
 	}
 
+	
 	/**
 	 * Init randomly the list words of dictionary
 	 */
-	public void initRandomly() {
+	public void initRandomly(int sizeOfDict) {
 		listWord.clear();
 		// Init the size of dictionary
-		int sizeOfDictionary = (new Random()).nextInt(MAX_SIZE);
+		int sizeOfDictionary = (new Random()).nextInt(sizeOfDict);
 		if (sizeOfDictionary < MIN_SIZE)
 			sizeOfDictionary = MIN_SIZE;
 
