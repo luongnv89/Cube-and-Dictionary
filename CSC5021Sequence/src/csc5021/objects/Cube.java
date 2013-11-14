@@ -8,6 +8,7 @@ import java.io.BufferedWriter;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
 
 import csc5021.interfaces.HasInvariant;
 import csc5021.utilities.Utilities;
@@ -23,6 +24,7 @@ public class Cube implements HasInvariant {
 
 	public static final int MAX_SIZE = 10000;
 	public static final int MIN_SIZE = 4;
+	private static final int MAX_DIFF_LETTERS = 100;
 
 	/**
 	 * Size of lattice
@@ -37,11 +39,12 @@ public class Cube implements HasInvariant {
 	 * Constructor a Lattice by size. The values of Lattice is randomly
 	 * 
 	 * @param size
-	 * @throws Exception 
+	 * @throws Exception
 	 */
 	public Cube(int size) throws Exception {
 		if (size < MIN_SIZE) {
-			throw new Exception("The size of cube is invalid: " + size+"\nIt must be bigger than 3 and smaller than 1001");
+			throw new Exception("The size of cube is invalid: " + size
+					+ "\nIt must be bigger than 3 and smaller than 1001");
 		} else {
 			this.size = size;
 		}
@@ -101,6 +104,7 @@ public class Cube implements HasInvariant {
 	 * @see csc5021.interfaces.HasInvariant#invariant()
 	 * 
 	 * @return <br> false if the size of cube is invalid
+	 * <br> false if there are some lattice has less than 2 different letters or more than 100 different letters
 	 */
 	@Override
 	public boolean invariant() {
@@ -128,6 +132,7 @@ public class Cube implements HasInvariant {
 
 	/**
 	 * Save the value of cube to a file
+	 * 
 	 * @param pathFile
 	 * 
 	 */
@@ -148,14 +153,28 @@ public class Cube implements HasInvariant {
 	}
 
 	/**
-	 * create randomly values for lattice TODO: Init randomly
+	 * create randomly values for lattice 
 	 */
 	public void initRandomly() {
 		for (int i = 0; i < this.size; i++) {
+			ArrayList<Character> listLetters = new ArrayList<>();
 			for (int j = 0; j < this.size; j++) {
 				for (int k = 0; k < this.size; k++) {
-					char newChar = Utilities.getRandomCharater();
-					values[i][j][k] = newChar;
+					boolean char_ok = false;
+					while (!char_ok) {
+						char newChar = Utilities.getRandomCharater();
+						if (!listLetters.contains(newChar)) {
+							if (listLetters.size() < MAX_DIFF_LETTERS) {
+								listLetters.add(newChar);
+								char_ok = true;
+								values[i][j][k] = newChar;
+							}
+						} else {
+							char_ok = true;
+							values[i][j][k] = newChar;
+						}
+					}
+
 				}
 			}
 		}
@@ -517,16 +536,23 @@ public class Cube implements HasInvariant {
 
 	}
 
+	/**
+	 * Consider all the plan which is parallel with the Oxy plan In each plan,
+	 * consider the strings which is parallel with Oy axis
+	 * 
+	 * @param string
+	 * @return
+	 */
 	private boolean associated_directionOZ(String string) {
 		// z from 0-> size of cube
-		for (int i = 0; i < this.size; i++) {
+		for (int z = 0; z < this.size; z++) {
 			// x from 0-> size of cube
-			for (int j = 0; j < this.size; j++) {
-				String string_lattice1 = getStringOZ(j, 0, this.size, i);
+			for (int x = 0; x < this.size; x++) {
+				String string_lattice1 = getStringOZ(x, z, true);
 				if (string_lattice1.contains(string))
 					return true;
 				else {
-					String string_lattice2 = getStringOZ(j, this.size, 0, i);
+					String string_lattice2 = getStringOZ(x, z, false);
 					if (string_lattice2.contains(string))
 						return true;
 				}
@@ -535,30 +561,48 @@ public class Cube implements HasInvariant {
 		return false;
 	}
 
-	private String getStringOZ(int j, int start, int end, int i) {
+	/**
+	 * Get the string of cube which in the line has the equation is: <br>
+	 * x = param x <br>
+	 * z = param z
+	 * 
+	 * @param x
+	 * @param z
+	 * @param direction
+	 *            the direction to compose the string
+	 * @return
+	 */
+	private String getStringOZ(int x, int z, boolean direction) {
 		String str = "";
-		if (start < end) {
-			for (int k = start; k < end; k++) {
-				str += this.values[j][k][i];
+		if (direction) {
+			for (int y = 0; y < this.size; y++) {
+				str += this.values[x][y][z];
 			}
 		} else {
-			for (int k = start - 1; k >= end; k--) {
-				str += this.values[j][k][i];
+			for (int y = this.size - 1; y >= 0; y--) {
+				str += this.values[x][y][z];
 			}
 		}
 		return str;
 	}
 
+	/**
+	 * Consider all the plan which is parallel with the Oxz plan In each plan,
+	 * consider the strings which is parallel with Ox axis
+	 * 
+	 * @param string
+	 * @return
+	 */
 	private boolean associated_directionOY(String string) {
 		// y from 0-> size of cube
-		for (int i = 0; i < this.size; i++) {
+		for (int y = 0; y < this.size; y++) {
 			// z from 0-> size of cube
-			for (int j = 0; j < this.size; j++) {
-				String string_lattice1 = getStringOY(0, this.size, i, j);
+			for (int z = 0; z < this.size; z++) {
+				String string_lattice1 = getStringOY(y, z, true);
 				if (string_lattice1.contains(string))
 					return true;
 				else {
-					String string_lattice2 = getStringOY(this.size, 0, i, j);
+					String string_lattice2 = getStringOY(y, z, false);
 					if (string_lattice2.contains(string))
 						return true;
 				}
@@ -567,30 +611,48 @@ public class Cube implements HasInvariant {
 		return false;
 	}
 
-	private String getStringOY(int start, int end, int i, int j) {
+	/**
+	 * Get the string of cube which in the line has the equation is: <br>
+	 * y = param y <br>
+	 * z = param z
+	 * 
+	 * @param y
+	 * @param z
+	 * @param direction
+	 *            the direction to compose the string
+	 * @return
+	 */
+	private String getStringOY(int y, int z, boolean direction) {
 		String str = "";
-		if (start < end) {
-			for (int k = start; k < end; k++) {
-				str += this.values[k][i][j];
+		if (direction) {
+			for (int x = 0; x < this.size; x++) {
+				str += this.values[x][y][z];
 			}
 		} else {
-			for (int k = start - 1; k >= end; k--) {
-				str += this.values[k][i][j];
+			for (int x = this.size - 1; x >= 0; x--) {
+				str += this.values[x][y][z];
 			}
 		}
 		return str;
 	}
 
+	/**
+	 * Consider all the plan which is parallel with the Oyz plan In each plan,
+	 * consider the strings which is parallel with Oz axis
+	 * 
+	 * @param string
+	 * @return
+	 */
 	private boolean associated_directionOX(String string) {
 		// x from 0-> size of cube
-		for (int i = 0; i < this.size; i++) {
+		for (int x = 0; x < this.size; x++) {
 			// y from 0> size of cube
-			for (int j = 0; j < this.size; j++) {
-				String string_lattice1 = getStringOX(i, j, 0, this.size);
+			for (int y = 0; y < this.size; y++) {
+				String string_lattice1 = getStringOX(x, y, true);
 				if (string_lattice1.contains(string))
 					return true;
 				else {
-					String string_lattice2 = getStringOX(i, j, this.size, 0);
+					String string_lattice2 = getStringOX(x, y, false);
 					if (string_lattice2.contains(string))
 						return true;
 				}
@@ -600,15 +662,26 @@ public class Cube implements HasInvariant {
 		return false;
 	}
 
-	private String getStringOX(int i, int j, int start, int end) {
+	/**
+	 * Get the string of cube which in the line has the equation is: <br>
+	 * x = param x <br>
+	 * y = param y
+	 * 
+	 * @param x
+	 * @param y
+	 * @param direction
+	 *            the direction to compose the string
+	 * @return
+	 */
+	private String getStringOX(int x, int y, boolean direction) {
 		String str = "";
-		if (start < end) {
-			for (int k = start; k < end; k++) {
-				str += this.values[i][j][k];
+		if (direction) {
+			for (int z = 0; z < this.size; z++) {
+				str += this.values[x][y][z];
 			}
 		} else {
-			for (int k = start - 1; k >= end; k--) {
-				str += this.values[i][j][k];
+			for (int z = this.size - 1; z >= 0; z--) {
+				str += this.values[x][y][z];
 			}
 		}
 		return str;

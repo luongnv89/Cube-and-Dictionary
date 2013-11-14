@@ -23,7 +23,11 @@ public class CubeTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		cube100 = new Cube(100);
+		System.out.println("Creating a cube....");
+		long start = System.currentTimeMillis();
+		cube100 = new Cube(1000);
+		System.out.println("Time to create: "+ String.valueOf(System.currentTimeMillis()-start) +"ms");
+		System.out.println("A cube is created!");
 	}
 
 	/**
@@ -114,12 +118,20 @@ public class CubeTest {
 		System.out.println(myCube.associated(myDic));
 	}
 	
+	@Test
+	public void testAssociated2() throws Exception{
+		Dictionary myDic = new Dictionary("dictionary_3_5.txt");
+		System.out.println(cube100.associated(myDic));
+	}
+	
 	/**
 	 * Test method for {@link csc5021.objects.Cube#saveToFile(String)}.
 	 */
 	@Test
 	public void testSaveToFile() {
+		System.out.println("Saving the cube to file");
 		cube100.saveToFile("cube_"+String.valueOf(System.currentTimeMillis())+".txt");
+		System.out.println("Done!");
 	}
 
 }
