@@ -103,8 +103,9 @@ public class Cube implements HasInvariant {
 	 * 
 	 * @see csc5021.interfaces.HasInvariant#invariant()
 	 * 
-	 * @return <br> false if the size of cube is invalid
-	 * <br> false if there are some lattice has less than 2 different letters or more than 100 different letters
+	 * @return <br> false if the size of cube is invalid <br> false if there are
+	 * some lattice has less than 2 different letters or more than 100 different
+	 * letters
 	 */
 	@Override
 	public boolean invariant() {
@@ -153,7 +154,7 @@ public class Cube implements HasInvariant {
 	}
 
 	/**
-	 * create randomly values for lattice 
+	 * create randomly values for lattice
 	 */
 	public void initRandomly() {
 		for (int i = 0; i < this.size; i++) {
@@ -215,325 +216,130 @@ public class Cube implements HasInvariant {
 		if (!word_associated)
 			word_associated = associated_directionOZ(string);
 		if (!word_associated)
-			word_associated = associated_directionOXY1(string);
+			word_associated = associated_plane1(string);
 		if (!word_associated)
-			word_associated = associated_directionOXY2(string);
-		if (!word_associated)
-			word_associated = associated_directionOXZ1(string);
-		if (!word_associated)
-			word_associated = associated_directionOXZ2(string);
-		if (!word_associated)
-			word_associated = associated_directionOYZ1(string);
-		if (!word_associated)
-			word_associated = associated_directionOYZ2(string);
+			word_associated = associated_plane2(string);
 		System.out.println("Word: " + string + " associated? "
 				+ String.valueOf(word_associated));
 		return word_associated;
 	}
 
-	private boolean associated_directionOYZ2(String string) {
-		for (int subYZ = -(this.size - string.length()); subYZ < this.size
-				- string.length(); subYZ++) {
-			// From x = 0 to x = size of cube
-			for (int i = 0; i < this.size; i++) {
-				String string_lattice1 = getStringOYZ2(i, subYZ,
-						string.length(), true);
-				if (string_lattice1.contains(string))
-					return true;
-				else {
-					String string_lattice2 = getStringOYZ2(i, subYZ,
-							string.length(), false);
-					if (string_lattice2.contains(string))
-						return true;
-				}
-			}
-
+	private boolean associated_plane2(String string) {
+		for (int sumXY = string.length() - 1; sumXY < size; sumXY++) {
+			if (associated_AF(0, sumXY - 1, string))
+				return true;
+			if (associated_BE(0, sumXY - 1, string))
+				return true;
+		}
+		for (int sumXY = size; sumXY <= 2 * size - string.length() - 1; sumXY++) {
+			if (associated_AF(sumXY - size, size - 1, string))
+				return true;
+			if (associated_BE(sumXY - size, size - 1, string))
+				return true;
 		}
 		return false;
 	}
 
-	private String getStringOYZ2(int x, int subYZ, int length, boolean b) {
-		String str = "";
-		// y>z
-		if (subYZ > 0) {
-			if (b) {
-				for (int y = subYZ; y < this.size; y++) {
-					str += this.values[x][y][y - subYZ];
-				}
-			} else {
-				for (int y = this.size - 1; y >= subYZ; y--) {
-					str += this.values[x][y][y - subYZ];
-				}
-			}
+	private boolean associated_BE(int x0, int y0, String str) {
+		int deltaX = x0 + y0 + 1;
+
+		for (int deltaZ = str.length() - 1; deltaZ < deltaX; deltaZ++) {
+			if (associated_line(x0, y0, deltaZ - 1, x0 + deltaZ - 1, y0
+					- deltaZ + 1, 0, str))
+				return true;
 		}
-		// y<z
-		else {
-			if (b) {
-				for (int y = 0; y < this.size + subYZ; y++) {
-					str += this.values[x][y][y - subYZ];
-				}
-			} else {
-				for (int y = this.size + subYZ - 1; y >= 0; y--) {
-					str += this.values[x][y][y - subYZ];
-				}
-			}
+
+		for (int z = deltaX; z < size - 1; z++) {
+			if (associated_line(x0, y0, z, x0 + deltaX, y0 - deltaX,
+					z - deltaX, str))
+				return true;
 		}
-		return str;
+
+		for (int x = x0; x <= x0 + deltaX - str.length() + 1; x++) {
+			if (associated_line(x, y0 - (x - x0), size - 1, x0 + deltaX, y0
+					- deltaX, size - 1 - (x0 + deltaX - x), str))
+				return true;
+		}
+
+		return false;
 	}
 
-	private boolean associated_directionOYZ1(String string) {
-		for (int sumOYZ = string.length(); sumOYZ < 2 * this.size
-				- string.length(); sumOYZ++) {
-			// From x = 0 to x = size of cube
-			for (int i = 0; i < this.size; i++) {
-				String string_lattice1 = getStringOYZ1(i, sumOYZ,
-						string.length(), true);
-				if (string_lattice1.contains(string))
-					return true;
-				else {
-					String string_lattice2 = getStringOYZ1(i, sumOYZ,
-							string.length(), false);
-					if (string_lattice2.contains(string))
-						return true;
-				}
-			}
+	private boolean associated_AF(int x0, int y0, String str) {
+		int deltaX = x0 + y0 + 1;
+
+		for (int sumYZ = str.length() - 1; sumYZ < deltaX; sumYZ++) {
+			if (associated_line(deltaX + x0 - sumYZ + 1, y0 - deltaX + sumYZ
+					- 1, 0, x0 + deltaX, y0 - deltaX, sumYZ - y0 + deltaX, str))
+				return true;
+		}
+
+		for (int sumYZ = deltaX; sumYZ < y0 - deltaX + size - 1; sumYZ++) {
+			if (associated_line(x0, y0, sumYZ - y0, x0 + deltaX, y0 - deltaX,
+					sumYZ - y0 + deltaX, str))
+				return true;
+		}
+
+		for (int sumYZ = y0 - deltaX + size - 1; sumYZ <= y0 + size
+				- str.length(); sumYZ++) {
+			if (associated_line(x0, y0, sumYZ - y0, deltaX - sumYZ + size - 1,
+					sumYZ - size + 1, size - 1, str))
+				return true;
+		}
+
+		return false;
+	}
+
+	private boolean associated_plane1(String string) {
+		for (int subXY = 0; subXY < size - string.length(); subXY++) {
+			if (associated_OD(subXY, 0, size - 1, size - subXY, string))
+				return true;
+			if (associated_CK(subXY, 0, size - 1, size - subXY, string))
+				return true;
+		}
+		for (int subXY = string.length() - size; subXY > 0; subXY--) {
+			if (associated_OD(0, subXY, size - 1 - subXY, size - 1, string))
+				return true;
+			if (associated_CK(0, subXY, size - 1 - subXY, size - 1, string))
+				return true;
 		}
 		return false;
 	}
 
-	private String getStringOYZ1(int i, int sumOYZ, int length, boolean b) {
-		String str = "";
-		if (sumOYZ < this.size) {
-			if (b) {
-				// from y to z
-				for (int y = sumOYZ; y >= 0; y--) {
-					str += this.values[i][y][sumOYZ - y];
-				}
-			} else {
-				// from z to y
-				for (int y = 0; y <= sumOYZ; y++) {
-					str += this.values[i][y][sumOYZ - y];
-				}
-			}
-		} else {
-			if (b) {
-				// from y to z
-				for (int y = sumOYZ - this.size + 1; y < this.size; y++) {
-					str += this.values[i][y][sumOYZ - y];
-				}
-			} else {
-				// from z to y
-				for (int y = this.size - 1; y >= sumOYZ - this.size + 1; y--) {
-					str += this.values[i][y][sumOYZ - y];
-				}
-			}
+	private boolean associated_CK(int x0, int y0, int x1, int y1, String string) {
+		int deltaX = x1 - x0;
+		for (int deltaZ = string.length(); deltaZ <= deltaX; deltaZ++) {
+			if (associated_line(x0, y0, deltaZ - 1, x0 + deltaZ - 1, y0
+					+ deltaZ - 1, 0, string))
+				return true;
+			if (associated_line(x1 - deltaZ + 1, y1 - deltaZ + 1, size - 1, x1,
+					y1, size - 1 - deltaZ + 1, string))
+				return true;
 		}
-		return str;
-	}
 
-	private boolean associated_directionOXZ2(String string) {
-		for (int subOZ2 = -(this.size - string.length()); subOZ2 < this.size
-				- string.length(); subOZ2++) {
-
-			// From y = 0 to y = size of cube
-			for (int i = 0; i < this.size; i++) {
-				String string_lattice1 = getStringOXZ2(i, subOZ2,
-						string.length(), true);
-				if (string_lattice1.contains(string))
-					return true;
-				else {
-					String string_lattice2 = getStringOXZ2(i, subOZ2,
-							string.length(), false);
-					if (string_lattice2.contains(string))
-						return true;
-				}
-			}
-
+		for (int z0 = deltaX; z0 < size; z0++) {
+			if (associated_line(x0, y0, z0, x1, y1, z0 - deltaX, string))
+				return true;
 		}
 		return false;
 	}
 
-	private String getStringOXZ2(int y, int subOZ2, int length, boolean b) {
-		String str = "";
-		// x>y
-		if (subOZ2 > 0) {
-			if (b) {
-				for (int x = subOZ2; x < this.size; x++) {
-					str += this.values[x][y][x - subOZ2];
-				}
-			} else {
-				for (int x = this.size - 1; x >= subOZ2; x--) {
-					str += this.values[x][y][x - subOZ2];
-				}
-			}
+	private boolean associated_OD(int x0, int y0, int x1, int y1, String string) {
+		int deltaX = x1 - x0;
+		for (int deltaZ = string.length() - 1; deltaZ <= deltaX; deltaZ++) {
+			if (associated_line(x1 - deltaZ + 1, y1 - deltaZ + 1, 0, x1, y1,
+					deltaZ - 1, string))
+				return true;
+			if (associated_line(x0, y0, size - deltaZ, x0 + deltaZ - 1, y0
+					+ deltaZ - 1, size - 1, string))
+				return true;
 		}
-		// x<z
-		else {
-			if (b) {
-				for (int x = 0; x < this.size + subOZ2; x++) {
-					str += this.values[x][y][x - subOZ2];
-				}
-			} else {
-				for (int x = this.size + subOZ2 - 1; x >= 0; x--) {
-					str += this.values[x][y][x - subOZ2];
-				}
-			}
-		}
-		return str;
-	}
 
-	private boolean associated_directionOXZ1(String string) {
-		for (int sumOXZ = string.length(); sumOXZ < 2 * this.size
-				- string.length(); sumOXZ++) {
-			// From y = 0 to y = size of cube
-			for (int i = 0; i < this.size; i++) {
-				String string_lattice1 = getStringOXZ1(i, sumOXZ,
-						string.length(), true);
-				if (string_lattice1.contains(string))
-					return true;
-				else {
-					String string_lattice2 = getStringOXZ1(i, sumOXZ,
-							string.length(), false);
-					if (string_lattice2.contains(string))
-						return true;
-				}
-			}
+		for (int z1 = deltaX - 1; z1 < size; z1++) {
+			if (associated_line(x0, y0, z1 - deltaX, x1, y1, z1, string))
+				return true;
 		}
+
 		return false;
-	}
-
-	private String getStringOXZ1(int i, int sumOXZ, int length, boolean b) {
-		String str = "";
-		if (sumOXZ < this.size) {
-			if (b) {
-				// from x to z
-				for (int x = sumOXZ; x >= 0; x--) {
-					str += this.values[x][i][sumOXZ - x];
-				}
-			} else {
-				// from z to x
-				for (int x = 0; x <= sumOXZ; x++) {
-					str += this.values[x][i][sumOXZ - x];
-				}
-			}
-		} else {
-			if (b) {
-				// from x to z
-				for (int x = sumOXZ - this.size + 1; x < this.size; x++) {
-					str += this.values[x][i][sumOXZ - x];
-				}
-			} else {
-				// from z to x
-				for (int x = this.size - 1; x >= sumOXZ - this.size + 1; x--) {
-					str += this.values[x][i][sumOXZ - x];
-				}
-			}
-		}
-		return str;
-	}
-
-	private boolean associated_directionOXY2(String string) {
-		for (int subXY = -(this.size - string.length()); subXY < this.size
-				- string.length(); subXY++) {
-
-			// From z = 0 to z = size of cube
-			for (int i = 0; i < this.size; i++) {
-				String string_lattice1 = getStringOXY2(i, subXY,
-						string.length(), true);
-				if (string_lattice1.contains(string))
-					return true;
-				else {
-					String string_lattice2 = getStringOXY2(i, subXY,
-							string.length(), false);
-					if (string_lattice2.contains(string))
-						return true;
-				}
-			}
-
-		}
-		return false;
-	}
-
-	private String getStringOXY2(int z, int subXY, int length, boolean b) {
-		String str = "";
-		// x>y
-		if (subXY > 0) {
-			if (b) {
-				for (int x = subXY; x < this.size; x++) {
-					str += this.values[x][x - subXY][z];
-				}
-			} else {
-				for (int x = this.size - 1; x >= subXY; x--) {
-					str += this.values[x][x - subXY][z];
-				}
-			}
-		}
-		// x<y
-		else {
-			if (b) {
-				for (int x = 0; x < this.size + subXY; x++) {
-					str += this.values[x][x - subXY][z];
-				}
-			} else {
-				for (int x = this.size + subXY - 1; x >= 0; x--) {
-					str += this.values[x][x - subXY][z];
-				}
-			}
-		}
-		return str;
-	}
-
-	private boolean associated_directionOXY1(String string) {
-		for (int sumXY = string.length(); sumXY < 2 * this.size
-				- string.length(); sumXY++) {
-			// From z = 0 to z = size of cube
-			for (int i = 0; i < this.size; i++) {
-				String string_lattice1 = getStringOXY1(i, sumXY,
-						string.length(), true);
-				if (string_lattice1.contains(string))
-					return true;
-				else {
-					String string_lattice2 = getStringOXY1(i, sumXY,
-							string.length(), false);
-					if (string_lattice2.contains(string))
-						return true;
-				}
-			}
-		}
-		return false;
-	}
-
-	private String getStringOXY1(int i, int sumXY, int length, boolean direction) {
-		String str = "";
-		if (sumXY < this.size) {
-			if (direction) {
-				// from x to y
-				for (int x = sumXY; x >= 0; x--) {
-					str += this.values[x][sumXY - x][i];
-				}
-			} else {
-				// /from y to x
-				// from x to y
-				for (int x = 0; x <= sumXY; x++) {
-					str += this.values[x][sumXY - x][i];
-				}
-			}
-		} else {
-			if (direction) {
-				// from x to y
-				for (int x = sumXY - this.size + 1; x < this.size; x++) {
-					str += this.values[x][sumXY - x][i];
-				}
-			} else {
-				// /from y to x
-				// from x to y
-				for (int x = this.size - 1; x >= sumXY - this.size + 1; x--) {
-					str += this.values[x][sumXY - x][i];
-				}
-			}
-		}
-		return str;
-
 	}
 
 	/**
@@ -546,44 +352,40 @@ public class Cube implements HasInvariant {
 	private boolean associated_directionOZ(String string) {
 		// z from 0-> size of cube
 		for (int z = 0; z < this.size; z++) {
+			// The plan is parallel with Oxy
+
+			// The line in plane which is parallel with Oy
 			// x from 0-> size of cube
 			for (int x = 0; x < this.size; x++) {
-				String string_lattice1 = getStringOZ(x, z, true);
-				if (string_lattice1.contains(string))
+				if (associated_line(x, 0, z, x, this.size - 1, z, string))
 					return true;
-				else {
-					String string_lattice2 = getStringOZ(x, z, false);
-					if (string_lattice2.contains(string))
-						return true;
-				}
+			}
+
+			// The line in plane which is presented by x-z = constant;
+			for (int subXY = 0; subXY <= string.length() - 1; subXY++) {
+				if (associated_line(subXY - 1, 0, z, size - 1, size - subXY, z,
+						string))
+					return true;
+			}
+
+			for (int subYX = 0; subYX <= string.length() - 1; subYX++) {
+				if (associated_line(0, subYX - 1, z, size - subYX, size - 1, z,
+						string))
+					return true;
+			}
+
+			// The line in plane which is presented by x+z = constant;
+			for (int sumXY = string.length() - 1; sumXY < size; sumXY++) {
+				if (associated_line(sumXY - 1, 0, z, 0, sumXY - 1, z, string))
+					return true;
+			}
+			for (int sumXY = size + 1; sumXY < 2 * size - string.length() - 1; sumXY++) {
+				if (associated_line(size - 1, sumXY - size, z, sumXY - size,
+						size - 1, z, string))
+					return true;
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * Get the string of cube which in the line has the equation is: <br>
-	 * x = param x <br>
-	 * z = param z
-	 * 
-	 * @param x
-	 * @param z
-	 * @param direction
-	 *            the direction to compose the string
-	 * @return
-	 */
-	private String getStringOZ(int x, int z, boolean direction) {
-		String str = "";
-		if (direction) {
-			for (int y = 0; y < this.size; y++) {
-				str += this.values[x][y][z];
-			}
-		} else {
-			for (int y = this.size - 1; y >= 0; y--) {
-				str += this.values[x][y][z];
-			}
-		}
-		return str;
 	}
 
 	/**
@@ -596,44 +398,39 @@ public class Cube implements HasInvariant {
 	private boolean associated_directionOY(String string) {
 		// y from 0-> size of cube
 		for (int y = 0; y < this.size; y++) {
+			// The plan is parallel with Oxz
+
+			// The line in plane which is parallel with Ox
 			// z from 0-> size of cube
 			for (int z = 0; z < this.size; z++) {
-				String string_lattice1 = getStringOY(y, z, true);
-				if (string_lattice1.contains(string))
+				if (associated_line(0, y, z, this.size - 1, y, z, string))
 					return true;
-				else {
-					String string_lattice2 = getStringOY(y, z, false);
-					if (string_lattice2.contains(string))
-						return true;
-				}
+			}
+
+			// The line in plane which is presented by x-z = constant;
+			for (int subXZ = 0; subXZ <= string.length() - 1; subXZ++) {
+				if (associated_line(subXZ - 1, y, 0, size - 1, y, size - subXZ,
+						string))
+					return true;
+			}
+
+			for (int subZX = 0; subZX <= string.length() - 1; subZX++) {
+				if (associated_line(0, y, subZX - 1, size - subZX, y, size - 1,
+						string))
+					return true;
+			}
+			// The line in plane which is presented by x+z = constant;
+			for (int sumXZ = string.length() - 1; sumXZ < size; sumXZ++) {
+				if (associated_line(sumXZ - 1, y, 0, 0, y, sumXZ - 1, string))
+					return true;
+			}
+			for (int sumXZ = size + 1; sumXZ < 2 * size - string.length() - 1; sumXZ++) {
+				if (associated_line(size - 1, y, sumXZ - size, sumXZ - size, y,
+						size - 1, string))
+					return true;
 			}
 		}
 		return false;
-	}
-
-	/**
-	 * Get the string of cube which in the line has the equation is: <br>
-	 * y = param y <br>
-	 * z = param z
-	 * 
-	 * @param y
-	 * @param z
-	 * @param direction
-	 *            the direction to compose the string
-	 * @return
-	 */
-	private String getStringOY(int y, int z, boolean direction) {
-		String str = "";
-		if (direction) {
-			for (int x = 0; x < this.size; x++) {
-				str += this.values[x][y][z];
-			}
-		} else {
-			for (int x = this.size - 1; x >= 0; x--) {
-				str += this.values[x][y][z];
-			}
-		}
-		return str;
 	}
 
 	/**
@@ -646,42 +443,85 @@ public class Cube implements HasInvariant {
 	private boolean associated_directionOX(String string) {
 		// x from 0-> size of cube
 		for (int x = 0; x < this.size; x++) {
+			// The plan is parallel with Oyz
+
+			// The line in plane which is parallel with Oz
 			// y from 0> size of cube
 			for (int y = 0; y < this.size; y++) {
-				String string_lattice1 = getStringOX(x, y, true);
-				if (string_lattice1.contains(string))
+				if (associated_line(x, y, 0, x, y, this.size - 1, string))
 					return true;
-				else {
-					String string_lattice2 = getStringOX(x, y, false);
-					if (string_lattice2.contains(string))
-						return true;
-				}
+			}
 
+			// The line in plane which is presented by y-z = constant;
+			for (int subYZ = 0; subYZ <= string.length() - 1; subYZ++) {
+				if (associated_line(x, subYZ - 1, 0, x, size - 1, size - subYZ,
+						string))
+					return true;
+			}
+
+			for (int subZY = 0; subZY <= string.length() - 1; subZY++) {
+				if (associated_line(x, 0, subZY - 1, x, size - subZY, size - 1,
+						string))
+					return true;
+			}
+			// The line in plane which is presented by y+z = constant;
+			for (int sumYZ = string.length() - 1; sumYZ < size; sumYZ++) {
+				if (associated_line(x, sumYZ - 1, 0, x, 0, sumYZ - 1, string))
+					return true;
+			}
+			for (int sumYZ = size + 1; sumYZ < 2 * size - string.length() - 1; sumYZ++) {
+				if (associated_line(x, size - 1, sumYZ - size, x, sumYZ - size,
+						size - 1, string))
+					return true;
+			}
+
+		}
+		return false;
+	}
+
+	public boolean associated_line(int x0, int y0, int z0, int x1, int y1,
+			int z1, String str) {
+		MyPoint p1 = new MyPoint(x0, y0, z0);
+		MyPoint p2 = new MyPoint(x1, y1, z1);
+		if (p1.getX() < p2.getX()) {
+			str = getString(p1, p2, true);
+			if (str.contains(str))
+				return true;
+			else {
+				str = getString(p1, p2, false);
+				if (str.contains(str))
+					return true;
+			}
+		} else {
+			str = getString(p2, p1, true);
+			if (str.contains(str))
+				return true;
+			else {
+				str = getString(p2, p1, false);
+				if (str.contains(str))
+					return true;
 			}
 		}
 		return false;
 	}
 
-	/**
-	 * Get the string of cube which in the line has the equation is: <br>
-	 * x = param x <br>
-	 * y = param y
-	 * 
-	 * @param x
-	 * @param y
-	 * @param direction
-	 *            the direction to compose the string
-	 * @return
-	 */
-	private String getStringOX(int x, int y, boolean direction) {
+	private String getString(MyPoint p1, MyPoint p2, boolean direction) {
 		String str = "";
 		if (direction) {
-			for (int z = 0; z < this.size; z++) {
-				str += this.values[x][y][z];
+			for (int x = p1.getX(); x <= p2.getX(); x++) {
+				int y = p1.getY() + (p2.getY() - p1.getY()) * (x - p1.getX())
+						/ (p2.getX() - p1.getX());
+				int z = p1.getZ() + (p2.getZ() - p1.getZ()) * (x - p1.getX())
+						/ (p2.getX() - p1.getX());
+				str += values[x][y][z];
 			}
 		} else {
-			for (int z = this.size - 1; z >= 0; z--) {
-				str += this.values[x][y][z];
+			for (int x = p2.getX(); x >= p1.getX(); x--) {
+				int y = p1.getY() + (p2.getY() - p1.getY()) * (x - p1.getX())
+						/ (p2.getX() - p1.getX());
+				int z = p1.getZ() + (p2.getZ() - p1.getZ()) * (x - p1.getX())
+						/ (p2.getX() - p1.getX());
+				str += values[x][y][z];
 			}
 		}
 		return str;
