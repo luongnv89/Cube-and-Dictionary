@@ -454,13 +454,13 @@ public class Cube implements HasInvariant {
 
 			// The line in plane which is presented by y-z = constant;
 			for (int subYZ = 0; subYZ <= string.length() - 1; subYZ++) {
-				if (associated_line(x, subYZ - 1, 0, x, size - 1, size - subYZ,
+				if (associated_line(x, subYZ, 0, x, size - 1, size - subYZ,
 						string))
 					return true;
 			}
 
 			for (int subZY = 0; subZY <= string.length() - 1; subZY++) {
-				if (associated_line(x, 0, subZY - 1, x, size - subZY, size - 1,
+				if (associated_line(x, 0, subZY, x, size - subZY, size - 1,
 						string))
 					return true;
 			}
@@ -481,50 +481,101 @@ public class Cube implements HasInvariant {
 
 	public boolean associated_line(int x0, int y0, int z0, int x1, int y1,
 			int z1, String str) {
-		MyPoint p1 = new MyPoint(x0, y0, z0);
-		MyPoint p2 = new MyPoint(x1, y1, z1);
-		if (p1.getX() < p2.getX()) {
-			str = getString(p1, p2, true);
-			if (str.contains(str))
-				return true;
-			else {
-				str = getString(p1, p2, false);
-				if (str.contains(str))
-					return true;
+		if (x0 == x1 && y0 == y1 && z0 == z1)
+			return false;
+		String string1 = "";
+		String string2 = "";
+		if (x0 == x1) {
+			if (y0 == y1) {
+				int max;
+				int min;
+				if (z0 < z1) {
+					min = z0;
+					max = z1;
+				} else {
+					min = z1;
+					max = z0;
+				}
+				for (int i = 0; i <= max - min; i++) {
+					string1 += values[x0][y0][min + i];
+					string2 += values[x0][y0][max - i];
+				}
+			} else if (z0 == z1) {
+				int max;
+				int min;
+				if (y0 < y1) {
+					min = y0;
+					max = y1;
+				} else {
+					min = y1;
+					max = y0;
+				}
+				for (int i = 0; i <= max - min; i++) {
+					string1 += values[x0][min + i][z0];
+					string2 += values[x0][max - i][z0];
+				}
+			} else {
+				int max;
+				int min;
+				if (y0 < y1) {
+					min = y0;
+					max = y1;
+				} else {
+					min = y1;
+					max = y0;
+				}
+				for (int i = 0; i <= max - min; i++) {
+					string1 += values[x0][min + i][z0 + (z1 - z0)
+							* (min + i - y0) / (y1 - y0)];
+					string2 += values[x0][max - i][z0 + (z1 - z0)
+							* (min - i - y0) / (y1 - y0)];
+				}
 			}
 		} else {
-			str = getString(p2, p1, true);
-			if (str.contains(str))
-				return true;
-			else {
-				str = getString(p2, p1, false);
-				if (str.contains(str))
-					return true;
+			int max;
+			int min;
+			if (x0 < x1) {
+				min = x0;
+				max = x1;
+			} else {
+				min = x1;
+				max = x0;
+			}
+			if (y0 == y1) {
+				if (z0 == z1) {
+					for (int i = 0; i <= max - min; i++) {
+						string1 += values[min + i][y0][z0];
+						string2 += values[max - i][y0][z0];
+					}
+				} else {
+					for (int i = 0; i <= max - min; i++) {
+						string1 += values[min + i][y0][z0 + (z1 - z0)
+								* (min + i - x0) / (x1 - x0)];
+						string2 += values[max - i][y0][z0 + (z1 - z0)
+								* (min - i - x0) / (x1 - x0)];
+					}
+				}
+			} else {
+				if (z0 == z1) {
+					for (int i = 0; i <= max - min; i++) {
+						string1 += values[min + i][y0 + (y1 - y0)
+								* (min + i - x0) / (x1 - x0)][z0];
+						string2 += values[max - i][y0 + (y1 - y0)
+								* (min - i - x0) / (x1 - x0)][z0];
+					}
+				} else {
+					for (int i = 0; i <= max - min; i++) {
+						string1 += values[min + i][y0 + (y1 - y0)
+								* (min + i - x0) / (x1 - x0)][z0 + (z1 - z0)
+								* (min + i - x0) / (x1 - x0)];
+						string2 += values[max - i][y0 + (y1 - y0)
+								* (min - i - x0) / (x1 - x0)][z0 + (z1 - z0)
+								* (min - i - x0) / (x1 - x0)];
+					}
+				}
 			}
 		}
-		return false;
-	}
+		return string1.contains(str) || string2.contains(str);
 
-	private String getString(MyPoint p1, MyPoint p2, boolean direction) {
-		String str = "";
-		if (direction) {
-			for (int x = p1.getX(); x <= p2.getX(); x++) {
-				int y = p1.getY() + (p2.getY() - p1.getY()) * (x - p1.getX())
-						/ (p2.getX() - p1.getX());
-				int z = p1.getZ() + (p2.getZ() - p1.getZ()) * (x - p1.getX())
-						/ (p2.getX() - p1.getX());
-				str += values[x][y][z];
-			}
-		} else {
-			for (int x = p2.getX(); x >= p1.getX(); x--) {
-				int y = p1.getY() + (p2.getY() - p1.getY()) * (x - p1.getX())
-						/ (p2.getX() - p1.getX());
-				int z = p1.getZ() + (p2.getZ() - p1.getZ()) * (x - p1.getX())
-						/ (p2.getX() - p1.getX());
-				str += values[x][y][z];
-			}
-		}
-		return str;
 	}
-
 }

@@ -25,7 +25,7 @@ public class CubeTest {
 	public void setUp() throws Exception {
 		System.out.println("Creating a cube....");
 		long start = System.currentTimeMillis();
-		cube100 = new Cube(1000);
+		//cube100 = new Cube(1000);
 		System.out.println("Time to create: "+ String.valueOf(System.currentTimeMillis()-start) +"ms");
 		System.out.println("A cube is created!");
 	}
@@ -114,7 +114,9 @@ public class CubeTest {
 	@Test
 	public void testAssociated() throws Exception{
 		Cube myCube = new Cube("cube5.txt");
+		myCube.showValues();
 		Dictionary myDic = new Dictionary("dictionary_3_5.txt");
+		myDic.showContent();
 		System.out.println(myCube.associated(myDic));
 	}
 	
