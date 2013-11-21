@@ -13,58 +13,44 @@ import csc5021.objects.Dictionary;
 
 /**
  * @author luongnv89
- *
+ * 
  */
 public class CubeTest {
 
-	Cube cube100;
+	Cube cube;
+	Dictionary dic;
+
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		System.out.println("Creating a cube....");
-		long start = System.currentTimeMillis();
-		//cube100 = new Cube(1000);
-		System.out.println("Time to create: "+ String.valueOf(System.currentTimeMillis()-start) +"ms");
-		System.out.println("A cube is created!");
+		cube = new Cube("cube5.txt");
+		dic = new Dictionary("dic5.txt");
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Cube#Lattice(int)}.
-	 * @throws Exception 
+	 * Test method for {@link csc5021.objects.Cube#Cube(int)}.
 	 */
 	@Test
-	public void testLatticeInt() throws Exception {
-		Cube latticeInt = new Cube(4);
-		latticeInt.showValues();
-	}
-
-	/**
-	 * Test method for {@link csc5021.objects.Cube#Lattice(char[][][])}.
-	 */
-	@Test
-	public void testLatticeCharArrayArrayArray() {
+	public void testCubeInt() {
 		fail("Not yet implemented");
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Cube#Lattice(java.lang.String)}.
-	 * @throws Exception 
+	 * Test method for {@link csc5021.objects.Cube#Cube(java.lang.String)}.
 	 */
 	@Test
-	public void testLatticeString() throws Exception {
-		Cube stringLattice = new Cube("cube5.txt");
-		stringLattice.showValues();
+	public void testCubeString() {
+		fail("Not yet implemented");
 	}
-
 
 	/**
 	 * Test method for {@link csc5021.objects.Cube#getSize()}.
 	 */
 	@Test
 	public void testGetSize() {
-		assertTrue(cube100.getSize()==3);
+		fail("Not yet implemented");
 	}
 
 	/**
@@ -72,7 +58,7 @@ public class CubeTest {
 	 */
 	@Test
 	public void testGetValues() {
-		assertTrue(cube100.getValues().length>0);
+		fail("Not yet implemented");
 	}
 
 	/**
@@ -80,60 +66,173 @@ public class CubeTest {
 	 */
 	@Test
 	public void testInvariant() {
-		assertTrue(cube100.invariant());
+		fail("Not yet implemented");
 	}
 
 	/**
 	 * Test method for {@link csc5021.objects.Cube#showValues()}.
 	 */
 	@Test
-	public void testShowLatice() {
-		cube100.showValues();
+	public void testShowValues() {
+		cube.showValues();
+	}
+
+	/**
+	 * Test method for {@link csc5021.objects.Cube#saveToFile(java.lang.String)}
+	 * .
+	 */
+	@Test
+	public void testSaveToFile() {
+		fail("Not yet implemented");
 	}
 
 	/**
 	 * Test method for {@link csc5021.objects.Cube#initRandomly()}.
-	 * @throws Exception 
 	 */
 	@Test
-	public void testInitialRandomly() throws Exception {
-		long startTime = System.currentTimeMillis();
-		Cube myLattice = new Cube(1000);
-		long totalTime = System.currentTimeMillis() - startTime;
-		myLattice.showValues();
-		System.out.println(totalTime);
+	public void testInitRandomly() {
+		fail("Not yet implemented");
 	}
-	
-	@Test
-	public void testMaxMemory(){
-		System.out.println(java.lang.Runtime.getRuntime().availableProcessors());
-		System.out.println(java.lang.Runtime.getRuntime().totalMemory());
-		System.out.println(java.lang.Runtime.getRuntime().maxMemory());
-	}
-	
-	@Test
-	public void testAssociated() throws Exception{
-		Cube myCube = new Cube("cube5.txt");
-		myCube.showValues();
-		Dictionary myDic = new Dictionary("dictionary_3_5.txt");
-		myDic.showContent();
-		System.out.println(myCube.associated(myDic));
-	}
-	
-	@Test
-	public void testAssociated2() throws Exception{
-		Dictionary myDic = new Dictionary("dictionary_3_5.txt");
-		System.out.println(cube100.associated(myDic));
-	}
-	
+
 	/**
-	 * Test method for {@link csc5021.objects.Cube#saveToFile(String)}.
+	 * Test method for
+	 * {@link csc5021.objects.Cube#associated(csc5021.objects.Dictionary)}.
 	 */
 	@Test
-	public void testSaveToFile() {
-		System.out.println("Saving the cube to file");
-		cube100.saveToFile("cube_"+String.valueOf(System.currentTimeMillis())+".txt");
-		System.out.println("Done!");
+	public void testAssociated() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.objects.Cube#associated_word(java.lang.String)}.
+	 */
+	@Test
+	public void testAssociated_word() {
+		assertFalse(cube.associated_word("ABABA"));
+		assertTrue(cube.associated_word("ABCD"));
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.objects.Cube#associated_line(int, int, int, int, int, int, java.lang.String)}
+	 * .
+	 */
+	@Test
+	public void testAssociated_line() {
+
+		assertFalse(cube.associated_line(0, 0, 0, 0, 0, 0, "ABCDE"));
+		// OYZ
+		// ABCIA
+		assertTrue(cube.associated_line(0, 0, 0, 0, 0, 4, "ABCIA"));
+
+		// ADGDG
+		assertTrue(cube.associated_line(0, 0, 0, 0, 4, 0, "GDGDA"));
+
+		// AEKME
+		assertTrue(cube.associated_line(0, 0, 0, 0, 4, 4, "EMKEA"));
+
+		// AJKEG
+		assertTrue(cube.associated_line(0, 0, 4, 0, 4, 0, "GEKJA"));
+
+		// OXY
+		// AADGG
+		assertTrue(cube.associated_line(0, 0, 0, 4, 0, 0, "GGDAA"));
+
+		// AGDGD
+		assertTrue(cube.associated_line(0, 0, 0, 4, 4, 0, "DGDGA"));
+
+		// GADDG
+		assertTrue(cube.associated_line(4, 0, 0, 0, 4, 0, "GDDAG"));
+
+		// OXZ
+		// ABFPE
+		assertTrue(cube.associated_line(0, 0, 0, 4, 0, 4, "EPFBA"));
+
+		// AOFHG
+		assertTrue(cube.associated_line(0, 0, 4, 4, 0, 0, "GHFOA"));
+
+		// OCDK
+		// DHFPA
+		assertTrue(cube.associated_line(4, 4, 0, 0, 0, 4, "APFHD"));
+
+		// AHFLI
+		assertTrue(cube.associated_line(4, 4, 4, 0, 0, 0, "ILFHA"));
+
+		// ABFE
+		// GEFIE
+		assertTrue(cube.associated_line(0, 4, 0, 4, 0, 4, "GEFIE"));
+
+		// ERFBG
+		assertTrue(cube.associated_line(0, 4, 4, 4, 0, 0, "ERFBG"));
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.objects.Cube#getString(int, int, int, int, int, int, boolean)}
+	 * .
+	 */
+	@Test
+	public void testGetString() {
+
+		String str = cube.getString(0, 0, 0, 0, 0, 0, true);
+		assertTrue(str.equals("A"));
+		// OYZ
+		// ABCIA
+		String str1 = cube.getString(0, 0, 0, 0, 0, 4, true);
+		assertTrue(str1.equals("ABCIA") || str1.contains("AICBA"));
+
+		// ADGDG
+		String str3 = cube.getString(0, 0, 0, 0, 4, 0, true);
+		assertTrue(str3.equals("ADGDG") || str3.equals("GDGDA"));
+
+		// AEKME
+		String str5 = cube.getString(0, 0, 0, 0, 4, 4, true);
+		assertTrue(str5.equals("AEKME") || str5.equals("EMKEA"));
+
+		// AJKEG
+		String str7 = cube.getString(0, 0, 4, 0, 4, 0, true);
+		assertTrue(str7.equals("AJKEG") || str7.equals("GEKJA"));
+
+		// OXY
+		// AADGG
+		String str9 = cube.getString(0, 0, 0, 4, 0, 0, true);
+		assertTrue(str9.equals("AADGG") || str9.equals("GGDAA"));
+
+		// AGDGD
+		String str11 = cube.getString(0, 0, 0, 4, 4, 0, true);
+		assertTrue(str11.equals("AGDGD") || str11.equals("DGDGA"));
+
+		// GADDG
+		String str13 = cube.getString(4, 0, 0, 0, 4, 0, true);
+		assertTrue(str13.equals("GADDG") || str13.contains("GDDAG"));
+
+		// OXZ
+		// ABFPE
+		String str15 = cube.getString(0, 0, 0, 4, 0, 4, true);
+		assertTrue(str15.equals("ABFPE") || str15.contains("EPFBA"));
+
+		// AOFHG
+		String str17 = cube.getString(0, 0, 4, 4, 0, 0, true);
+		assertTrue(str17.equals("AOFHG") || str17.contains("GHFOA"));
+
+		// OCDK
+		// DHFPA
+		String str19 = cube.getString(4, 4, 0, 0, 0, 4, true);
+		assertTrue(str19.equals("DHFPA") || str19.contains("APFHD"));
+
+		// AHFLI
+		String str21 = cube.getString(4, 4, 4, 0, 0, 0, true);
+		assertTrue(str21.equals("AHFLI") || str21.contains("ILFHA"));
+
+		// ABFE
+		// GEFIE
+		String str23 = cube.getString(0, 4, 0, 4, 0, 4, true);
+		assertTrue(str23.equals("GEFIE") || str23.contains("EIFEG"));
+
+		// ERFBG
+		String str25 = cube.getString(0, 4, 4, 4, 0, 0, true);
+		assertTrue(str25.equals("ERFBG") || str25.contains("GBFRE"));
 	}
 
 }
