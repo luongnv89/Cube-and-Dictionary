@@ -40,9 +40,9 @@ public class Utilities {
 	public static boolean validWord(String word) {
 		char[] array = word.toUpperCase().toCharArray();
 		for(int i=0;i<array.length;i++){
-			int index = Character.toUpperCase(array[0]);
+			int index = Character.toUpperCase(array[i]);
 			if(index<65||index>90){
-				return false;
+				return false; 
 			}
 		}
 		return true;

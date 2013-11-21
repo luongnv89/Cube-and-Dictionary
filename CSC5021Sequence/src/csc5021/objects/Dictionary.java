@@ -9,7 +9,6 @@ import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Random;
 
 import csc5021.interfaces.HasInvariant;
 import csc5021.utilities.Utilities;
@@ -55,46 +54,24 @@ public class Dictionary implements HasInvariant {
 	/**
 	 * Constructor a new dictionary
 	 * 
-	 * @param lengthOfWord length of words of dictionary
-	 * @param size the initial size of dictionary. The initial words of dictionary are generated randomly
+	 * @param lengthOfWord
+	 *            length of words of dictionary
+	 * @param size
+	 *            the initial size of dictionary. The initial words of
+	 *            dictionary are generated randomly
 	 */
 	public Dictionary(int lengthOfWord, int size) {
 		if (lengthOfWord == 2)
 			MAX_SIZE = 600;
 
 		if (lengthOfWord < MIN_LENGTH || lengthOfWord > MAX_LENGTH) {
-			System.out
-					.println("The length of word isnt valid. The default value will be set for dictionary");
+			System.out.println("The length of word isnt valid. The default value will be set for dictionary");
 			this.length = 3;
 		} else {
 			this.length = lengthOfWord;
 		}
 		listWord = new ArrayList<>();
 		initRandomly(size);
-	}
-
-	/**
-	 * Constructor a dictionary by input list word
-	 * 
-	 * @param listWord
-	 * @throws Exception
-	 */
-	public Dictionary(ArrayList<String> listWord) throws Exception {
-		boolean ok = true;
-		int length = listWord.get(0).length();
-		for (int i = 0; i < listWord.size(); i++) {
-			if (listWord.get(i).length() != length
-					|| !Utilities.validWord(listWord.get(i))) {
-				ok = false;
-				break;
-			}
-		}
-		if (ok) {
-			this.listWord = listWord;
-			this.length = length;
-		} else {
-			throw new Exception("The input listword is invalid");
-		}
 	}
 
 	/**
@@ -121,7 +98,7 @@ public class Dictionary implements HasInvariant {
 					}
 				}
 			}
-		} finally {
+		} finally { 
 			br.close();
 		}
 	}
@@ -132,11 +109,7 @@ public class Dictionary implements HasInvariant {
 	private void initRandomly(int sizeOfDict) {
 		listWord.clear();
 		// Init the size of dictionary
-		int sizeOfDictionary = (new Random()).nextInt(sizeOfDict);
-		if (sizeOfDictionary < MIN_SIZE)
-			sizeOfDictionary = MIN_SIZE;
-
-		for (int i = 0; i < sizeOfDictionary; i++) {
+		for (int i = 0; i < sizeOfDict; i++) {
 			boolean ok = false;
 			int retry = 0;
 			while (!ok) {
@@ -193,26 +166,23 @@ public class Dictionary implements HasInvariant {
 	@Override
 	public boolean invariant() {
 		int size = getSize();
-		//Check size of dictionary
+		// Check size of dictionary
 		if (size < MIN_SIZE || size > MAX_SIZE) {
 			System.out.println("The size of dictionary isn't valid: " + size
 					+ "\n It must be smaller than 1001 and bigger than 2");
 			return false;
 		}
-		//Check length of words of dictionary
+		// Check length of words of dictionary
 		if (this.length < 2 || this.length > 100) {
-			System.out
-					.println("The length of word isn't valid: "
-							+ length
-							+ "\nThe length of word must be longer than 1 and shorter than 101");
+			System.out.println("The length of word isn't valid: " + length
+					+ "\nThe length of word must be longer than 1 and shorter than 101");
 			return false;
 		}
-		//Check valid of each word in dictionary
+		// Check valid of each word in dictionary
 		for (int i = 0; i < size; i++) {
 			String currWord = getWordByIndex(i);
 			if (currWord.length() != length || !Utilities.validWord(currWord)) {
-				System.out.println("There is a invalid word in dictionary: "
-						+ currWord);
+				System.out.println("There is a invalid word in dictionary: " + currWord);
 				return false;
 			}
 		}
@@ -230,9 +200,10 @@ public class Dictionary implements HasInvariant {
 		}
 		System.out.println(str);
 	}
-	
+
 	/**
 	 * Save the content of dictionary to a file
+	 * 
 	 * @param pathFile
 	 * 
 	 */
@@ -240,7 +211,7 @@ public class Dictionary implements HasInvariant {
 		try {
 			BufferedWriter out = new BufferedWriter(new FileWriter(pathFile));
 			for (int i = 0; i < listWord.size(); i++) {
-				out.write(getWordByIndex(i)+"\n");
+				out.write(getWordByIndex(i) + "\n");
 			}
 			out.close();
 		} catch (IOException e) {

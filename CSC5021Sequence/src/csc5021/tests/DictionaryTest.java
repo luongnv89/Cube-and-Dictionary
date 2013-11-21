@@ -12,17 +12,17 @@ import csc5021.objects.Dictionary;
 
 /**
  * @author luongnv89
- *
+ * 
  */
 public class DictionaryTest {
+	Dictionary dic5;
 
-	Dictionary dic1;
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		dic1 = new Dictionary(10, 20);
+		dic5 = new Dictionary("dic5.txt");
 	}
 
 	/**
@@ -30,23 +30,45 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testDictionaryIntInt() {
-		fail("Not yet implemented");
+		Dictionary newDic = new Dictionary(5, 10);
+		assertEquals(newDic.getLength(), 5);
+		assertEquals(newDic.getSize(), 10);
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Dictionary#Dictionary(java.util.ArrayList)}.
+	 * Test method for
+	 * {@link csc5021.objects.Dictionary#Dictionary(java.lang.String)}.
+	 * 
+	 * @throws Exception
 	 */
-	@Test
-	public void testDictionaryArrayListOfString() {
-		fail("Not yet implemented");
+	@Test(expected = Exception.class)
+	public void testDictionaryStringInvalid() throws Exception {
+		Dictionary dic4 = new Dictionary("dic5_invalid.txt");
+		dic4.showContent();
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Dictionary#Dictionary(java.lang.String)}.
+	 * Test method for
+	 * {@link csc5021.objects.Dictionary#Dictionary(java.lang.String)}.
+	 * 
+	 * @throws Exception
+	 */
+	@Test(expected = Exception.class) 
+	public void testDictionaryStringInvalidLetter() throws Exception {
+		Dictionary dic4 = new Dictionary("dic5_invalid_letter.txt");
+		dic4.showContent(); 
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.objects.Dictionary#Dictionary(java.lang.String)}.
+	 * 
+	 * @throws Exception
 	 */
 	@Test
-	public void testDictionaryString() {
-		fail("Not yet implemented");
+	public void testDictionaryString() throws Exception {
+		Dictionary dic4 = new Dictionary("dic4.txt");
+		dic4.showContent();
 	}
 
 	/**
@@ -54,7 +76,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetLength() {
-		fail("Not yet implemented");
+		assertTrue(dic5.getLength() == 5);
 	}
 
 	/**
@@ -62,7 +84,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetSize() {
-		fail("Not yet implemented");
+		assertTrue(dic5.getSize() == 21);
 	}
 
 	/**
@@ -70,7 +92,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetWordByIndex() {
-		fail("Not yet implemented");
+		assertTrue(dic5.getWordByIndex(0).equals("ABCIA"));
 	}
 
 	/**
@@ -78,7 +100,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testInvariant() {
-		fail("Not yet implemented");
+		assertTrue(dic5.invariant());
 	}
 
 	/**
@@ -86,16 +108,18 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testShowContent() {
-		fail("Not yet implemented");
+		dic5.showContent();
 	}
-	
+
 	/**
-	 * Test method for {@link csc5021.objects.Dictionary#saveToFile(String)}
+	 * Test method for
+	 * {@link csc5021.objects.Dictionary#saveToFile(java.lang.String)}.
 	 */
 	@Test
 	public void testSaveToFile() {
-		dic1.saveToFile("dic_"+String.valueOf(System.currentTimeMillis())+".txt");
+		Dictionary dic6 = new Dictionary(6, 60);
+		dic6.saveToFile("dic6.txt");
+		dic6.showContent();
 	}
-	
 
 }

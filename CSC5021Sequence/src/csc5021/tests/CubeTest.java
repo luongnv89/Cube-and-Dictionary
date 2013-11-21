@@ -46,7 +46,7 @@ public class CubeTest {
 	 * @throws Exception
 	 */
 	@Test
-	public void testCubeInt() {
+	public void testCubeInt() throws Exception {
 		Cube newCube = new Cube(5);
 		newCube.showValues();
 		assertTrue(newCube.getSize() == 5);
@@ -76,9 +76,10 @@ public class CubeTest {
 
 	/**
 	 * Test method for {@link csc5021.objects.Cube#Cube(java.lang.String)}.
+	 * @throws Exception 
 	 */
 	@Test
-	public void testCubeString() {
+	public void testCubeString() throws Exception {
 		Cube newCube = new Cube("cube6.txt");
 		newCube.showValues();
 	}
@@ -120,9 +121,10 @@ public class CubeTest {
 	/**
 	 * Test method for {@link csc5021.objects.Cube#saveToFile(java.lang.String)}
 	 * .
+	 * @throws Exception 
 	 */
 	@Test
-	public void testSaveToFile() {
+	public void testSaveToFile() throws Exception {
 		Cube newCube = new Cube(6);
 		newCube.saveToFile("cube6.txt");
 	}

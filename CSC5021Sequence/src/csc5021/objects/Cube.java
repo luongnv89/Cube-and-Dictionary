@@ -5,7 +5,6 @@ package csc5021.objects;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -42,9 +41,10 @@ public class Cube implements HasInvariant {
 	 * @param size
 	 * @throws Exception
 	 */
-	public Cube(int size) {
+	public Cube(int size) throws Exception {
 		if (size < MIN_SIZE || size > MAX_SIZE) {
-			new Exception("The size of cube is invalid: " + size + "\nIt must be bigger than 3 and smaller than 1001");
+			throw new Exception("The size of cube is invalid: " + size
+					+ "\nIt must be bigger than 3 and smaller than 1001");
 		} else {
 			this.size = size;
 		}
@@ -58,44 +58,29 @@ public class Cube implements HasInvariant {
 	 * @param pathFile
 	 * @throws Exception
 	 */
-	public Cube(String pathFile) {
-		BufferedReader br = null;
-		try {
-			br = new BufferedReader(new FileReader(pathFile));
-		} catch (FileNotFoundException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		try {
-			String line = br.readLine();
-			if (line == null || line.length() < 3) {
-				new Exception("The input file is invalid!");
-			} else {
-				this.size = line.length();
-				values = new char[this.size][this.size][this.size];
-				// for each lattice
-				for (int i = 0; i < this.size; i++) {
-					// for each row of lattice
-					for (int j = 0; j < this.size; j++) {
-						char[] array = line.toCharArray();
-						for (int k = 0; k < this.size; k++) {
-							values[i][j][k] = array[k];
-						}
-						line = br.readLine();
+	public Cube(String pathFile) throws Exception {
+		@SuppressWarnings("resource")
+		BufferedReader br = new BufferedReader(new FileReader(pathFile));
+
+		String line = br.readLine();
+		if (line == null || line.length() < 3) {
+			throw new Exception("The input file is invalid!");
+		} else {
+			this.size = line.length();
+			values = new char[this.size][this.size][this.size];
+			// for each lattice
+			for (int i = 0; i < this.size; i++) {
+				// for each row of lattice
+				for (int j = 0; j < this.size; j++) {
+					char[] array = line.toCharArray();
+					for (int k = 0; k < this.size; k++) {
+						values[i][j][k] = array[k];
 					}
+					line = br.readLine();
 				}
-			}
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} finally {
-			try {
-				br.close();
-			} catch (IOException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			} 
 		}
+
 	}
 
 	/**

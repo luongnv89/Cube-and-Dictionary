@@ -41,6 +41,7 @@ public class UtilitiesTest {
 	public void testValidWord() {
 		assertTrue(Utilities.validWord("abcz"));
 		assertFalse(Utilities.validWord("12azcv"));
+		assertFalse(Utilities.validWord("A!ABCD"));
 	}
 
 	/**
