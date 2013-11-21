@@ -3,7 +3,9 @@
  */
 package csc5021.tests;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNotNull;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,7 +20,11 @@ import csc5021.objects.Dictionary;
 public class CubeTest {
 
 	Cube cube;
-	Dictionary dic;
+	Dictionary dic5;
+	Dictionary dic4;
+	Cube cubeToSmall;
+	Cube latticeInvalid;
+	private Dictionary dic4_ok;
 
 	/**
 	 * @throws java.lang.Exception
@@ -26,15 +32,46 @@ public class CubeTest {
 	@Before
 	public void setUp() throws Exception {
 		cube = new Cube("cube5.txt");
-		dic = new Dictionary("dic5.txt");
+		latticeInvalid = new Cube("cube5_lattice_invalid.txt");
+		cubeToSmall = new Cube("cube3.txt");
+
+		dic5 = new Dictionary("dic5.txt");
+		dic4 = new Dictionary("dic4.txt");
+		dic4_ok = new Dictionary("dic4_ok.txt");
 	}
 
 	/**
 	 * Test method for {@link csc5021.objects.Cube#Cube(int)}.
+	 * 
+	 * @throws Exception
 	 */
 	@Test
 	public void testCubeInt() {
-		fail("Not yet implemented");
+		Cube newCube = new Cube(5);
+		newCube.showValues();
+		assertTrue(newCube.getSize() == 5);
+	}
+
+	/**
+	 * Test method for {@link csc5021.objects.Cube#Cube(int)}.
+	 * 
+	 * @throws Exception
+	 */
+	@Test(expected = Exception.class)
+	public void testCubeIntSizeToSmall() throws Exception {
+		Cube newCube = new Cube(3);
+		newCube.showValues();
+	}
+
+	/**
+	 * Test method for {@link csc5021.objects.Cube#Cube(int)}.
+	 * 
+	 * @throws Exception
+	 */
+	@Test(expected = Exception.class)
+	public void testCubeIntSizeTooBig() throws Exception {
+		Cube newCube = new Cube(1001);
+		newCube.showValues();
 	}
 
 	/**
@@ -42,7 +79,8 @@ public class CubeTest {
 	 */
 	@Test
 	public void testCubeString() {
-		fail("Not yet implemented");
+		Cube newCube = new Cube("cube6.txt");
+		newCube.showValues();
 	}
 
 	/**
@@ -50,7 +88,7 @@ public class CubeTest {
 	 */
 	@Test
 	public void testGetSize() {
-		fail("Not yet implemented");
+		assertTrue(cube.getSize() == 5);
 	}
 
 	/**
@@ -58,7 +96,7 @@ public class CubeTest {
 	 */
 	@Test
 	public void testGetValues() {
-		fail("Not yet implemented");
+		assertNotNull(cube.getValues());
 	}
 
 	/**
@@ -66,7 +104,9 @@ public class CubeTest {
 	 */
 	@Test
 	public void testInvariant() {
-		fail("Not yet implemented");
+		assertTrue(cube.invariant());
+		assertFalse(cubeToSmall.invariant());
+		assertFalse(latticeInvalid.invariant());
 	}
 
 	/**
@@ -83,15 +123,8 @@ public class CubeTest {
 	 */
 	@Test
 	public void testSaveToFile() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for {@link csc5021.objects.Cube#initRandomly()}.
-	 */
-	@Test
-	public void testInitRandomly() {
-		fail("Not yet implemented");
+		Cube newCube = new Cube(6);
+		newCube.saveToFile("cube6.txt");
 	}
 
 	/**
@@ -100,7 +133,8 @@ public class CubeTest {
 	 */
 	@Test
 	public void testAssociated() {
-		fail("Not yet implemented");
+		assertTrue(cube.associated(dic4_ok));
+		assertFalse(cube.associated(dic4));
 	}
 
 	/**
@@ -175,63 +209,63 @@ public class CubeTest {
 	@Test
 	public void testGetString() {
 
-		String str = cube.getString(0, 0, 0, 0, 0, 0, true);
+		String str = cube.getString(0, 0, 0, 0, 0, 0);
 		assertTrue(str.equals("A"));
 		// OYZ
 		// ABCIA
-		String str1 = cube.getString(0, 0, 0, 0, 0, 4, true);
+		String str1 = cube.getString(0, 0, 0, 0, 0, 4);
 		assertTrue(str1.equals("ABCIA") || str1.contains("AICBA"));
 
 		// ADGDG
-		String str3 = cube.getString(0, 0, 0, 0, 4, 0, true);
+		String str3 = cube.getString(0, 0, 0, 0, 4, 0);
 		assertTrue(str3.equals("ADGDG") || str3.equals("GDGDA"));
 
 		// AEKME
-		String str5 = cube.getString(0, 0, 0, 0, 4, 4, true);
+		String str5 = cube.getString(0, 0, 0, 0, 4, 4);
 		assertTrue(str5.equals("AEKME") || str5.equals("EMKEA"));
 
 		// AJKEG
-		String str7 = cube.getString(0, 0, 4, 0, 4, 0, true);
+		String str7 = cube.getString(0, 0, 4, 0, 4, 0);
 		assertTrue(str7.equals("AJKEG") || str7.equals("GEKJA"));
 
 		// OXY
 		// AADGG
-		String str9 = cube.getString(0, 0, 0, 4, 0, 0, true);
+		String str9 = cube.getString(0, 0, 0, 4, 0, 0);
 		assertTrue(str9.equals("AADGG") || str9.equals("GGDAA"));
 
 		// AGDGD
-		String str11 = cube.getString(0, 0, 0, 4, 4, 0, true);
+		String str11 = cube.getString(0, 0, 0, 4, 4, 0);
 		assertTrue(str11.equals("AGDGD") || str11.equals("DGDGA"));
 
 		// GADDG
-		String str13 = cube.getString(4, 0, 0, 0, 4, 0, true);
+		String str13 = cube.getString(4, 0, 0, 0, 4, 0);
 		assertTrue(str13.equals("GADDG") || str13.contains("GDDAG"));
 
 		// OXZ
 		// ABFPE
-		String str15 = cube.getString(0, 0, 0, 4, 0, 4, true);
+		String str15 = cube.getString(0, 0, 0, 4, 0, 4);
 		assertTrue(str15.equals("ABFPE") || str15.contains("EPFBA"));
 
 		// AOFHG
-		String str17 = cube.getString(0, 0, 4, 4, 0, 0, true);
+		String str17 = cube.getString(0, 0, 4, 4, 0, 0);
 		assertTrue(str17.equals("AOFHG") || str17.contains("GHFOA"));
 
 		// OCDK
 		// DHFPA
-		String str19 = cube.getString(4, 4, 0, 0, 0, 4, true);
+		String str19 = cube.getString(4, 4, 0, 0, 0, 4);
 		assertTrue(str19.equals("DHFPA") || str19.contains("APFHD"));
 
 		// AHFLI
-		String str21 = cube.getString(4, 4, 4, 0, 0, 0, true);
+		String str21 = cube.getString(4, 4, 4, 0, 0, 0);
 		assertTrue(str21.equals("AHFLI") || str21.contains("ILFHA"));
 
 		// ABFE
 		// GEFIE
-		String str23 = cube.getString(0, 4, 0, 4, 0, 4, true);
+		String str23 = cube.getString(0, 4, 0, 4, 0, 4);
 		assertTrue(str23.equals("GEFIE") || str23.contains("EIFEG"));
 
 		// ERFBG
-		String str25 = cube.getString(0, 4, 4, 4, 0, 0, true);
+		String str25 = cube.getString(0, 4, 4, 4, 0, 0);
 		assertTrue(str25.equals("ERFBG") || str25.contains("GBFRE"));
 	}
 
