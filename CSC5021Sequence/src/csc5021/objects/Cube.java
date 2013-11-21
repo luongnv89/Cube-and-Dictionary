@@ -210,11 +210,11 @@ public class Cube implements HasInvariant {
 		boolean word_associated = false;
 
 		if (!word_associated)
-			word_associated = associated_directionOX(string);
+			word_associated = associated_directionOYZ(string);
 		if (!word_associated)
-			word_associated = associated_directionOY(string);
+			word_associated = associated_directionOXZ(string);
 		if (!word_associated)
-			word_associated = associated_directionOZ(string);
+			word_associated = associated_directionOXY(string);
 		if (!word_associated)
 			word_associated = associated_plane1(string);
 		if (!word_associated)
@@ -226,63 +226,58 @@ public class Cube implements HasInvariant {
 
 	private boolean associated_plane2(String string) {
 		for (int sumXY = string.length() - 1; sumXY < size; sumXY++) {
-			if (associated_AF(0, sumXY - 1, string))
+			if (associated_AF(0, sumXY - 1, 0, sumXY - 1, 0, 0, string))
 				return true;
-			if (associated_BE(0, sumXY - 1, string))
+			if (associated_BE(0, sumXY - 1, 0, sumXY - 1, 0, 0, string))
 				return true;
 		}
 		for (int sumXY = size; sumXY <= 2 * size - string.length() - 1; sumXY++) {
-			if (associated_AF(sumXY - size, size - 1, string))
+			if (associated_AF(sumXY - size, size - 1, 0, size - 1,
+					sumXY - size, 0, string))
 				return true;
-			if (associated_BE(sumXY - size, size - 1, string))
+			if (associated_BE(sumXY - size, size - 1, 0, size - 1,
+					sumXY - size, 0, string))
 				return true;
 		}
 		return false;
 	}
 
-	private boolean associated_BE(int x0, int y0, String str) {
-		int deltaX = x0 + y0 + 1;
+	private boolean associated_BE(int x0, int y0, int z0, int x1, int y1,
+			int z1, String str) {
+		int deltaX = x1 - x0;
 
-		for (int deltaZ = str.length() - 1; deltaZ < deltaX; deltaZ++) {
+		for (int deltaZ = str.length(); deltaZ <= deltaX; deltaZ++) {
 			if (associated_line(x0, y0, deltaZ - 1, x0 + deltaZ - 1, y0
 					- deltaZ + 1, 0, str))
 				return true;
-		}
-
-		for (int z = deltaX; z < size - 1; z++) {
-			if (associated_line(x0, y0, z, x0 + deltaX, y0 - deltaX,
-					z - deltaX, str))
+			else if (associated_line(x1 - deltaZ + 1, y1 + deltaZ - 1,
+					size - 1, x1, y1, size - deltaZ, str))
 				return true;
 		}
 
-		for (int x = x0; x <= x0 + deltaX - str.length() + 1; x++) {
-			if (associated_line(x, y0 - (x - x0), size - 1, x0 + deltaX, y0
-					- deltaX, size - 1 - (x0 + deltaX - x), str))
+		for (int z = deltaX; z < size; z++) {
+			if (associated_line(x0, y0, z, x1, y1, z - deltaX, str))
 				return true;
 		}
 
 		return false;
 	}
 
-	private boolean associated_AF(int x0, int y0, String str) {
-		int deltaX = x0 + y0 + 1;
+	private boolean associated_AF(int x0, int y0, int z0, int x1, int y1,
+			int z1, String str) {
+		int deltaX = x1 - x0;
 
-		for (int sumYZ = str.length() - 1; sumYZ < deltaX; sumYZ++) {
-			if (associated_line(deltaX + x0 - sumYZ + 1, y0 - deltaX + sumYZ
-					- 1, 0, x0 + deltaX, y0 - deltaX, sumYZ - y0 + deltaX, str))
+		for (int deltaZ = str.length(); deltaZ < deltaX; deltaZ++) {
+			if (associated_line(x0, y0, size - deltaZ, x0 + deltaZ - 1, y0
+					- deltaZ + 1, size - 1, str))
+				return true;
+			if (associated_line(x1 - deltaZ + 1, y1 + deltaZ - 1, 0, x1, y1,
+					deltaZ - 1, str))
 				return true;
 		}
 
-		for (int sumYZ = deltaX; sumYZ < y0 - deltaX + size - 1; sumYZ++) {
-			if (associated_line(x0, y0, sumYZ - y0, x0 + deltaX, y0 - deltaX,
-					sumYZ - y0 + deltaX, str))
-				return true;
-		}
-
-		for (int sumYZ = y0 - deltaX + size - 1; sumYZ <= y0 + size
-				- str.length(); sumYZ++) {
-			if (associated_line(x0, y0, sumYZ - y0, deltaX - sumYZ + size - 1,
-					sumYZ - size + 1, size - 1, str))
+		for (int z = deltaX; z < size; z++) {
+			if (associated_line(x0, y0, z - deltaX, x1, y1, z, str))
 				return true;
 		}
 
@@ -349,7 +344,7 @@ public class Cube implements HasInvariant {
 	 * @param string
 	 * @return
 	 */
-	private boolean associated_directionOZ(String string) {
+	private boolean associated_directionOXY(String string) {
 		// z from 0-> size of cube
 		for (int z = 0; z < this.size; z++) {
 			// The plan is parallel with Oxy
@@ -361,29 +356,25 @@ public class Cube implements HasInvariant {
 					return true;
 			}
 
-			// The line in plane which is presented by x-z = constant;
-			for (int subXY = 0; subXY <= string.length() - 1; subXY++) {
-				if (associated_line(subXY - 1, 0, z, size - 1, size - subXY, z,
-						string))
+			// The line in plane which is presented by x-y = constant;
+			for (int deltaX = 0; deltaX <= string.length(); deltaX++) {
+				if (associated_line(size - 1 - deltaX, 0, z, size - 1 - deltaX,
+						deltaX, z, string))
 					return true;
-			}
-
-			for (int subYX = 0; subYX <= string.length() - 1; subYX++) {
-				if (associated_line(0, subYX - 1, z, size - subYX, size - 1, z,
-						string))
+				else if (associated_line(0, size - 1 - deltaX, z, deltaX,
+						size - 1, z, string))
 					return true;
 			}
 
 			// The line in plane which is presented by x+z = constant;
-			for (int sumXY = string.length() - 1; sumXY < size; sumXY++) {
-				if (associated_line(sumXY - 1, 0, z, 0, sumXY - 1, z, string))
+			for (int deltaX = string.length(); deltaX <= size; deltaX++) {
+				if (associated_line(0, deltaX - 1, z, deltaX - 1, 0, z, string))
+					return true;
+				else if (associated_line(size - deltaX, size - 1, z, size - 1,
+						size - deltaX, z, string))
 					return true;
 			}
-			for (int sumXY = size + 1; sumXY < 2 * size - string.length() - 1; sumXY++) {
-				if (associated_line(size - 1, sumXY - size, z, sumXY - size,
-						size - 1, z, string))
-					return true;
-			}
+
 		}
 		return false;
 	}
@@ -395,7 +386,7 @@ public class Cube implements HasInvariant {
 	 * @param string
 	 * @return
 	 */
-	private boolean associated_directionOY(String string) {
+	private boolean associated_directionOXZ(String string) {
 		// y from 0-> size of cube
 		for (int y = 0; y < this.size; y++) {
 			// The plan is parallel with Oxz
@@ -408,25 +399,22 @@ public class Cube implements HasInvariant {
 			}
 
 			// The line in plane which is presented by x-z = constant;
-			for (int subXZ = 0; subXZ <= string.length() - 1; subXZ++) {
-				if (associated_line(subXZ - 1, y, 0, size - 1, y, size - subXZ,
-						string))
+			for (int deltaXZ = 0; deltaXZ <= string.length(); deltaXZ++) {
+				if (associated_line(size - 1 - deltaXZ, y, 0, size - 1
+						- deltaXZ, y, deltaXZ, string))
+					return true;
+				else if (associated_line(0, size - 1 - deltaXZ, y, deltaXZ, y,
+						size - 1, string))
 					return true;
 			}
 
-			for (int subZX = 0; subZX <= string.length() - 1; subZX++) {
-				if (associated_line(0, y, subZX - 1, size - subZX, y, size - 1,
+			// The line in plane which is presented by x+z = constant;
+			for (int deltaXZ = string.length(); deltaXZ <= size; deltaXZ++) {
+				if (associated_line(0, y, deltaXZ - 1, deltaXZ - 1, y, 0,
 						string))
 					return true;
-			}
-			// The line in plane which is presented by x+z = constant;
-			for (int sumXZ = string.length() - 1; sumXZ < size; sumXZ++) {
-				if (associated_line(sumXZ - 1, y, 0, 0, y, sumXZ - 1, string))
-					return true;
-			}
-			for (int sumXZ = size + 1; sumXZ < 2 * size - string.length() - 1; sumXZ++) {
-				if (associated_line(size - 1, y, sumXZ - size, sumXZ - size, y,
-						size - 1, string))
+				else if (associated_line(size - deltaXZ, y, size - 1, size - 1,
+						y, size - deltaXZ, string))
 					return true;
 			}
 		}
@@ -440,7 +428,7 @@ public class Cube implements HasInvariant {
 	 * @param string
 	 * @return
 	 */
-	private boolean associated_directionOX(String string) {
+	private boolean associated_directionOYZ(String string) {
 		// x from 0-> size of cube
 		for (int x = 0; x < this.size; x++) {
 			// The plan is parallel with Oyz
@@ -453,25 +441,22 @@ public class Cube implements HasInvariant {
 			}
 
 			// The line in plane which is presented by y-z = constant;
-			for (int subYZ = 0; subYZ <= string.length() - 1; subYZ++) {
-				if (associated_line(x, subYZ, 0, x, size - 1, size - subYZ,
-						string))
+			for (int deltaYZ = 0; deltaYZ <= string.length(); deltaYZ++) {
+				if (associated_line(x, size - 1 - deltaYZ, 0, x, size - 1
+						- deltaYZ, deltaYZ, string))
+					return true;
+				else if (associated_line(x, 0, size - 1 - deltaYZ, x, deltaYZ,
+						size - 1, string))
 					return true;
 			}
 
-			for (int subZY = 0; subZY <= string.length() - 1; subZY++) {
-				if (associated_line(x, 0, subZY, x, size - subZY, size - 1,
+			// The line in plane which is presented by x+z = constant;
+			for (int deltaYZ = string.length(); deltaYZ <= size; deltaYZ++) {
+				if (associated_line(x, 0, deltaYZ - 1, x, deltaYZ - 1, 0,
 						string))
 					return true;
-			}
-			// The line in plane which is presented by y+z = constant;
-			for (int sumYZ = string.length() - 1; sumYZ < size; sumYZ++) {
-				if (associated_line(x, sumYZ - 1, 0, x, 0, sumYZ - 1, string))
-					return true;
-			}
-			for (int sumYZ = size + 1; sumYZ < 2 * size - string.length() - 1; sumYZ++) {
-				if (associated_line(x, size - 1, sumYZ - size, x, sumYZ - size,
-						size - 1, string))
+				else if (associated_line(x, size - deltaYZ, size - 1, x,
+						size - 1, size - deltaYZ, string))
 					return true;
 			}
 
@@ -528,7 +513,7 @@ public class Cube implements HasInvariant {
 					string1 += values[x0][min + i][z0 + (z1 - z0)
 							* (min + i - y0) / (y1 - y0)];
 					string2 += values[x0][max - i][z0 + (z1 - z0)
-							* (min - i - y0) / (y1 - y0)];
+							* (max - i - y0) / (y1 - y0)];
 				}
 			}
 		} else {
@@ -552,7 +537,7 @@ public class Cube implements HasInvariant {
 						string1 += values[min + i][y0][z0 + (z1 - z0)
 								* (min + i - x0) / (x1 - x0)];
 						string2 += values[max - i][y0][z0 + (z1 - z0)
-								* (min - i - x0) / (x1 - x0)];
+								* (max - i - x0) / (x1 - x0)];
 					}
 				}
 			} else {
@@ -561,7 +546,7 @@ public class Cube implements HasInvariant {
 						string1 += values[min + i][y0 + (y1 - y0)
 								* (min + i - x0) / (x1 - x0)][z0];
 						string2 += values[max - i][y0 + (y1 - y0)
-								* (min - i - x0) / (x1 - x0)][z0];
+								* (max - i - x0) / (x1 - x0)][z0];
 					}
 				} else {
 					for (int i = 0; i <= max - min; i++) {
@@ -569,8 +554,8 @@ public class Cube implements HasInvariant {
 								* (min + i - x0) / (x1 - x0)][z0 + (z1 - z0)
 								* (min + i - x0) / (x1 - x0)];
 						string2 += values[max - i][y0 + (y1 - y0)
-								* (min - i - x0) / (x1 - x0)][z0 + (z1 - z0)
-								* (min - i - x0) / (x1 - x0)];
+								* (max - i - x0) / (x1 - x0)][z0 + (z1 - z0)
+								* (max - i - x0) / (x1 - x0)];
 					}
 				}
 			}
