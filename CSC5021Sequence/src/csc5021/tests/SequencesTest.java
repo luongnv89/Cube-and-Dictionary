@@ -57,92 +57,29 @@ public class SequencesTest {
 
 	/**
 	 * Test method for
-	 * {@link csc5021.program.Sequences#associated_plane2(csc5021.objects.Cube, java.lang.String)}
-	 * .
+	 * {@link csc5021.program.Sequences#associated_direction2(Cube, String)} .
 	 */
 	@Test
-	public void testAssociated_plane2CubeString() {
-		fail("Not yet implemented");
+	public void testAssociated_direction2() {
+		assertTrue(seq.associated_direction2(cube, "GEF"));
 	}
 
 	/**
 	 * Test method for
-	 * {@link csc5021.program.Sequences#associated_plane2(int, int, int, int, int, int, csc5021.objects.Cube, java.lang.String)}
-	 * .
+	 * {@link csc5021.program.Sequences#associated_direction1(Cube, String)} .
 	 */
 	@Test
-	public void testAssociated_plane2IntIntIntIntIntIntCubeString() {
-		fail("Not yet implemented");
+	public void testAssociated_direction1() {
+		assertTrue(seq.associated_direction1(cube, "APF"));
 	}
 
 	/**
 	 * Test method for
-	 * {@link csc5021.program.Sequences#associated_AF(int, int, int, int, int, int, csc5021.objects.Cube, java.lang.String)}
-	 * .
+	 * {@link csc5021.program.Sequences#associated_directionOYZ(Cube, String)} .
 	 */
 	@Test
-	public void testAssociated_AF() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.program.Sequences#associated_BE(int, int, int, int, int, int, csc5021.objects.Cube, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testAssociated_BE() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.program.Sequences#associated_plane1(csc5021.objects.Cube, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testAssociated_plane1CubeString() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.program.Sequences#associated_plane1(int, int, int, int, csc5021.objects.Cube, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testAssociated_plane1IntIntIntIntCubeString() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.program.Sequences#associated_OD(int, int, int, int, csc5021.objects.Cube, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testAssociated_OD() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.program.Sequences#associated_CK(int, int, int, int, csc5021.objects.Cube, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testAssociated_CK() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.program.Sequences#associated_directionOYZ(csc5021.objects.Cube, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testAssociated_directionOYZ() {
-		fail("Not yet implemented");
+	public void testAssociated_directionOYZ() { 
+		assertTrue(seq.associated_directionOYZ(cube, "GHK"));
 	}
 
 	/**
@@ -152,7 +89,7 @@ public class SequencesTest {
 	 */
 	@Test
 	public void testAssociated_directionOXZ() {
-		fail("Not yet implemented");
+		assertTrue(seq.associated_directionOXZ(cube, "BBE"));
 	}
 
 	/**
@@ -162,7 +99,7 @@ public class SequencesTest {
 	 */
 	@Test
 	public void testAssociated_directionOXY() {
-		fail("Not yet implemented");
+		assertTrue(seq.associated_directionOXY(cube, "DGD"));
 	}
 
 	/**

@@ -14,6 +14,7 @@ import csc5021.interfaces.HasInvariant;
 import csc5021.utilities.Utilities;
 
 /**
+ * Present a dictionary
  * @author luongnv89
  * 
  */
@@ -104,7 +105,7 @@ public class Dictionary implements HasInvariant {
 	}
 
 	/**
-	 * Init randomly the list words of dictionary
+	 * Initilisation randomly the list words of dictionary
 	 */
 	private void initRandomly(int sizeOfDict) {
 		listWord.clear();

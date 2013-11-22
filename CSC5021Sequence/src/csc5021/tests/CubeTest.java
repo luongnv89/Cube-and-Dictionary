@@ -11,7 +11,6 @@ import org.junit.Before;
 import org.junit.Test;
 
 import csc5021.objects.Cube;
-import csc5021.objects.Dictionary;
 
 /**
  * @author luongnv89
@@ -20,11 +19,8 @@ import csc5021.objects.Dictionary;
 public class CubeTest {
 
 	Cube cube;
-	Dictionary dic5;
-	Dictionary dic4;
 	Cube cubeToSmall;
 	Cube latticeInvalid;
-	private Dictionary dic4_ok;
 
 	/**
 	 * @throws java.lang.Exception
@@ -34,10 +30,6 @@ public class CubeTest {
 		cube = new Cube("cube5.txt");
 		latticeInvalid = new Cube("cube5_lattice_invalid.txt");
 		cubeToSmall = new Cube("cube3.txt");
-
-		dic5 = new Dictionary("dic5.txt");
-		dic4 = new Dictionary("dic4.txt");
-		dic4_ok = new Dictionary("dic4_ok.txt");
 	}
 
 	/**
@@ -76,7 +68,8 @@ public class CubeTest {
 
 	/**
 	 * Test method for {@link csc5021.objects.Cube#Cube(java.lang.String)}.
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
 	public void testCubeString() throws Exception {
@@ -121,86 +114,13 @@ public class CubeTest {
 	/**
 	 * Test method for {@link csc5021.objects.Cube#saveToFile(java.lang.String)}
 	 * .
-	 * @throws Exception 
+	 * 
+	 * @throws Exception
 	 */
 	@Test
 	public void testSaveToFile() throws Exception {
 		Cube newCube = new Cube(6);
 		newCube.saveToFile("cube6.txt");
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.objects.Cube#associated(csc5021.objects.Dictionary)}.
-	 */
-	@Test
-	public void testAssociated() {
-		assertTrue(cube.associated(dic4_ok));
-		assertFalse(cube.associated(dic4));
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.objects.Cube#associated_word(java.lang.String)}.
-	 */
-	@Test 
-	public void testAssociated_word() {
-		assertFalse(cube.associated_word("ABABA"));
-		assertTrue(cube.associated_word("ABCD"));
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.objects.Cube#associated_line(int, int, int, int, int, int, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testAssociated_line() {
-
-		assertFalse(cube.associated_line(0, 0, 0, 0, 0, 0, "ABCDE"));
-		// OYZ
-		// ABCIA
-		assertTrue(cube.associated_line(0, 0, 0, 0, 0, 4, "ABCIA"));
-
-		// ADGDG
-		assertTrue(cube.associated_line(0, 0, 0, 0, 4, 0, "GDGDA"));
-
-		// AEKME
-		assertTrue(cube.associated_line(0, 0, 0, 0, 4, 4, "EMKEA"));
-
-		// AJKEG
-		assertTrue(cube.associated_line(0, 0, 4, 0, 4, 0, "GEKJA"));
-
-		// OXY
-		// AADGG
-		assertTrue(cube.associated_line(0, 0, 0, 4, 0, 0, "GGDAA"));
-
-		// AGDGD
-		assertTrue(cube.associated_line(0, 0, 0, 4, 4, 0, "DGDGA"));
-
-		// GADDG
-		assertTrue(cube.associated_line(4, 0, 0, 0, 4, 0, "GDDAG"));
-
-		// OXZ
-		// ABFPE
-		assertTrue(cube.associated_line(0, 0, 0, 4, 0, 4, "EPFBA"));
-
-		// AOFHG
-		assertTrue(cube.associated_line(0, 0, 4, 4, 0, 0, "GHFOA"));
-
-		// OCDK
-		// DHFPA
-		assertTrue(cube.associated_line(4, 4, 0, 0, 0, 4, "APFHD"));
-
-		// AHFLI
-		assertTrue(cube.associated_line(4, 4, 4, 0, 0, 0, "ILFHA"));
-
-		// ABFE
-		// GEFIE
-		assertTrue(cube.associated_line(0, 4, 0, 4, 0, 4, "GEFIE"));
-
-		// ERFBG
-		assertTrue(cube.associated_line(0, 4, 4, 4, 0, 0, "ERFBG"));
 	}
 
 	/**
