@@ -143,7 +143,7 @@ public class CubeTest {
 	 * Test method for
 	 * {@link csc5021.objects.Cube#associated_word(java.lang.String)}.
 	 */
-	@Test
+	@Test 
 	public void testAssociated_word() {
 		assertFalse(cube.associated_word("ABABA"));
 		assertTrue(cube.associated_word("ABCD"));

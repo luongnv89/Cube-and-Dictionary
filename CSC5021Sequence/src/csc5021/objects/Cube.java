@@ -507,16 +507,7 @@ public class Cube implements HasInvariant {
 		if (x0 == x1 && y0 == y1 && z0 == z1)
 			return false;
 		String string1 = getString(x0, y0, z0, x1, y1, z1);
-		return string1.contains(str) || (revert(string1)).contains(str);
-	}
-
-	private String revert(String string1) {
-		StringBuffer str = new StringBuffer();
-		char[] array = string1.toCharArray();
-		for (int i = 0; i < array.length; i++) {
-			str.append(array[array.length - i - 1]);
-		}
-		return str.toString();
+		return string1.contains(str) || ((String) Utilities.revert(string1)).contains(str);
 	}
 
 	public String getString(int x0, int y0, int z0, int x1, int y1, int z1) {
