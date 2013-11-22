@@ -17,7 +17,7 @@ import csc5021.program.AssociatedAbstract;
  * @author luongnv89
  * 
  */
-public class MethodClassTest {
+public class AssociatedAbstractTest {
 
 	protected AssociatedAbstract program;
 	protected Cube cube;
@@ -29,7 +29,6 @@ public class MethodClassTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		program = new AssociatedAbstract();
 		cube = new Cube("cube5.txt");
 		dic4_ok = new Dictionary("dic4_ok.txt");
 		dic4 = new Dictionary("dic4.txt");

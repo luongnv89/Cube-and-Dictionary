@@ -3,6 +3,7 @@
  */
 package csc5021.program;
 
+import csc5021.interfaces.Associated;
 import csc5021.objects.Cube;
 import csc5021.utilities.Utilities;
 
@@ -13,7 +14,7 @@ import csc5021.utilities.Utilities;
  * @author luongnv89
  * 
  */
-public class AssociatedAbstract{
+public abstract class AssociatedAbstract implements Associated {
 	/**
 	 * Check is the cube associated with a word?
 	 * 
@@ -37,7 +38,7 @@ public class AssociatedAbstract{
 		// ABFE
 		if (!word_associated)
 			word_associated = associated_direction2(cube, word);
-		System.out.println("Word: " + word + " associated? " + String.valueOf(word_associated));
+//		System.out.println("Word: " + word + " associated? " + String.valueOf(word_associated));
 		return word_associated;
 	}
 
