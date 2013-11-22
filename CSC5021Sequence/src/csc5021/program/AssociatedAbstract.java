@@ -4,45 +4,16 @@
 package csc5021.program;
 
 import csc5021.objects.Cube;
-import csc5021.objects.Dictionary;
 import csc5021.utilities.Utilities;
 
 /**
- * Present a sequences program which can check the associated of a cube and a
- * dictionary
+ * Content all the methods which are used to check the associated of a cube and
+ * a word
  * 
  * @author luongnv89
  * 
  */
-public class Sequences {
-
-	/**
-	 * Checking is the cube associated with the dictionary?
-	 * 
-	 * @param cube
-	 * @param dic
-	 * @return true if the cube associated with the dictionary <br>
-	 *         false otherwise
-	 */
-	public boolean associated(Cube cube, Dictionary dic) {
-		if (dic.getLength() > cube.getSize()) {
-			System.out
-					.println("The cube is not associated with the dictionary!\nThe size of cube and the length of word of dictionary are not the same");
-			return false;
-		} else {
-			for (int i = 0; i < dic.getSize(); i++) {
-				if (!associated_word(cube, dic.getWordByIndex(i))) {
-					System.out
-							.println("The cube is not associated with the dictionary!\nThere is a word not associated: "
-									+ dic.getWordByIndex(i));
-					return false;
-				}
-			}
-		}
-		System.out.println("The cube is associated with the dictionary!");
-		return true;
-	}
-
+public class AssociatedAbstract{
 	/**
 	 * Check is the cube associated with a word?
 	 * 
@@ -333,7 +304,7 @@ public class Sequences {
 	 */
 	public boolean associated_directionOXY(Cube cube, String word) {
 		for (int z = 0; z < cube.getSize(); z++) {
-			
+
 			for (int x = 0; x < cube.getSize(); x++) {
 				// The line in plane which is presented by x=constant
 				if (associated_line(x, 0, z, x, cube.getSize() - 1, z, cube, word))
@@ -383,5 +354,4 @@ public class Sequences {
 		String string1 = cube.getString(x0, y0, z0, x1, y1, z1);
 		return string1.contains(word) || ((String) Utilities.revert(string1)).contains(word);
 	}
-
 }
