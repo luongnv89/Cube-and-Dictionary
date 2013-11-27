@@ -15,6 +15,7 @@ import csc5021.utilities.Utilities;
 
 /**
  * Present a dictionary
+ * 
  * @author luongnv89
  * 
  */
@@ -26,19 +27,19 @@ public class Dictionary implements HasInvariant {
 	 * If the length of word is bigger than 2, the maximum of size of dictionary
 	 * is 1000
 	 */
-	private static int MAX_SIZE = 1000;
+	public static int MAX_SIZE = 1000;
 	/**
 	 * Minimum number of word of dictionary
 	 */
-	private static final int MIN_SIZE = 3;
+	public static final int MIN_SIZE = 3;
 	/**
 	 * Maximum length of a word in dictionary
 	 */
-	private static final int MAX_LENGTH = 100;
+	public static final int MAX_LENGTH = 100;
 	/**
 	 * Minimum length of a word in dictionary
 	 */
-	private static final int MIN_LENGTH = 2;
+	public static final int MIN_LENGTH = 2;
 	/**
 	 * The length of word in the dictionary, it fix for every word, from 2 to
 	 * 100
@@ -75,6 +76,26 @@ public class Dictionary implements HasInvariant {
 		initRandomly(size);
 	}
 
+	public Dictionary(ArrayList<String> listWord) throws Exception {
+		if (listWord.size() < Dictionary.MIN_SIZE || listWord.size() > Dictionary.MAX_SIZE) {
+			throw new Exception("The size of input list words is not valid: " + listWord.size());
+		}
+		this.length = listWord.get(0).length();
+		if (this.length < Dictionary.MIN_LENGTH || this.length > MAX_LENGTH) {
+			throw new Exception("The length of input list words is not valid: " + listWord.size());
+		}
+		this.listWord = new ArrayList<>();
+
+		for (int i = 0; i < listWord.size(); i++) {
+			if ((listWord.get(i).length() != this.length) || (!Utilities.validWord(listWord.get(i)))) {
+				throw new Exception("There is an invalid word in list word: " + listWord.get(i));
+			} else {
+				this.listWord.add(listWord.get(i));
+			}
+
+		}
+	}
+
 	/**
 	 * Create a new dictionary from an input text file.
 	 * 
@@ -99,7 +120,7 @@ public class Dictionary implements HasInvariant {
 					}
 				}
 			}
-		} finally { 
+		} finally {
 			br.close();
 		}
 	}

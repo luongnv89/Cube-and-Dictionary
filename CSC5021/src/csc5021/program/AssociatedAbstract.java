@@ -3,8 +3,13 @@
  */
 package csc5021.program;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Random;
+
 import csc5021.interfaces.Associated;
 import csc5021.objects.Cube;
+import csc5021.objects.Dictionary;
 import csc5021.utilities.Utilities;
 
 /**
@@ -38,7 +43,8 @@ public abstract class AssociatedAbstract implements Associated {
 		// ABFE
 		if (!word_associated)
 			word_associated = associated_direction2(cube, word);
-//		System.out.println("Word: " + word + " associated? " + String.valueOf(word_associated));
+		// System.out.println("Word: " + word + " associated? " +
+		// String.valueOf(word_associated));
 		return word_associated;
 	}
 
@@ -354,5 +360,115 @@ public abstract class AssociatedAbstract implements Associated {
 			return false;
 		String string1 = cube.getString(x0, y0, z0, x1, y1, z1);
 		return string1.contains(word) || ((String) Utilities.revert(string1)).contains(word);
+	}
+
+	public Dictionary generateAssociatedDictionary(int wordLength, int size, Cube cube) throws Exception {
+		if (!cube.invariant()) {
+			throw new Exception("The input cube is not valid!");
+		}
+		if (wordLength < Dictionary.MIN_LENGTH || wordLength > Dictionary.MAX_LENGTH) {
+			throw new Exception("The input word length of dictionary is not valid! " + wordLength);
+		}
+		if (size < Dictionary.MIN_SIZE || size > Dictionary.MAX_SIZE) {
+			throw new Exception("The input size of dictionary is not valid! " + size);
+		}
+
+		ArrayList<String> listWords = new ArrayList<>();
+		Random ran = new Random();
+		int nbWords = size;
+		int oxy = ran.nextInt(size);
+		nbWords -= oxy;
+		listWords.addAll(generatedOXY(wordLength, oxy, cube, listWords));
+		if (nbWords > 0) {
+			int oyz = ran.nextInt(nbWords);
+			nbWords -= oyz;
+			listWords.addAll(generatedOYZ(wordLength, oyz, cube, listWords));
+		}
+		if (nbWords > 0) {
+			int oxz = nbWords;
+//			nbWords -= oxz;
+			listWords.addAll(generatedOXZ(wordLength, oxz, cube, listWords));
+		}
+//		if (nbWords > 0) {
+//			int o1 = ran.nextInt(nbWords);
+//			nbWords -= o1;
+//			listWords.addAll(generatedO1(wordLength, o1, cube, listWords));
+//		}
+//		if (nbWords > 0) {
+//			int o2 = nbWords;
+//			listWords.addAll(generatedO2(wordLength, o2, cube, listWords));
+//		}
+
+		return new Dictionary(listWords);
+	}
+
+//	private Collection<? extends String> generatedO2(int wordLength, int o2, Cube cube, ArrayList<String> listWords) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+//
+//	private Collection<? extends String> generatedO1(int wordLength, int o1, Cube cube, ArrayList<String> listWords) {
+//		// TODO Auto-generated method stub
+//		return null;
+//	}
+
+	private Collection<? extends String> generatedOXZ(int wordLength, int oxz, Cube cube, ArrayList<String> listWords) {
+		ArrayList<String> listWord = new ArrayList<>();
+		while (listWord.size() < oxz) {
+			Random ran = new Random();
+			int y = ran.nextInt(cube.getSize());
+			int z = ran.nextInt(cube.getSize());
+			int x = ran.nextInt(cube.getSize() - wordLength);
+			String word = cube.getString(x, y, z, x + wordLength, y, z);
+			if (!listWords.contains(word) && !listWord.contains(word)) {
+				listWord.add(word);
+			} else {
+				String word2 = cube.getString(x + wordLength, y, z, x, y, z);
+				if (!listWords.contains(word2) && !listWord.contains(word2)) {
+					listWord.add(word2);
+				}
+			}
+		}
+		return listWord;
+	}
+
+	private Collection<? extends String> generatedOYZ(int wordLength, int oyz, Cube cube, ArrayList<String> listWords) {
+		ArrayList<String> listWord = new ArrayList<>();
+		while (listWord.size() < oyz) {
+			Random ran = new Random();
+			int x = ran.nextInt(cube.getSize());
+			int y = ran.nextInt(cube.getSize());
+			int z = ran.nextInt(cube.getSize() - wordLength);
+			String word = cube.getString(x, y, z, x, y, z + wordLength);
+			if (!listWords.contains(word) && !listWord.contains(word)) {
+				listWord.add(word);
+			} else {
+				String word2 = cube.getString(x, y, z + wordLength, x, y, z);
+				if (!listWords.contains(word2) && !listWord.contains(word2)) {
+					listWord.add(word2);
+				}
+			}
+		}
+		return listWord;
+	}
+
+	private Collection<? extends String> generatedOXY(int wordLength, int oxy, Cube cube, ArrayList<String> listWords) {
+		ArrayList<String> listWord = new ArrayList<>();
+		while (listWord.size() < oxy) {
+			Random ran = new Random();
+			int z = ran.nextInt(cube.getSize());
+			int x = ran.nextInt(cube.getSize());
+			int y = ran.nextInt(cube.getSize() - wordLength);
+			String word = cube.getString(x, y, z, x, y + wordLength, z);
+			if (!listWords.contains(word) && !listWord.contains(word)) {
+				listWord.add(word);
+			} else {
+				String word2 = cube.getString(x, y + wordLength, z, x, y, z);
+				if (!listWords.contains(word2) && !listWord.contains(word2)) {
+					listWord.add(word2);
+				}
+			}
+		}
+		return listWord;
 	}
 }

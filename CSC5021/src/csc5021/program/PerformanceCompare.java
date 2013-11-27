@@ -23,18 +23,17 @@ public class PerformanceCompare {
 	 * @throws Exception
 	 */
 	public static void main(String[] args) throws Exception {
-		
+
 		System.out.println("Seting up the testing environment....");
 		long start = System.currentTimeMillis();
-//		setup(900, 20, 900);
-		 setup("cube_900.txt", "dic_20_900.txt");
+		// setup(200, 6, 50);
+		setup("cube400.txt", "dic_8_100.txt");
 		long setupTime = System.currentTimeMillis() - start;
 //		writeToFile();
 		System.out.println("The setup time: " + String.valueOf(setupTime) + " ms");
-		System.out.println("The information of sequence program:");
-		System.out.println(runtest(seq));
-		System.out.println("The information of parallel program:");
-		System.out.println(runtest(par));
+		System.out.println(runtest(par, "PARALLEL"));
+		System.out.println(runtest(seq, "SEQUENCE"));
+		System.exit(0);
 	}
 
 	private static void writeToFile() {
@@ -43,12 +42,12 @@ public class PerformanceCompare {
 				+ String.valueOf(System.currentTimeMillis()));
 	}
 
-	private static boolean runtest(Associated program) {
+	private static boolean runtest(Associated program, String name) {
 		boolean associated;
 		long startTime = System.currentTimeMillis();
 		associated = program.associated(cube, dic);
 		long totalTime = System.currentTimeMillis() - startTime;
-		System.out.println("Total time: " + String.valueOf(totalTime) + " ms");
+		System.out.println(name + " - Total time: " + String.valueOf(totalTime) + " ms");
 		return associated;
 	}
 

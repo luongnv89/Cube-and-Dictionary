@@ -40,6 +40,16 @@ public class AssociatedAbstractTest {
 	 * .
 	 */
 	@Test
+	public void testAssociated() {
+		assertFalse(program.associated(cube, dic4));
+	}
+	
+	/**
+	 * Test method for
+	 * {@link csc5021.program.AssociatedAbstract#associated_word(csc5021.objects.Cube, java.lang.String)}
+	 * .
+	 */
+	@Test
 	public void testAssociated_word() {
 		assertFalse(program.associated_word(cube, "ABABA"));
 		assertTrue(program.associated_word(cube, "ABCD"));
@@ -147,6 +157,20 @@ public class AssociatedAbstractTest {
 
 		// ERFBG
 		assertTrue(program.associated_line(0, 4, 4, 4, 0, 0, cube, "ERFBG"));
+	}
+	
+	@Test
+	public void testGenerateDictionary() throws Exception{
+		Cube newCube = new Cube("cube400.txt");
+		System.out.println("Created new cube");
+		Dictionary dic;
+		dic = program.generateAssociatedDictionary(8, 100, newCube);
+		assertTrue(dic.invariant());
+		System.out.println("Created dictionary.\nSaving to the file");
+		dic.showContent();
+		dic.saveToFile("dic_8_100.txt");
+		System.out.println("Finished");
+//		assertTrue(program.associated(newCube, dic));
 	}
 
 }

@@ -281,4 +281,5 @@ public class Cube implements HasInvariant {
 //		System.out.println(stringbf.toString());
 		return stringbf.toString();
 	}
+	
 }

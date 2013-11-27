@@ -42,6 +42,12 @@ public class CubeTest {
 		Cube newCube = new Cube(5);
 		newCube.showValues();
 		assertTrue(newCube.getSize() == 5);
+		System.out.println("Create new dictionary...");
+		Cube newCube500 = new Cube(400);
+		System.out.println("Created a new Cube. Saving to the file...");
+		assertTrue(newCube500.invariant());
+		newCube500.saveToFile("cube400.txt");
+		System.out.println("Finished!");
 	}
 
 	/**
