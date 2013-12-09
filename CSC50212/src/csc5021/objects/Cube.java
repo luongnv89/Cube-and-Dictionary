@@ -17,14 +17,14 @@ import csc5021.interfaces.HasInvariant;
  */
 public class Cube implements HasInvariant {
 	int size;
-	int[][][] content;
+	char[][][] content;
 
 	/**
 	 * @param size
 	 */
 	public Cube(int size) {
 		this.size = size;
-		content = new int[this.size][this.size][this.size];
+		content = new char[this.size][this.size][this.size];
 		for (int z = 0; z < this.size; z++) {
 			ArrayList<Integer> char_codes = new ArrayList<>();
 			while (char_codes.size() < 2) {
@@ -33,7 +33,7 @@ public class Cube implements HasInvariant {
 						boolean stop = false;
 						while (!stop) {
 							Random random = new Random();
-							int char_code = 21 + random.nextInt(126);
+							int char_code = 33 + random.nextInt(126-33);
 							if (!char_codes.contains(char_code)) {
 								if (char_codes.size() < 100) {
 									char_codes.add(char_code);
@@ -68,7 +68,7 @@ public class Cube implements HasInvariant {
 				throw new Exception("The size of cube is invalid. Size: " + this.size);
 			}
 			this.size = sCurrentLine.length();
-			content = new int[this.size][this.size][this.size];
+			content = new char[this.size][this.size][this.size];
 
 			for (int z = 0; z < this.size; z++) {
 				int y = 0;
@@ -106,7 +106,7 @@ public class Cube implements HasInvariant {
 	/**
 	 * @return the content
 	 */
-	public int[][][] getContent() {
+	public char[][][] getContent() {
 		return content;
 	}
 
@@ -121,7 +121,7 @@ public class Cube implements HasInvariant {
 			for (int y = 0; y < this.size; y++) {
 				for (int x = 0; x < this.size; x++) {
 					int char_code = (int) content[x][y][z];
-					if (char_code < 21 || char_code > 126) {
+					if (char_code < 33 || char_code > 126) {
 						System.out.println("There is an invalid character: " + content[x][y][z]);
 						return false;
 					}

@@ -64,6 +64,7 @@ public class SequenceProgram implements HasInvariant {
 			for (int y0 = y - delta; y0 <= y + delta; y0 += delta) {
 				for (int x0 = x - delta; x0 <= x + delta; x0 += delta) {
 					if (cube2.inside(x0, y0, z0) && !(x == x0 && y == y0 && z == z0)) {
+						
 						int rx = 0;
 						if (x == x0)
 							rx = 0;

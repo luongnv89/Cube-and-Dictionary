@@ -127,7 +127,7 @@ public class Dictionary implements HasInvariant {
 			}
 			for (int j = 0; j < array.length; j++) {
 				int char_code = (int) array[i];
-				if (char_code < 21 || char_code > 126) {
+				if (char_code < 33 || char_code > 126) {
 					System.out.println("There is an invalid word indictionary.\nInvalid word: " + this.word_list.get(i)
 							+ "\nThere is an invalid character in word: " + array[j]);
 					return false;

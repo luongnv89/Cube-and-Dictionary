@@ -14,7 +14,7 @@ public class Utils {
 		StringBuffer bf = new StringBuffer();
 		while (bf.length() < word_length) {
 			Random random = new Random();
-			int char_code = 21 + random.nextInt(105);
+			int char_code = 33 + random.nextInt(126-33);
 			bf.append((char)char_code);
 		}
 		return bf.toString();
