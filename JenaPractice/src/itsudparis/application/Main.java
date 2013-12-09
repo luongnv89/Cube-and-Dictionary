@@ -5,13 +5,12 @@
 
 package itsudparis.application;
 
-import java.beans.FeatureDescriptor;
+import itsudparis.tools.JenaEngine;
+import itsudparis.tools.MyQuery;
+
 import java.util.Scanner;
 
 import com.hp.hpl.jena.rdf.model.Model;
-
-import itsudparis.tools.JenaEngine;
-import itsudparis.tools.MyQuery;
 
 /**
  * @author DO.ITSUDPARIS
@@ -36,12 +35,7 @@ public class Main {
 		// lire le model a partir d'une ontologie
 		model = JenaEngine.readModel(modelPath);
 		if (model != null) {
-			// lire le Namespace de l’ontologie
-			NS = model.getNsPrefixURI("");
-			// modifier le model
-			// stuff();
 			applyRules();
-			// executeQuery(queryPath);
 			myOntology();
 
 		} else {
@@ -49,6 +43,9 @@ public class Main {
 		}
 	}
 
+	/**
+	 * My solution for exercise.
+	 */
 	private static void myOntology() {
 		boolean stop = false;
 		while (!stop) {
@@ -95,12 +92,13 @@ public class Main {
 				}
 				/**
 				 * -If this person is not married, select all the persons where:
-				 * -The sex is different 
-				 * -The age is close (+ or - 5 years) 
-				 * -And is also not married
+				 * -The sex is different -The age is close (+ or - 5 years) -And
+				 * is also not married
 				 * */
 				else {
 					System.out.println(name + ": is not married\n");
+
+					// -The sex is different
 					// Get list male
 					MyQuery select_male = new MyQuery();
 					select_male.setPrefix("ns", "http://www.owl-ontologies.com/Ontology1386080076.owl");
@@ -116,17 +114,46 @@ public class Main {
 					if (listMale.contains(name)) {
 						System.out.println(name + ": male\n");
 						System.out.println(listFemale);
-					}
-					else{
+					} else {
 						System.out.println(name + ": female\n");
 						System.out.println(listMale);
 					}
+
+					// - The age is close(+-5)
+					MyQuery select_age = new MyQuery(myquery);
+					select_age.addCondition("?per ns:age ?perAge.");
+					select_age.addCondition("?closer ns:name ?closeName. ");
+					select_age.addCondition("?closer ns:age ?closeAge .");
+					select_age.addCondition("filter(?closeAge < ?perAge + 5&&?closeAge >?perAge-5).");
+					System.out.println("The age is close: \n");
+					System.out.println(JenaEngine.executeQuery(inferedModel, select_age.buildQuery()));
+
+					// - And is also not married.
+					MyQuery select_all = new MyQuery();
+					select_all.setPrefix("ns", "http://www.owl-ontologies.com/Ontology1386080076.owl");
+					select_all.addCondition("?per rdf:type ns:Person.");
+					String list_all = JenaEngine.executeQuery(inferedModel, select_all.buildQuery());
+					String[] array = list_all.split("\n");
+					System.out.println("And is also not married: \n");
+					for (int i = 0; i < 3; i++) {
+						System.out.println(array[i]);
+					}
+					for (int i = 3; i < array.length - 1; i++) {
+						if (!listSpouse.contains(array[i].replace("|", "").replace(" ", ""))) {
+							System.out.println(array[i]);
+						}
+					}
+					System.out.println(array[array.length - 1]);
 				}
 			}
 		}
 
 	}
 
+	/**
+	 * Give a name
+	 * @return
+	 */
 	private static String askName() {
 		Scanner in = new Scanner(System.in);
 		System.out.println("Give a nam (Or input \"X\" to exit): ");
@@ -135,6 +162,8 @@ public class Main {
 	}
 
 	private static void stuff() {
+		// lire le Namespace de l’ontologie
+		NS = model.getNsPrefixURI("");
 		// Ajouter une nouvelle femme dans le modele: Nora, 50, estFilleDe
 		// Peter
 		JenaEngine.createInstanceOfClass(model, NS, "Female", "Nora");
@@ -150,17 +179,14 @@ public class Main {
 
 	}
 
+	/**
+	 * Apply the owlreferenceModel and InreferenceModel
+	 */
 	private static void applyRules() {
 		// apply owl rules on the model
 		owlInferencedModel = JenaEngine.readInferencedModelFromRuleFile(model, owlInferencedModelPath);
 		// apply our rules on the owlInferencedModel
 		inferedModel = JenaEngine.readInferencedModelFromRuleFile(owlInferencedModel, inferenceModelPath);
-
-	}
-
-	private static void executeQuery(String querypath2) {
-		// query on the model after inference
-		System.out.println(JenaEngine.executeQueryFile(inferedModel, queryPath));
 
 	}
 }
