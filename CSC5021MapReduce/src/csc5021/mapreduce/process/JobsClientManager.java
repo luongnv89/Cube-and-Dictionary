@@ -18,6 +18,7 @@ public class JobsClientManager implements HasInvariant {
 	Dictionary dic;
 	Mapper map;
 
+	
 	/**
 	 * @param cubePath
 	 * @param dicPath
@@ -27,6 +28,7 @@ public class JobsClientManager implements HasInvariant {
 		this.cube = new Cube(cubePath);
 		this.dic = new Dictionary(dicPath);
 		this.map = map;
+		this.map.setJobClient(this);
 
 	}
 
@@ -44,13 +46,13 @@ public class JobsClientManager implements HasInvariant {
 						break;
 					case 3:
 					case 4:
-						for(int delta=dic.getLength();delta<2*cube.getSize()-dic.getLength()-1;delta++){
+						for (int delta = dic.getLength(); delta < 2 * cube.getSize() - dic.getLength() - 1; delta++) {
 							submitJob(new Job(word_index, Plane_feature.features[feature_index], delta), map);
 						}
 						break;
 					case 5:
 					case 6:
-						for(int delta = dic.getLength()-cube.getSize();delta<cube.getSize()-dic.getLength();delta++) {
+						for (int delta = dic.getLength() - cube.getSize(); delta < cube.getSize() - dic.getLength(); delta++) {
 							submitJob(new Job(word_index, Plane_feature.features[feature_index], delta), map);
 						}
 						break;
@@ -74,5 +76,35 @@ public class JobsClientManager implements HasInvariant {
 		} else
 			return cube.invariant() && dic.invariant();
 	}
+
+	/**
+	 * @return the cube
+	 */
+	public Cube getCube() {
+		return cube;
+	}
+
+	/**
+	 * @param cube the cube to set
+	 */
+	public void setCube(Cube cube) {
+		this.cube = cube;
+	}
+
+	/**
+	 * @return the dic
+	 */
+	public Dictionary getDic() {
+		return dic;
+	}
+
+	/**
+	 * @param dic the dic to set
+	 */
+	public void setDic(Dictionary dic) {
+		this.dic = dic;
+	}
+	
+	
 
 }
