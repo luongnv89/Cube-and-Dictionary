@@ -33,11 +33,11 @@ public class ParallelProgram {
 		}
 		else{
 			//Create threads
-			for(int wordIndex=0;wordIndex<dic.getSize();wordIndex++){
+			for(int wordIndex=0;wordIndex<dic.getDic_size();wordIndex++){
 				WordThreads wordThread = new WordThreads(wordIndex);
 				listThreads.add(wordThread);
 			}
-			for(int threadIndex = 0;threadIndex<dic.getSize()/nbWordThreads;threadIndex++){
+			for(int threadIndex = 0;threadIndex<dic.getDic_size()/nbWordThreads;threadIndex++){
 				
 			}
 		}
