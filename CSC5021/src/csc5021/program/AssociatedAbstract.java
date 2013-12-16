@@ -362,7 +362,7 @@ public abstract class AssociatedAbstract implements Associated {
 		return string1.contains(word) || ((String) Utilities.revert(string1)).contains(word);
 	}
 
-	public Dictionary generateAssociatedDictionary(int wordLength, int size, Cube cube) throws Exception {
+	public static Dictionary generateAssociatedDictionary(int wordLength, int size, Cube cube) throws Exception {
 		if (!cube.invariant()) {
 			throw new Exception("The input cube is not valid!");
 		}
@@ -412,7 +412,7 @@ public abstract class AssociatedAbstract implements Associated {
 //		return null;
 //	}
 
-	private Collection<? extends String> generatedOXZ(int wordLength, int oxz, Cube cube, ArrayList<String> listWords) {
+	private static Collection<? extends String> generatedOXZ(int wordLength, int oxz, Cube cube, ArrayList<String> listWords) {
 		ArrayList<String> listWord = new ArrayList<>();
 		while (listWord.size() < oxz) {
 			Random ran = new Random();
@@ -432,7 +432,7 @@ public abstract class AssociatedAbstract implements Associated {
 		return listWord;
 	}
 
-	private Collection<? extends String> generatedOYZ(int wordLength, int oyz, Cube cube, ArrayList<String> listWords) {
+	private static Collection<? extends String> generatedOYZ(int wordLength, int oyz, Cube cube, ArrayList<String> listWords) {
 		ArrayList<String> listWord = new ArrayList<>();
 		while (listWord.size() < oyz) {
 			Random ran = new Random();
@@ -452,7 +452,7 @@ public abstract class AssociatedAbstract implements Associated {
 		return listWord;
 	}
 
-	private Collection<? extends String> generatedOXY(int wordLength, int oxy, Cube cube, ArrayList<String> listWords) {
+	private static Collection<? extends String> generatedOXY(int wordLength, int oxy, Cube cube, ArrayList<String> listWords) {
 		ArrayList<String> listWord = new ArrayList<>();
 		while (listWord.size() < oxy) {
 			Random ran = new Random();

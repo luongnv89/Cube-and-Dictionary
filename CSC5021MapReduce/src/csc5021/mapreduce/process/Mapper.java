@@ -3,9 +3,11 @@
  */
 package csc5021.mapreduce.process;
 
+import java.beans.FeatureDescriptor;
 import java.util.ArrayList;
 
 import csc5021.mapreduce.objects.Job;
+import csc5021.mapreduce.objects.Plane_feature;
 
 /**
  * @author luongnv89
@@ -22,9 +24,10 @@ public class Mapper {
 		int delta = job.getDelta();
 		
 		switch (planeFeature) {
-		case value:
+		case "PLANE_OXY":
 			
 			break;
+		case "PLANE_OYZ":
 
 		default:
 			break;
