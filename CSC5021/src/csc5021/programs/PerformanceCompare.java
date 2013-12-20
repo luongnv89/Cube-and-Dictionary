@@ -3,11 +3,11 @@
  */
 package csc5021.programs;
 
-import csc5021.interfaces.Associated;
+import csc5021.interfaces.SolutionInterface;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
-import csc5021.sequence.SequenceAssociated;
-import csc5021.threads.ParallelAssociated;
+import csc5021.solutions.ParallelAssociated;
+import csc5021.solutions.SequenceAssociated;
 
 /**
  * @author luongnv89
@@ -44,7 +44,7 @@ public class PerformanceCompare {
 				+ String.valueOf(System.currentTimeMillis()));
 	}
 
-	private static boolean runtest(Associated program, String name) {
+	private static boolean runtest(SolutionInterface program, String name) {
 		boolean associated;
 		long startTime = System.currentTimeMillis();
 		associated = program.associated(cube, dic);

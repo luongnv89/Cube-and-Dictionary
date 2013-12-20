@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import csc5021.threads.ParallelAssociated;
+import csc5021.solutions.ParallelAssociated;
 
 /**
  * @author luongnv89

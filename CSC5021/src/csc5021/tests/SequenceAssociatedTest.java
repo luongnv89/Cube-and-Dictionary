@@ -8,7 +8,7 @@ import static org.junit.Assert.*;
 import org.junit.Before;
 import org.junit.Test;
 
-import csc5021.sequence.SequenceAssociated;
+import csc5021.solutions.SequenceAssociated;
 
 /**
  * @author luongnv89

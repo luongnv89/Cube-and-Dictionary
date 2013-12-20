@@ -1,13 +1,13 @@
 /**
  * 
  */
-package csc5021.abstracts;
+package csc5021.solutions;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
-import csc5021.interfaces.Associated;
+import csc5021.interfaces.SolutionInterface;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
 import csc5021.utilities.Utilities;
@@ -19,7 +19,7 @@ import csc5021.utilities.Utilities;
  * @author luongnv89
  * 
  */
-public abstract class AssociatedAbstract implements Associated {
+public abstract class SolutionAbstracts implements SolutionInterface {
 	/**
 	 * Check is the cube associated with a word?
 	 * 

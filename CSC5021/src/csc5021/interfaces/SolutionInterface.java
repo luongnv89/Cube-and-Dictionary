@@ -10,7 +10,7 @@ import csc5021.objects.Dictionary;
  * @author luongnv89
  * 
  */
-public interface Associated {
+public interface SolutionInterface {
 	/**
 	 * Checking is the cube associated with the dictionary?
 	 * 

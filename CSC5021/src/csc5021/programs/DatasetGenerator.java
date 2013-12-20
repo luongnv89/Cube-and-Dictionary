@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
-import csc5021.abstracts.AssociatedAbstract;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
+import csc5021.solutions.SolutionAbstracts;
 import csc5021.utilities.Utilities;
 
 /**

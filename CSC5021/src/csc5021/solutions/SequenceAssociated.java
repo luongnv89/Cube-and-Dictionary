@@ -1,10 +1,9 @@
 /**
  * 
  */
-package csc5021.sequence;
+package csc5021.solutions;
 
-import csc5021.abstracts.AssociatedAbstract;
-import csc5021.interfaces.Associated;
+import csc5021.interfaces.SolutionInterface;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
 
@@ -15,7 +14,7 @@ import csc5021.objects.Dictionary;
  * @author luongnv89
  * 
  */
-public class SequenceAssociated extends AssociatedAbstract implements Associated{
+public class SequenceAssociated extends SolutionAbstracts implements SolutionInterface{
 
 	@Override
 	public boolean associated(Cube cube, Dictionary dic) {

@@ -1,9 +1,8 @@
 /**
  * 
  */
-package csc5021.threads;
+package csc5021.solutions;
 
-import csc5021.abstracts.AssociatedAbstract;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
 
@@ -14,7 +13,7 @@ import csc5021.objects.Dictionary;
  * @author luongnv89
  * 
  */
-public class ParallelAssociated extends AssociatedAbstract {
+public class ParallelAssociated extends SolutionAbstracts {
 
 	private static volatile boolean associated = true;
 	public static long startTime = System.currentTimeMillis();
