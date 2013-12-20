@@ -14,7 +14,7 @@ import csc5021.objects.Dictionary;
  * @author luongnv89
  * 
  */
-public class SequenceAssociated extends AssociatedAbstract {
+public class SequenceAssociated extends AssociatedAbstract implements Associated{
 
 	@Override
 	public boolean associated(Cube cube, Dictionary dic) {

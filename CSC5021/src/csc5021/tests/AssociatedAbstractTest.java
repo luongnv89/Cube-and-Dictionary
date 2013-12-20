@@ -158,19 +158,5 @@ public class AssociatedAbstractTest {
 		// ERFBG
 		assertTrue(program.associated_line(0, 4, 4, 4, 0, 0, cube, "ERFBG"));
 	}
-	
-	@Test
-	public void testGenerateDictionary() throws Exception{
-		Cube newCube = new Cube(4);
-		System.out.println("Created new cube");
-		Dictionary dic;
-		dic = AssociatedAbstract.generateAssociatedDictionary(4, 20, newCube);
-		assertTrue(dic.invariant());
-//		System.out.println("Created dictionary.\nSaving to the file");
-//		dic.showContent();
-//		dic.saveToFile("dic_8_100.txt");
-		System.out.println("Finished");
-//		assertTrue(program.associated(newCube, dic));
-	}
 
 }
