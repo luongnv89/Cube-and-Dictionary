@@ -29,9 +29,9 @@ public class AssociatedAbstractTest {
 	 */
 	@Before
 	public void setUp() throws Exception {
-		cube = new Cube("cube5.txt");
-		dic4_ok = new Dictionary("dic4_ok.txt");
-		dic4 = new Dictionary("dic4.txt");
+//		cube = new Cube("cube5.txt");
+//		dic4_ok = new Dictionary("dic4_ok.txt");
+//		dic4 = new Dictionary("dic4.txt");
 	}
 
 	/**
@@ -161,14 +161,14 @@ public class AssociatedAbstractTest {
 	
 	@Test
 	public void testGenerateDictionary() throws Exception{
-		Cube newCube = new Cube("cube400.txt");
+		Cube newCube = new Cube(4);
 		System.out.println("Created new cube");
 		Dictionary dic;
-		dic = program.generateAssociatedDictionary(8, 100, newCube);
+		dic = AssociatedAbstract.generateAssociatedDictionary(4, 20, newCube);
 		assertTrue(dic.invariant());
-		System.out.println("Created dictionary.\nSaving to the file");
-		dic.showContent();
-		dic.saveToFile("dic_8_100.txt");
+//		System.out.println("Created dictionary.\nSaving to the file");
+//		dic.showContent();
+//		dic.saveToFile("dic_8_100.txt");
 		System.out.println("Finished");
 //		assertTrue(program.associated(newCube, dic));
 	}

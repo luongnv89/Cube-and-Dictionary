@@ -64,7 +64,12 @@ public class Utilities {
 		return str;
 	}
 
-	public static Object revert(String string1) {
+	/**
+	 * Revert a string
+	 * @param string1
+	 * @return the revert of input string
+	 */
+	public static String revert(String string1) {
 		StringBuffer str = new StringBuffer();
 		char[] array = string1.toCharArray();
 		for (int i = 0; i < array.length; i++) {

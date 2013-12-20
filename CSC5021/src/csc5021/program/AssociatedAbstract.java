@@ -362,17 +362,18 @@ public abstract class AssociatedAbstract implements Associated {
 		return string1.contains(word) || ((String) Utilities.revert(string1)).contains(word);
 	}
 
-	public static Dictionary generateAssociatedDictionary(int wordLength, int size, Cube cube) throws Exception {
+	public static Dictionary generateAssociatedDictionary(int wordL, int size, Cube cube) throws Exception {
 		if (!cube.invariant()) {
 			throw new Exception("The input cube is not valid!");
 		}
-		if (wordLength < Dictionary.MIN_LENGTH || wordLength > Dictionary.MAX_LENGTH) {
-			throw new Exception("The input word length of dictionary is not valid! " + wordLength);
+		if (wordL < Dictionary.MIN_LENGTH || wordL > Dictionary.MAX_LENGTH) {
+			throw new Exception("The input word length of dictionary is not valid! " + wordL);
 		}
 		if (size < Dictionary.MIN_SIZE || size > Dictionary.MAX_SIZE) {
 			throw new Exception("The input size of dictionary is not valid! " + size);
 		}
 
+		int wordLength = wordL-1;
 		ArrayList<String> listWords = new ArrayList<>();
 		Random ran = new Random();
 		int nbWords = size;
@@ -385,36 +386,53 @@ public abstract class AssociatedAbstract implements Associated {
 			listWords.addAll(generatedOYZ(wordLength, oyz, cube, listWords));
 		}
 		if (nbWords > 0) {
-			int oxz = nbWords;
-//			nbWords -= oxz;
+			int oxz = ran.nextInt(nbWords);
+			nbWords -= oxz;
 			listWords.addAll(generatedOXZ(wordLength, oxz, cube, listWords));
 		}
-//		if (nbWords > 0) {
-//			int o1 = ran.nextInt(nbWords);
-//			nbWords -= o1;
-//			listWords.addAll(generatedO1(wordLength, o1, cube, listWords));
-//		}
-//		if (nbWords > 0) {
-//			int o2 = nbWords;
-//			listWords.addAll(generatedO2(wordLength, o2, cube, listWords));
-//		}
+		if (nbWords > 0) {
+			int o1 = nbWords;
+			listWords.addAll(generatedO1(wordLength, o1, cube, listWords));
+		}
 
 		return new Dictionary(listWords);
 	}
 
-//	private Collection<? extends String> generatedO2(int wordLength, int o2, Cube cube, ArrayList<String> listWords) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-//
-//	private Collection<? extends String> generatedO1(int wordLength, int o1, Cube cube, ArrayList<String> listWords) {
-//		// TODO Auto-generated method stub
-//		return null;
-//	}
-
-	private static Collection<? extends String> generatedOXZ(int wordLength, int oxz, Cube cube, ArrayList<String> listWords) {
+	private static Collection<? extends String> generatedO1(int wordLength, int o1, Cube cube,
+			ArrayList<String> listWords) {
 		ArrayList<String> listWord = new ArrayList<>();
-		while (listWord.size() < oxz) {
+		int count = 0;
+		while (listWord.size() < o1&&count<10) {
+			count++;
+			Random ran = new Random();
+			int dx = ran.nextInt(1) > 0 ? 1 : -1;
+			int dy = ran.nextInt(1) > 0 ? 1 : -1;
+			int dz = ran.nextInt(1) > 0 ? 1 : -1;
+			int y = ran.nextInt(cube.getSize() + dy * wordLength);
+			int z = ran.nextInt(cube.getSize() + dz * wordLength);
+			int x = ran.nextInt(cube.getSize() + dx * wordLength);
+			
+			String word = cube.getString(x, y, z, x - dx * wordLength, y - dy * wordLength, z - dz * wordLength);
+			if (!listWords.contains(word) && !listWord.contains(word)) {
+				listWord.add(word);
+				count =0;
+			} else {
+				String word2 = cube.getString(x + wordLength, y, z, x, y, z);
+				if (!listWords.contains(word2) && !listWord.contains(word2)) {
+					listWord.add(word2);
+					count =0;
+				}
+			}
+		}
+		return listWord;
+	}
+
+	private static Collection<? extends String> generatedOXZ(int wordLength, int oxz, Cube cube,
+			ArrayList<String> listWords) {
+		ArrayList<String> listWord = new ArrayList<>();
+		int count=0;
+		while (listWord.size() < oxz&&count<10) {
+			count++;
 			Random ran = new Random();
 			int y = ran.nextInt(cube.getSize());
 			int z = ran.nextInt(cube.getSize());
@@ -422,19 +440,24 @@ public abstract class AssociatedAbstract implements Associated {
 			String word = cube.getString(x, y, z, x + wordLength, y, z);
 			if (!listWords.contains(word) && !listWord.contains(word)) {
 				listWord.add(word);
+				count =0;
 			} else {
 				String word2 = cube.getString(x + wordLength, y, z, x, y, z);
 				if (!listWords.contains(word2) && !listWord.contains(word2)) {
 					listWord.add(word2);
+					count=0;
 				}
 			}
 		}
 		return listWord;
 	}
 
-	private static Collection<? extends String> generatedOYZ(int wordLength, int oyz, Cube cube, ArrayList<String> listWords) {
+	private static Collection<? extends String> generatedOYZ(int wordLength, int oyz, Cube cube,
+			ArrayList<String> listWords) {
 		ArrayList<String> listWord = new ArrayList<>();
-		while (listWord.size() < oyz) {
+		int count=0;
+		while (listWord.size() < oyz&&count<10) {
+			count++;
 			Random ran = new Random();
 			int x = ran.nextInt(cube.getSize());
 			int y = ran.nextInt(cube.getSize());
@@ -442,29 +465,36 @@ public abstract class AssociatedAbstract implements Associated {
 			String word = cube.getString(x, y, z, x, y, z + wordLength);
 			if (!listWords.contains(word) && !listWord.contains(word)) {
 				listWord.add(word);
+				count=0;
 			} else {
 				String word2 = cube.getString(x, y, z + wordLength, x, y, z);
 				if (!listWords.contains(word2) && !listWord.contains(word2)) {
 					listWord.add(word2);
+					count =0;
 				}
 			}
 		}
 		return listWord;
 	}
 
-	private static Collection<? extends String> generatedOXY(int wordLength, int oxy, Cube cube, ArrayList<String> listWords) {
+	private static Collection<? extends String> generatedOXY(int wordLength, int oxy, Cube cube,
+			ArrayList<String> listWords) {
 		ArrayList<String> listWord = new ArrayList<>();
-		while (listWord.size() < oxy) {
+		int count=0;
+		while (listWord.size() < oxy&&count<10) {
+			count++;
 			Random ran = new Random();
 			int z = ran.nextInt(cube.getSize());
 			int x = ran.nextInt(cube.getSize());
 			int y = ran.nextInt(cube.getSize() - wordLength);
 			String word = cube.getString(x, y, z, x, y + wordLength, z);
 			if (!listWords.contains(word) && !listWord.contains(word)) {
+				count=0;
 				listWord.add(word);
 			} else {
 				String word2 = cube.getString(x, y + wordLength, z, x, y, z);
 				if (!listWords.contains(word2) && !listWord.contains(word2)) {
+					count=0;
 					listWord.add(word2);
 				}
 			}

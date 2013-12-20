@@ -63,8 +63,10 @@ public class Dictionary implements HasInvariant {
 	 *            dictionary are generated randomly
 	 */
 	public Dictionary(int lengthOfWord, int size) {
-		if (lengthOfWord == 2)
+		if (this.length == 2)
 			MAX_SIZE = 600;
+		else
+			MAX_SIZE = 1000;
 
 		if (lengthOfWord < MIN_LENGTH || lengthOfWord > MAX_LENGTH) {
 			System.out.println("The length of word isnt valid. The default value will be set for dictionary");
@@ -77,10 +79,15 @@ public class Dictionary implements HasInvariant {
 	}
 
 	public Dictionary(ArrayList<String> listWord) throws Exception {
+		this.length = listWord.get(0).length();
+		if (this.length == 2)
+			MAX_SIZE = 600;
+		else
+			MAX_SIZE = 1000;
 		if (listWord.size() < Dictionary.MIN_SIZE || listWord.size() > Dictionary.MAX_SIZE) {
 			throw new Exception("The size of input list words is not valid: " + listWord.size());
 		}
-		this.length = listWord.get(0).length();
+
 		if (this.length < Dictionary.MIN_LENGTH || this.length > MAX_LENGTH) {
 			throw new Exception("The length of input list words is not valid: " + listWord.size());
 		}
@@ -110,6 +117,11 @@ public class Dictionary implements HasInvariant {
 				throw new Exception("The input file is invalid!");
 			} else {
 				this.length = line.length();
+				if (this.length == 2)
+					MAX_SIZE = 600;
+				else {
+					MAX_SIZE = 1000;
+				}
 				this.listWord = new ArrayList<>();
 				while (line != null) {
 					if (line.length() != length || !Utilities.validWord(line)) {

@@ -27,7 +27,7 @@ public class PerformanceCompare {
 		System.out.println("Seting up the testing environment....");
 		long start = System.currentTimeMillis();
 		// setup(200, 6, 50);
-		setup("cube400.txt", "dic_8_100.txt");
+		setup("cubes/cube_200_associated.txt", "dics/dic_5_20_associated.txt");
 		long setupTime = System.currentTimeMillis() - start;
 //		writeToFile();
 		System.out.println("The setup time: " + String.valueOf(setupTime) + " ms");

@@ -17,7 +17,8 @@ import com.hp.hpl.jena.rdf.model.Model;
  */
 public class Main {
 
-	public static final String modelPath = "data/Family.owl";
+	public static final String modelPath = "data/NguyenMai_NguyenLuong.owl";
+	public static final String nsPrefix = "http://www.owl-ontologies.com/NguyenMai_NguyenLuong.owl";
 	public static final String owlInferencedModelPath = "data/owlrules.txt";
 	private static final String inferenceModelPath = "data/rules.txt";
 	private static final String queryPath = "data/query.txt";
@@ -58,7 +59,7 @@ public class Main {
 				// System.out.println(JenaEngine.executeQueryFile(inferedModel,
 				// queryPath));
 				MyQuery myquery = new MyQuery();
-				myquery.setPrefix("ns", "http://www.owl-ontologies.com/Ontology1386080076.owl");
+				myquery.setPrefix("ns", "http://www.owl-ontologies.com/NguyenMai_NguyenLuong.owl");
 				// Add condition to build query here
 				// myquery.addCondition("?per ns:name ?name. ");
 				myquery.addCondition("?per ns:name \"" + name + "\".");
