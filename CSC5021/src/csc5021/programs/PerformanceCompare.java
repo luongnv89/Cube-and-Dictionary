@@ -1,11 +1,13 @@
 /**
  * 
  */
-package csc5021.program;
+package csc5021.programs;
 
 import csc5021.interfaces.Associated;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
+import csc5021.sequence.SequenceAssociated;
+import csc5021.threads.ParallelAssociated;
 
 /**
  * @author luongnv89
@@ -27,7 +29,7 @@ public class PerformanceCompare {
 		System.out.println("Seting up the testing environment....");
 		long start = System.currentTimeMillis();
 		// setup(200, 6, 50);
-		setup("data/cube/cube_200", "data/dic_associated/dic_associated_c_200_l_50_s_100");
+		setup("data/cube/cube_500", "data/dic_associated/dic_associated_c_500_l_100_s_20");
 		long setupTime = System.currentTimeMillis() - start;
 //		writeToFile();
 		System.out.println("The setup time: " + String.valueOf(setupTime) + " ms");

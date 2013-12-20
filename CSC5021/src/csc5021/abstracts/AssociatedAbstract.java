@@ -1,7 +1,7 @@
 /**
  * 
  */
-package csc5021.program;
+package csc5021.abstracts;
 
 import java.util.ArrayList;
 import java.util.Collection;

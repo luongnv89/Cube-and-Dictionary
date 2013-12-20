@@ -113,7 +113,7 @@ public class Dictionary implements HasInvariant {
 		BufferedReader br = new BufferedReader(new FileReader(pathFile));
 		try {
 			String line = br.readLine();
-			if (line == null || line.length() < 3) {
+			if (line == null || line.length() < 2) {
 				throw new Exception("The input file is invalid!");
 			} else {
 				this.length = line.length();

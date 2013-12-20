@@ -9,9 +9,9 @@ import static org.junit.Assert.assertTrue;
 import org.junit.Before;
 import org.junit.Test;
 
+import csc5021.abstracts.AssociatedAbstract;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
-import csc5021.program.AssociatedAbstract;
 
 /**
  * @author luongnv89
@@ -36,7 +36,7 @@ public class AssociatedAbstractTest {
 
 	/**
 	 * Test method for
-	 * {@link csc5021.program.AssociatedAbstract#associated_word(csc5021.objects.Cube, java.lang.String)}
+	 * {@link csc5021.abstracts.AssociatedAbstract#associated_word(csc5021.objects.Cube, java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -46,7 +46,7 @@ public class AssociatedAbstractTest {
 	
 	/**
 	 * Test method for
-	 * {@link csc5021.program.AssociatedAbstract#associated_word(csc5021.objects.Cube, java.lang.String)}
+	 * {@link csc5021.abstracts.AssociatedAbstract#associated_word(csc5021.objects.Cube, java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -57,7 +57,7 @@ public class AssociatedAbstractTest {
 
 	/**
 	 * Test method for
-	 * {@link csc5021.program.AssociatedAbstract#associated_direction2(Cube, String)}
+	 * {@link csc5021.abstracts.AssociatedAbstract#associated_direction2(Cube, String)}
 	 * .
 	 */
 	@Test
@@ -67,7 +67,7 @@ public class AssociatedAbstractTest {
 
 	/**
 	 * Test method for
-	 * {@link csc5021.program.AssociatedAbstract#associated_direction1(Cube, String)}
+	 * {@link csc5021.abstracts.AssociatedAbstract#associated_direction1(Cube, String)}
 	 * .
 	 */
 	@Test
@@ -77,7 +77,7 @@ public class AssociatedAbstractTest {
 
 	/**
 	 * Test method for
-	 * {@link csc5021.program.AssociatedAbstract#associated_directionOYZ(Cube, String)}
+	 * {@link csc5021.abstracts.AssociatedAbstract#associated_directionOYZ(Cube, String)}
 	 * .
 	 */
 	@Test
@@ -87,7 +87,7 @@ public class AssociatedAbstractTest {
 
 	/**
 	 * Test method for
-	 * {@link csc5021.program.AssociatedAbstract#associated_directionOXZ(csc5021.objects.Cube, java.lang.String)}
+	 * {@link csc5021.abstracts.AssociatedAbstract#associated_directionOXZ(csc5021.objects.Cube, java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -97,7 +97,7 @@ public class AssociatedAbstractTest {
 
 	/**
 	 * Test method for
-	 * {@link csc5021.program.AssociatedAbstract#associated_directionOXY(csc5021.objects.Cube, java.lang.String)}
+	 * {@link csc5021.abstracts.AssociatedAbstract#associated_directionOXY(csc5021.objects.Cube, java.lang.String)}
 	 * .
 	 */
 	@Test
@@ -107,7 +107,7 @@ public class AssociatedAbstractTest {
 
 	/**
 	 * Test method for
-	 * {@link csc5021.program.AssociatedAbstract#associated_line(int, int, int, int, int, int, csc5021.objects.Cube, java.lang.String)}
+	 * {@link csc5021.abstracts.AssociatedAbstract#associated_line(int, int, int, int, int, int, csc5021.objects.Cube, java.lang.String)}
 	 * .
 	 */
 	@Test

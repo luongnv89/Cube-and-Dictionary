@@ -1,8 +1,9 @@
 /**
  * 
  */
-package csc5021.program;
+package csc5021.sequence;
 
+import csc5021.abstracts.AssociatedAbstract;
 import csc5021.interfaces.Associated;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;

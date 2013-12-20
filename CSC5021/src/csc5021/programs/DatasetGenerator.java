@@ -1,15 +1,15 @@
 /**
  * 
  */
-package csc5021.dataset;
+package csc5021.programs;
 
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Random;
 
+import csc5021.abstracts.AssociatedAbstract;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
-import csc5021.program.AssociatedAbstract;
 import csc5021.utilities.Utilities;
 
 /**
@@ -87,138 +87,37 @@ public class DatasetGenerator {
 
 		int wordLength = wordL - 1;
 		ArrayList<String> listWords = new ArrayList<>();
-		Random ran = new Random();
-		int nbWords = size;
-		int oxy = ran.nextInt(size);
-		nbWords -= oxy;
-		listWords.addAll(generatedOXY(wordLength, oxy, cube, listWords));
-		if (nbWords > 0) {
-			int oyz = ran.nextInt(nbWords);
-			nbWords -= oyz;
-			listWords.addAll(generatedOYZ(wordLength, oyz, cube, listWords));
-		}
-		if (nbWords > 0) {
-			int oxz = ran.nextInt(nbWords);
-			nbWords -= oxz;
-			listWords.addAll(generatedOXZ(wordLength, oxz, cube, listWords));
-		}
-		if (nbWords > 0) {
-			listWords.addAll(generatedO1(wordLength, nbWords, cube, listWords));
-		}
-
-		return new Dictionary(listWords);
-	}
-
-	/**
-	 * @param wordLength
-	 * @param o1
-	 * @param cube
-	 * @param listWords
-	 * @return
-	 */
-	private static Collection<? extends String> generatedO1(int wordLength, int o1, Cube cube,
-			ArrayList<String> listWords) {
-		ArrayList<String> listWord = new ArrayList<>();
 		int count = 0;
-		while (listWord.size() < o1 && count < 10) {
+		while (listWords.size() < size && count < 10) {
 			count++;
 			Random ran = new Random();
 
 			int dx = ran.nextInt(2);
 			int dy = ran.nextInt(2);
 			int dz = ran.nextInt(2);
+
 			// At least one coordinate is change
 			while (dx + dy + dz == 0) {
 				dx = ran.nextInt(2);
 				dy = ran.nextInt(2);
 				dz = ran.nextInt(2);
 			}
+
+			// Get first position randomly
 			int y = ran.nextInt(cube.getSize() - dy * wordLength);
 			int z = ran.nextInt(cube.getSize() - dz * wordLength);
 			int x = ran.nextInt(cube.getSize() - dx * wordLength);
 
+			// Get the string from first position and move a length equal
+			// wordLength
 			String word = cube.getString(x, y, z, x + dx * wordLength, y + dy * wordLength, z + dz * wordLength);
-			if (!listWords.contains(word) && !listWord.contains(word)) {
-				listWord.add(word);
+			if (!listWords.contains(word)) {
+				listWords.add(word);
 				count = 0;
 			}
 		}
-		return listWord;
-	}
-
-	/**
-	 * Generate oxz number of string which have length is wordLength and does
-	 * not exist in listwords.
-	 * 
-	 * @param wordLength
-	 * @param oxz
-	 * @param cube
-	 * @param listWords
-	 * @return
-	 */
-	private static Collection<? extends String> generatedOXZ(int wordLength, int oxz, Cube cube,
-			ArrayList<String> listWords) {
-		ArrayList<String> listWord = new ArrayList<>();
-		int count = 0;
-		while (listWord.size() < oxz && count < 10) {
-			count++;
-			Random ran = new Random();
-			// Get randomly a position.
-			int y = ran.nextInt(cube.getSize());
-			int z = ran.nextInt(cube.getSize());
-			int x = ran.nextInt(cube.getSize() - wordLength);
-			// Get the string from (x,y,z) to (x+wordLength,y,z)
-			String word = cube.getString(x, y, z, x + wordLength, y, z);
-			if (!listWords.contains(word) && !listWord.contains(word)) {
-				listWord.add(word);
-				count = 0;
-			}
-		}
-		return listWord;
-	}
-
-	/**
-	 * @param wordLength
-	 * @param oyz
-	 * @param cube
-	 * @param listWords
-	 * @return
-	 */
-	private static Collection<? extends String> generatedOYZ(int wordLength, int oyz, Cube cube,
-			ArrayList<String> listWords) {
-		ArrayList<String> listWord = new ArrayList<>();
-		int count = 0;
-		while (listWord.size() < oyz && count < 10) {
-			count++;
-			Random ran = new Random();
-			int x = ran.nextInt(cube.getSize());
-			int y = ran.nextInt(cube.getSize());
-			int z = ran.nextInt(cube.getSize() - wordLength);
-			String word = cube.getString(x, y, z, x, y, z + wordLength);
-			if (!listWords.contains(word) && !listWord.contains(word)) {
-				listWord.add(word);
-				count = 0;
-			}
-		}
-		return listWord;
-	}
-
-	private static Collection<? extends String> generatedOXY(int wordLength, int oxy, Cube cube,
-			ArrayList<String> listWords) {
-		ArrayList<String> listWord = new ArrayList<>();
-		int count = 0;
-		while (listWord.size() < oxy && count < 10) {
-			count++;
-			Random ran = new Random();
-			int z = ran.nextInt(cube.getSize());
-			int x = ran.nextInt(cube.getSize());
-			int y = ran.nextInt(cube.getSize() - wordLength);
-			String word = cube.getString(x, y, z, x, y + wordLength, z);
-			if (!listWords.contains(word) && !listWord.contains(word)) {
-				count = 0;
-				listWord.add(word);
-			}
-		}
-		return listWord;
+		Dictionary myDictionary = new Dictionary(listWords);
+		System.out.println("Create new dictionary: Length: " + myDictionary.getLength()+"; Size: " + myDictionary.getSize());
+		return myDictionary;
 	}
 }

@@ -1,8 +1,9 @@
 /**
  * 
  */
-package csc5021.program;
+package csc5021.threads;
 
+import csc5021.abstracts.AssociatedAbstract;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
 
@@ -16,6 +17,7 @@ import csc5021.objects.Dictionary;
 public class ParallelAssociated extends AssociatedAbstract {
 
 	private static volatile boolean associated = true;
+	public static long startTime = System.currentTimeMillis();
 
 	@SuppressWarnings("unused")
 	@Override
@@ -40,9 +42,10 @@ public class ParallelAssociated extends AssociatedAbstract {
 						System.out.println("Thread " + word_index + " started...");
 						if (!associated_word(cube, dic.getWordByIndex(word_index))) {
 							System.out.println("There is a word not associated: " + dic.getWordByIndex(word_index)
-									+ "\nStop at thread: " + word_index + " at time: " + System.currentTimeMillis());
+									+ "\nStop at thread: " + word_index + " at time: " + String.valueOf(System.currentTimeMillis()-startTime));
 							associated = false;
 						}
+						System.out.println("Thread " + word_index + " stoped!!!");
 
 					}
 				});
