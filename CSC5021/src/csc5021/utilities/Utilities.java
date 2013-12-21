@@ -3,6 +3,9 @@
  */
 package csc5021.utilities;
 
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
 import java.util.Random;
 
 /**
@@ -66,6 +69,7 @@ public class Utilities {
 
 	/**
 	 * Revert a string
+	 * 
 	 * @param string1
 	 * @return the revert of input string
 	 */
@@ -76,5 +80,19 @@ public class Utilities {
 			str.append(array[array.length - i - 1]);
 		}
 		return str.toString();
+	}
+
+	public static void recordTest(String solutionName, int cubeSize, int wordLength, int dicSize, boolean result,
+			String totalTime, String resultfile) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(resultfile, true));
+			out.write("["+solutionName + ";" + cubeSize + ";" + wordLength
+					+ ";" + dicSize + ";" + String.valueOf(result) + ";"
+					+ totalTime + "]\n");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

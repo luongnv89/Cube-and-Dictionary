@@ -3,11 +3,7 @@
  */
 package csc5021.solutions;
 
-import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Random;
-
-import csc5021.interfaces.SolutionInterface;
+import csc5021.interfaces.HasInvariant;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
 import csc5021.utilities.Utilities;
@@ -19,7 +15,40 @@ import csc5021.utilities.Utilities;
  * @author luongnv89
  * 
  */
-public abstract class SolutionAbstracts implements SolutionInterface {
+public abstract class SolutionAbstracts implements HasInvariant {
+
+	protected Cube cube;
+	protected Dictionary dic;
+
+	/**
+	 * @param cube
+	 * @param dic
+	 */
+	public SolutionAbstracts(Cube cube, Dictionary dic) {
+		this.cube = cube;
+		this.dic = dic;
+	}
+
+	/**
+	 * @param cube
+	 * @param dic
+	 * @throws Exception
+	 */
+	public SolutionAbstracts(String cubePath, String dicPath) throws Exception {
+		this.cube = new Cube(cubePath);
+		this.dic = new Dictionary(dicPath);
+	}
+
+	/**
+	 * Checking is the cube associated with the dictionary?
+	 * 
+	 * @param cube
+	 * @param dic
+	 * @return true if the cube associated with the dictionary <br>
+	 *         false otherwise
+	 */
+	public abstract boolean checkAssociatedOfDictionary();
+
 	/**
 	 * Check is the cube associated with a word?
 	 * 
@@ -28,23 +57,21 @@ public abstract class SolutionAbstracts implements SolutionInterface {
 	 * @return true if the cube is associated with the input word <br>
 	 *         false otherwise
 	 */
-	public boolean associated_word(Cube cube, String word) {
+	public boolean checkAssociatedOfWord(String word) {
 		boolean word_associated = false;
 
 		if (!word_associated)
-			word_associated = associated_directionOYZ(cube, word);
+			word_associated = checkAssociatedOfWordOnOYZ(word);
 		if (!word_associated)
-			word_associated = associated_directionOXZ(cube, word);
+			word_associated = checkAssociatedOfWordOnOXZ(word);
 		if (!word_associated)
-			word_associated = associated_directionOXY(cube, word);
+			word_associated = checkAssociatedOfWordOnOXY(word);
 		// OCDK
 		if (!word_associated)
-			word_associated = associated_direction1(cube, word);
+			word_associated = checkAssociatedOfWordOnOCDK(word);
 		// ABFE
 		if (!word_associated)
-			word_associated = associated_direction2(cube, word);
-		// System.out.println("Word: " + word + " associated? " +
-		// String.valueOf(word_associated));
+			word_associated = checkAssociatedOfWordOnABFE(word);
 		return word_associated;
 	}
 
@@ -59,13 +86,13 @@ public abstract class SolutionAbstracts implements SolutionInterface {
 	 * @return true if there is existing a line of plane which content the word <br>
 	 *         false otherwise
 	 */
-	public boolean associated_direction2(Cube cube, String word) {
+	public boolean checkAssociatedOfWordOnABFE(String word) {
 		for (int deltaX = word.length() - 1; deltaX < cube.getSize(); deltaX++) {
-			if (associated_plane2(0, deltaX, 0, deltaX, 0, 0, cube, word))
+			if (checkAssociatedOfWordOnABFE(0, deltaX, 0, deltaX, 0, 0, word))
 				return true;
 			if (deltaX < cube.getSize() - 1) {
-				if (associated_plane2(cube.getSize() - 1 - deltaX, cube.getSize() - 1, 0, cube.getSize() - 1,
-						cube.getSize() - 1 - deltaX, 0, cube, word))
+				if (checkAssociatedOfWordOnABFE(cube.getSize() - 1 - deltaX, cube.getSize() - 1, 0, cube.getSize() - 1,
+						cube.getSize() - 1 - deltaX, 0, word))
 					return true;
 			}
 		}
@@ -93,35 +120,35 @@ public abstract class SolutionAbstracts implements SolutionInterface {
 	 * @param word
 	 * @return
 	 */
-	private boolean associated_plane2(int x0, int y0, int z0, int x1, int y1, int z1, Cube cube, String word) {
+	private boolean checkAssociatedOfWordOnABFE(int x0, int y0, int z0, int x1, int y1, int z1, String word) {
 		int deltaX = Math.abs(x1 - x0);
 
 		for (int deltaZ = word.length() - 1; deltaZ < deltaX; deltaZ++) {
 			// AF
-			if (associated_line(x0, y0, cube.getSize() - 1 - deltaZ, x0 + deltaZ, y0 - deltaZ, cube.getSize() - 1,
-					cube, word))
+			if (checkAssociatedOfWordInLine(x0, y0, cube.getSize() - 1 - deltaZ, x0 + deltaZ, y0 - deltaZ,
+					cube.getSize() - 1, word))
 				return true;
 			if (deltaZ < deltaX - 1) {
-				if (associated_line(x1 - deltaZ, y1 + deltaZ, 0, x1, y1, deltaZ, cube, word))
+				if (checkAssociatedOfWordInLine(x1 - deltaZ, y1 + deltaZ, 0, x1, y1, deltaZ, word))
 					return true;
 			}
 
 			// BE
-			if (associated_line(x0, y0, deltaZ, x0 + deltaZ, y0 - deltaZ, 0, cube, word))
+			if (checkAssociatedOfWordInLine(x0, y0, deltaZ, x0 + deltaZ, y0 - deltaZ, 0, word))
 				return true;
 			if (deltaZ < deltaX - 1) {
-				if (associated_line(x1 - deltaZ, y1 + deltaZ, cube.getSize() - 1, x1, y1, cube.getSize() - 1 - deltaZ,
-						cube, word))
+				if (checkAssociatedOfWordInLine(x1 - deltaZ, y1 + deltaZ, cube.getSize() - 1, x1, y1, cube.getSize()
+						- 1 - deltaZ, word))
 					return true;
 			}
 		}
 
 		for (int z = deltaX; z < cube.getSize(); z++) {
 			// AF
-			if (associated_line(x0, y0, z - deltaX, x1, y1, z, cube, word))
+			if (checkAssociatedOfWordInLine(x0, y0, z - deltaX, x1, y1, z, word))
 				return true;
 			// BE
-			if (associated_line(x0, y0, z, x1, y1, z - deltaX, cube, word))
+			if (checkAssociatedOfWordInLine(x0, y0, z, x1, y1, z - deltaX, word))
 				return true;
 		}
 		return false;
@@ -138,12 +165,12 @@ public abstract class SolutionAbstracts implements SolutionInterface {
 	 * @return true if there is existing a line of plane which content the word <br>
 	 *         false otherwise
 	 */
-	public boolean associated_direction1(Cube cube, String word) {
+	public boolean checkAssociatedOfWordOnOCDK(String word) {
 		for (int deltaXY = word.length() - 1; deltaXY < cube.getSize(); deltaXY++) {
-			if (associated_plane1(cube.getSize() - 1 - deltaXY, 0, cube.getSize() - 1, deltaXY, cube, word))
+			if (checkAssociatedOfWordOnOCDK(cube.getSize() - 1 - deltaXY, 0, cube.getSize() - 1, deltaXY, word))
 				return true;
 			if (deltaXY < cube.getSize() - 1) {
-				if (associated_plane1(0, cube.getSize() - 1 - deltaXY, deltaXY, cube.getSize() - 1, cube, word))
+				if (checkAssociatedOfWordOnOCDK(0, cube.getSize() - 1 - deltaXY, deltaXY, cube.getSize() - 1, word))
 					return true;
 			}
 		}
@@ -168,34 +195,34 @@ public abstract class SolutionAbstracts implements SolutionInterface {
 	 * @param word
 	 * @return
 	 */
-	private boolean associated_plane1(int x0, int y0, int x1, int y1, Cube cube, String word) {
+	private boolean checkAssociatedOfWordOnOCDK(int x0, int y0, int x1, int y1, String word) {
 		int deltaX = Math.abs(x1 - x0);
 		for (int deltaZ = word.length() - 1; deltaZ < deltaX; deltaZ++) {
 			// OD
-			if (associated_line(x1 - deltaZ, y1 - deltaZ, 0, x1, y1, deltaZ, cube, word))
+			if (checkAssociatedOfWordInLine(x1 - deltaZ, y1 - deltaZ, 0, x1, y1, deltaZ, word))
 				return true;
 			if (deltaZ < deltaX - 1) {
-				if (associated_line(x0, y0, cube.getSize() - 1 - deltaZ, x0 + deltaZ, y0 + deltaZ, cube.getSize() - 1,
-						cube, word))
+				if (checkAssociatedOfWordInLine(x0, y0, cube.getSize() - 1 - deltaZ, x0 + deltaZ, y0 + deltaZ,
+						cube.getSize() - 1, word))
 					return true;
 			}
 
 			// CK
-			if (associated_line(x0, y0, deltaZ, x0 + deltaZ, y0 + deltaZ, 0, cube, word))
+			if (checkAssociatedOfWordInLine(x0, y0, deltaZ, x0 + deltaZ, y0 + deltaZ, 0, word))
 				return true;
 			if (deltaZ < deltaX - 1) {
-				if (associated_line(x1 - deltaZ, y1 - deltaZ, cube.getSize() - 1, x1, y1, cube.getSize() - 1 - deltaZ,
-						cube, word))
+				if (checkAssociatedOfWordInLine(x1 - deltaZ, y1 - deltaZ, cube.getSize() - 1, x1, y1, cube.getSize()
+						- 1 - deltaZ, word))
 					return true;
 			}
 		}
 
 		for (int z1 = deltaX; z1 < cube.getSize(); z1++) {
 			// OD
-			if (associated_line(x0, y0, z1 - deltaX, x1, y1, z1, cube, word))
+			if (checkAssociatedOfWordInLine(x0, y0, z1 - deltaX, x1, y1, z1, word))
 				return true;
 			// CK
-			if (associated_line(x0, y0, z1, x1, y1, z1 - deltaX, cube, word))
+			if (checkAssociatedOfWordInLine(x0, y0, z1, x1, y1, z1 - deltaX, word))
 				return true;
 		}
 
@@ -216,30 +243,32 @@ public abstract class SolutionAbstracts implements SolutionInterface {
 	 * @return true if there is existing a line of plane which content the word <br>
 	 *         false otherwise
 	 */
-	public boolean associated_directionOYZ(Cube cube, String word) {
+	public boolean checkAssociatedOfWordOnOYZ(String word) {
 		for (int x = 0; x < cube.getSize(); x++) {
 
 			for (int y = 0; y < cube.getSize(); y++) {
 				// The line in plane which is presented by y = constant
-				if (associated_line(x, y, 0, x, y, cube.getSize() - 1, cube, word))
+				if (checkAssociatedOfWordInLine(x, y, 0, x, y, cube.getSize() - 1, word))
 					return true;
 			}
 
 			for (int deltaYZ = word.length() - 1; deltaYZ < cube.getSize(); deltaYZ++) {
 
 				// The line in plane which is presented by y-z = constant;
-				if (associated_line(x, cube.getSize() - 1 - deltaYZ, 0, x, cube.getSize() - 1, deltaYZ, cube, word))
+				if (checkAssociatedOfWordInLine(x, cube.getSize() - 1 - deltaYZ, 0, x, cube.getSize() - 1, deltaYZ,
+						word))
 					return true;
 				if (deltaYZ < cube.getSize() - 1) {
-					if (associated_line(x, 0, cube.getSize() - 1 - deltaYZ, x, deltaYZ, cube.getSize() - 1, cube, word))
+					if (checkAssociatedOfWordInLine(x, 0, cube.getSize() - 1 - deltaYZ, x, deltaYZ, cube.getSize() - 1,
+							word))
 						return true;
 				}
 				// The line in plane which is presented by x+z = constant;
-				if (associated_line(x, 0, deltaYZ, x, deltaYZ, 0, cube, word))
+				if (checkAssociatedOfWordInLine(x, 0, deltaYZ, x, deltaYZ, 0, word))
 					return true;
 				if (deltaYZ < cube.getSize() - 1) {
-					if (associated_line(x, cube.getSize() - 1 - deltaYZ, cube.getSize() - 1, x, cube.getSize() - 1,
-							cube.getSize() - 1 - deltaYZ, cube, word))
+					if (checkAssociatedOfWordInLine(x, cube.getSize() - 1 - deltaYZ, cube.getSize() - 1, x,
+							cube.getSize() - 1, cube.getSize() - 1 - deltaYZ, word))
 						return true;
 				}
 			}
@@ -262,31 +291,33 @@ public abstract class SolutionAbstracts implements SolutionInterface {
 	 * @return true if there is existing a line of plane which content the word <br>
 	 *         false otherwise
 	 */
-	public boolean associated_directionOXZ(Cube cube, String word) {
+	public boolean checkAssociatedOfWordOnOXZ(String word) {
 
 		for (int y = 0; y < cube.getSize(); y++) {
 
 			for (int z = 0; z < cube.getSize(); z++) {
 				// The line in plane which is presented by z = constant;
-				if (associated_line(0, y, z, cube.getSize() - 1, y, z, cube, word))
+				if (checkAssociatedOfWordInLine(0, y, z, cube.getSize() - 1, y, z, word))
 					return true;
 			}
 
 			for (int deltaXZ = word.length() - 1; deltaXZ < cube.getSize(); deltaXZ++) {
 
 				// The line in plane which is presented by x-z = constant;
-				if (associated_line(cube.getSize() - 1 - deltaXZ, y, 0, cube.getSize() - 1, y, deltaXZ, cube, word))
+				if (checkAssociatedOfWordInLine(cube.getSize() - 1 - deltaXZ, y, 0, cube.getSize() - 1, y, deltaXZ,
+						word))
 					return true;
 				if (deltaXZ < cube.getSize() - 1) {
-					if (associated_line(0, y, cube.getSize() - 1 - deltaXZ, deltaXZ, y, cube.getSize() - 1, cube, word))
+					if (checkAssociatedOfWordInLine(0, y, cube.getSize() - 1 - deltaXZ, deltaXZ, y, cube.getSize() - 1,
+							word))
 						return true;
 				}
 				// The line in plane which is presented by x+z = constant;
-				if (associated_line(0, y, deltaXZ, deltaXZ, y, 0, cube, word))
+				if (checkAssociatedOfWordInLine(0, y, deltaXZ, deltaXZ, y, 0, word))
 					return true;
 				if (deltaXZ < cube.getSize() - 1) {
-					if (associated_line(cube.getSize() - 1 - deltaXZ, y, cube.getSize() - 1, cube.getSize() - 1, y,
-							cube.getSize() - 1 - deltaXZ, cube, word))
+					if (checkAssociatedOfWordInLine(cube.getSize() - 1 - deltaXZ, y, cube.getSize() - 1,
+							cube.getSize() - 1, y, cube.getSize() - 1 - deltaXZ, word))
 						return true;
 				}
 			}
@@ -309,29 +340,30 @@ public abstract class SolutionAbstracts implements SolutionInterface {
 	 * @return true if there is existing a line of plane which content the word <br>
 	 *         false otherwise
 	 */
-	public boolean associated_directionOXY(Cube cube, String word) {
+	public boolean checkAssociatedOfWordOnOXY(String word) {
 		for (int z = 0; z < cube.getSize(); z++) {
 
 			for (int x = 0; x < cube.getSize(); x++) {
 				// The line in plane which is presented by x=constant
-				if (associated_line(x, 0, z, x, cube.getSize() - 1, z, cube, word))
+				if (checkAssociatedOfWordInLine(x, 0, z, x, cube.getSize() - 1, z, word))
 					return true;
 			}
 
 			for (int deltaX = word.length() - 1; deltaX < cube.getSize(); deltaX++) {
 				// The line in plane which is presented by x-y = constant;
-				if (associated_line(cube.getSize() - 1 - deltaX, 0, z, cube.getSize() - 1, deltaX, z, cube, word))
+				if (checkAssociatedOfWordInLine(cube.getSize() - 1 - deltaX, 0, z, cube.getSize() - 1, deltaX, z, word))
 					return true;
 				if (deltaX < cube.getSize() - 1) {
-					if (associated_line(0, cube.getSize() - 1 - deltaX, z, deltaX, cube.getSize() - 1, z, cube, word))
+					if (checkAssociatedOfWordInLine(0, cube.getSize() - 1 - deltaX, z, deltaX, cube.getSize() - 1, z,
+							word))
 						return true;
 				}
 				// The line in plane which is presented by x+y = constant;
-				if (associated_line(0, deltaX, z, deltaX, 0, z, cube, word))
+				if (checkAssociatedOfWordInLine(0, deltaX, z, deltaX, 0, z, word))
 					return true;
 				if (deltaX < cube.getSize() - 1) {
-					if (associated_line(cube.getSize() - 1 - deltaX, cube.getSize() - 1, z, cube.getSize() - 1,
-							cube.getSize() - 1 - deltaX, z, cube, word))
+					if (checkAssociatedOfWordInLine(cube.getSize() - 1 - deltaX, cube.getSize() - 1, z,
+							cube.getSize() - 1, cube.getSize() - 1 - deltaX, z, word))
 						return true;
 				}
 			}
@@ -355,10 +387,38 @@ public abstract class SolutionAbstracts implements SolutionInterface {
 	 * @return true if the string composed by the line of cube content the word <br>
 	 *         false otherwise
 	 */
-	public boolean associated_line(int x0, int y0, int z0, int x1, int y1, int z1, Cube cube, String word) {
+	public boolean checkAssociatedOfWordInLine(int x0, int y0, int z0, int x1, int y1, int z1, String word) {
 		if (x0 == x1 && y0 == y1 && z0 == z1)
 			return false;
 		String string1 = cube.getString(x0, y0, z0, x1, y1, z1);
 		return string1.contains(word) || ((String) Utilities.revert(string1)).contains(word);
 	}
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see csc5021.interfaces.HasInvariant#invariant()
+	 */
+	@Override
+	public boolean invariant() {
+		return dic.invariant() && cube.invariant() && (cube.getSize() >= dic.getLength());
+	}
+
+	/**
+	 * @return the cube
+	 */
+	public Cube getCube() {
+		return cube;
+	}
+
+	/**
+	 * @return the dic
+	 */
+	public Dictionary getDic() {
+		return dic;
+	}
+	
+	
+	
+
 }
