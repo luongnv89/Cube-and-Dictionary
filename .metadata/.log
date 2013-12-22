@@ -12397,3 +12397,21 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.ui 4 4 2013-12-22 05:09:31.287
 !MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:10:04.007
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:10:04.564
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:10:06.505
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:10:28.313
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:10:38.989
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:10:43.437
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
