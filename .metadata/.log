@@ -11821,3 +11821,579 @@ Command-line arguments:  -os macosx -ws cocoa -arch x86_64 -product org.eclipse.
 
 !ENTRY org.eclipse.ui 4 4 2013-12-22 02:01:47.069
 !MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:02:26.672
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:05:11.712
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:07:59.393
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:08:42.091
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:10:21.732
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:10:33.184
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:11:04.518
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:11:57.189
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:12:38.397
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:16:53.061
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:17:43.785
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:20:01.451
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:20:24.372
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:20:27.567
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:20:44.359
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:28:16.647
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:28:30.353
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:28:41.908
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:32:26.027
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:33:06.854
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:33:29.891
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:33:49.052
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:34:09.968
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:36:11.959
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:36:30.044
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:37:04.026
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:38:09.635
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:38:38.641
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:42:39.081
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:43:27.457
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:43:46.577
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:46:05.254
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:46:17.368
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:52:36.133
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:52:50.337
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:54:49.137
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:55:07.058
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:59:14.855
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:59:25.178
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:59:39.636
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 02:59:47.824
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:01:07.746
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:02:16.692
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:03:10.196
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:03:15.387
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:03:22.672
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:03:43.725
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:03:51.966
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:04:00.758
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:04:25.563
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:04:25.918
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:04:27.594
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:05:20.649
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:05:21.796
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:05:24.408
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:05:53.470
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:05:58.008
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:06:10.209
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:06:18.288
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:06:25.102
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:06:30.476
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:06:34.536
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:07:02.557
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:07:06.582
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:07:09.046
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:07:18.062
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:07:30.452
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:07:35.579
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:07:42.352
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:07:50.256
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:08:20.982
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:08:41.224
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:08:44.794
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:09:00.111
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:09:09.202
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:09:13.496
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:11:57.377
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:12:29.099
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:12:39.692
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:12:44.879
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:12:47.407
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:13:25.450
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:14:13.967
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:15:06.158
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:15:10.087
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:15:10.233
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:15:17.059
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:15:31.568
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:15:33.213
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:16:51.589
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:16:52.992
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:17:33.617
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:17:41.368
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:18:09.736
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:18:13.586
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:18:15.402
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:20:02.141
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:20:03.185
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:20:14.774
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:20:41.117
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:20:54.425
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:20:57.698
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:21:00.855
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:29:22.267
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:35:20.499
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:36:02.414
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:36:29.414
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:41:43.789
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:41:46.464
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:42:15.703
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:42:58.470
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:43:14.464
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:47:03.043
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:47:11.684
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:47:22.371
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:49:52.672
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:50:50.142
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:50:54.372
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:51:00.961
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:51:23.815
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:51:27.075
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:51:44.024
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:52:00.704
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:52:02.190
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:52:33.473
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:52:57.533
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:55:00.782
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:55:24.789
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:55:30.072
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:55:43.775
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 03:56:53.901
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:03:27.224
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:03:29.375
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:31:55.829
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:32:56.049
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:39:04.344
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:39:11.496
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:39:23.445
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:40:12.630
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:40:53.588
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:45:16.099
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:46:34.098
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:46:46.537
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:47:14.578
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:47:21.845
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:47:23.418
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:47:24.283
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:47:27.947
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:47:40.262
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:48:04.787
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:48:05.119
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:48:06.436
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:48:38.540
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:48:43.610
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:48:49.843
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:48:56.632
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:49:10.813
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:49:24.796
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:49:25.342
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:49:25.453
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:50:54.023
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:50:56.812
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:53:42.918
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:53:50.624
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:53:55.370
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:54:08.139
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:54:15.518
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:54:56.333
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:55:01.788
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:55:21.125
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:56:18.969
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:56:35.409
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:56:45.351
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:56:48.141
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:56:53.455
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:56:54.544
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:56:57.051
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 04:57:32.054
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:03:39.539
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:03:47.750
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:06:36.650
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:06:41.645
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:06:47.555
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:07:10.134
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:07:12.004
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:07:15.669
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:08:23.871
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:08:25.864
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:08:28.977
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:08:44.210
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:08:47.824
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545} vs {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7}
+
+!ENTRY org.eclipse.ui 4 4 2013-12-22 05:09:31.287
+!MESSAGE Conflicting handlers for org.eclipse.ui.edit.copy: {com.intooitus.infusion.handlers.CopyEntityToClipboard@5b76dae7} vs {org.eclipse.ui.internal.handlers.WidgetMethodHandler@462d5545}

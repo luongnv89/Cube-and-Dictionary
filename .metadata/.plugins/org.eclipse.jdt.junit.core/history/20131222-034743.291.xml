@@ -1,0 +1,3 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="CubeTest.testGetValues" project="CSC5021" tests="1" started="1" failures="0" errors="0" ignored="0">
+  <testcase name="testGetValues" classname="csc5021.tests.CubeTest" time="0.0"/>
+</testrun>

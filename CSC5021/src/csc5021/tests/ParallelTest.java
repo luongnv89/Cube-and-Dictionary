@@ -3,10 +3,7 @@
  */
 package csc5021.tests;
 
-import static org.junit.Assert.*;
-
 import org.junit.Before;
-import org.junit.Test;
 
 import csc5021.solutions.Parallel;
 
@@ -16,22 +13,19 @@ import csc5021.solutions.Parallel;
  * @author luongnv89
  * 
  */
-public class ParallelTest {
+public class ParallelTest extends SolutionAbstractsTest {
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.solutions.Parallel#checkAssociatedOfDictionary()}.
-	 */
-	@Test
-	public void testCheckAssociatedOfDictionary() {
-		fail("Not yet implemented");
+		super.setUp();
+		solution_associated = new Parallel(cube, dic_associated);
+		solution_no_associated = new Parallel(cubePath, dicNoAssociatedPath);
+		solution_dic_invalid = new Parallel(cube, dic_invalid);
+		solution_dic_too_long = new Parallel(cube, dic_too_long);
+		solution_cube_invalid = new Parallel(cube_invalid, dic_associated);
 	}
 
 }

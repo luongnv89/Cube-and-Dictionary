@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="DictionaryTest" project="CSC5021" tests="10" started="10" failures="0" errors="0" ignored="0">
+  <testsuite name="csc5021.tests.DictionaryTest" time="0.001">
+    <testcase name="testInvariant" classname="csc5021.tests.DictionaryTest" time="0.0"/>
+    <testcase name="testGetWordByIndex" classname="csc5021.tests.DictionaryTest" time="0.0"/>
+    <testcase name="testDictionaryIntInt" classname="csc5021.tests.DictionaryTest" time="0.0"/>
+    <testcase name="testDictionaryString" classname="csc5021.tests.DictionaryTest" time="0.0"/>
+    <testcase name="testGetSize" classname="csc5021.tests.DictionaryTest" time="0.0"/>
+    <testcase name="testSaveToFile" classname="csc5021.tests.DictionaryTest" time="0.0"/>
+    <testcase name="testInvariantInvalidSize" classname="csc5021.tests.DictionaryTest" time="0.0"/>
+    <testcase name="testGetLength" classname="csc5021.tests.DictionaryTest" time="0.0"/>
+    <testcase name="testDictionaryArrayListOfString" classname="csc5021.tests.DictionaryTest" time="0.0"/>
+    <testcase name="testInvariantInvalidLengthOfWord" classname="csc5021.tests.DictionaryTest" time="0.0"/>
+  </testsuite>
+</testrun>

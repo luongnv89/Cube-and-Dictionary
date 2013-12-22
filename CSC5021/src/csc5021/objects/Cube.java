@@ -16,8 +16,8 @@ import csc5021.utilities.Utilities;
 
 /**
  * The {@link Cube} present the common structure of alien genetic material <br>
- * The content of cube is present by the 3d array {@link Cube#values}.
- * <br> Tested by {@link CubeTest}
+ * The content of cube is present by the 3d array {@link Cube#values}. <br>
+ * Tested by {@link CubeTest}
  * 
  * @author luongnv89
  * 
@@ -70,19 +70,19 @@ public class Cube implements HasInvariant {
 	 * @throws Exception
 	 */
 	@SuppressWarnings("resource")
-	public Cube(String pathFile){
+	public Cube(String pathFile) {
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(pathFile));
 			String line = br.readLine();
 			this.size = line.length();
 			values = new char[this.size][this.size][this.size];
 			// for each lattice
-			for (int i = 0; i < this.size; i++) {
+			for (int z = 0; z < this.size; z++) {
 				// for each row of lattice
-				for (int j = 0; j < this.size; j++) {
+				for (int y = 0; y < this.size; y++) {
 					char[] array = line.toCharArray();
-					for (int k = 0; k < this.size; k++) {
-						values[i][j][k] = array[k];
+					for (int x = 0; x < this.size; x++) {
+						values[x][y][z] = array[x];
 					}
 					line = br.readLine();
 				}
@@ -237,64 +237,83 @@ public class Cube implements HasInvariant {
 	 * @param x1
 	 * @param y1
 	 * @param z1
+	 * @param wordLength
 	 * @return
 	 */
 	public String getString(int x0, int y0, int z0, int x1, int y1, int z1) {
-		if (x0 == x1 && y0 == y1 && z0 == z1)
+		int delta = Math.max(Math.abs(x1 - x0), Math.abs(y1 - y0));
+		delta = Math.max(Math.abs(z1 - z0), delta);
+		if (delta == 0)
 			return String.valueOf(values[x0][y0][z0]);
+		int dx = (x1 - x0) / delta;
+		int dy = (y1 - y0) / delta;
+		int dz = (z1 - z0) / delta;
+
 		StringBuffer stringbf = new StringBuffer();
-		if (x0 == x1) {
-			if (y0 == y1) {
-				int max = z1 > z0 ? z1 : z0;
-				int min = max == z1 ? z0 : z1;
-
-				for (int i = 0; i <= max - min; i++) {
-					stringbf.append(values[x0][y0][min + i]);
-				}
-			} else if (z0 == z1) {
-				int max = y1 > y0 ? y1 : y0;
-				int min = y1 == max ? y0 : y1;
-
-				for (int i = 0; i <= max - min; i++) {
-					stringbf.append(values[x0][min + i][z0]);
-				}
-			} else {
-				int max = y1 > y0 ? y1 : y0;
-				int min = y1 == max ? y0 : y1;
-				for (int i = 0; i <= max - min; i++) {
-					stringbf.append(values[x0][min + i][z0 + (z1 - z0) * (min + i - y0) / (y1 - y0)]);
-				}
-			}
-		} else {
-			int max = x1 > x0 ? x1 : x0;
-			int min = x1 == max ? x0 : x1;
-			if (y0 == y1) {
-				if (z0 == z1) {
-					for (int i = 0; i <= max - min; i++) {
-						stringbf.append(values[min + i][y0][z0]);
-
-					}
-				} else {
-					for (int i = 0; i <= max - min; i++) {
-						stringbf.append(values[min + i][y0][z0 + (z1 - z0) * (min + i - x0) / (x1 - x0)]);
-
-					}
-				}
-			} else {
-				if (z0 == z1) {
-					for (int i = 0; i <= max - min; i++) {
-						stringbf.append(values[min + i][y0 + (y1 - y0) * (min + i - x0) / (x1 - x0)][z0]);
-
-					}
-				} else {
-					for (int i = 0; i <= max - min; i++) {
-						stringbf.append(values[min + i][y0 + (y1 - y0) * (min + i - x0) / (x1 - x0)][z0 + (z1 - z0)
-								* (min + i - x0) / (x1 - x0)]);
-					}
-				}
-			}
+		for (int i = 0; i <= delta; i++) {
+			stringbf.append(values[x0 + dx * i][y0 + dy * i][z0 + dz * i]);
 		}
 		return stringbf.toString();
+
+		// if (x0 == x1 && y0 == y1 && z0 == z1)
+		// return String.valueOf(values[x0][y0][z0]);
+		// StringBuffer stringbf = new StringBuffer();
+		// if (x0 == x1) {
+		// if (y0 == y1) {
+		// int max = z1 > z0 ? z1 : z0;
+		// int min = max == z1 ? z0 : z1;
+		//
+		// for (int i = 0; i <= max - min; i++) {
+		// stringbf.append(values[x0][y0][min + i]);
+		// }
+		// } else if (z0 == z1) {
+		// int max = y1 > y0 ? y1 : y0;
+		// int min = y1 == max ? y0 : y1;
+		//
+		// for (int i = 0; i <= max - min; i++) {
+		// stringbf.append(values[x0][min + i][z0]);
+		// }
+		// } else {
+		// int max = y1 > y0 ? y1 : y0;
+		// int min = y1 == max ? y0 : y1;
+		// for (int i = 0; i <= max - min; i++) {
+		// stringbf.append(values[x0][min + i][z0 + (z1 - z0) * (min + i - y0) /
+		// (y1 - y0)]);
+		// }
+		// }
+		// } else {
+		// int max = x1 > x0 ? x1 : x0;
+		// int min = x1 == max ? x0 : x1;
+		// if (y0 == y1) {
+		// if (z0 == z1) {
+		// for (int i = 0; i <= max - min; i++) {
+		// stringbf.append(values[min + i][y0][z0]);
+		//
+		// }
+		// } else {
+		// for (int i = 0; i <= max - min; i++) {
+		// stringbf.append(values[min + i][y0][z0 + (z1 - z0) * (min + i - x0) /
+		// (x1 - x0)]);
+		//
+		// }
+		// }
+		// } else {
+		// if (z0 == z1) {
+		// for (int i = 0; i <= max - min; i++) {
+		// stringbf.append(values[min + i][y0 + (y1 - y0) * (min + i - x0) / (x1
+		// - x0)][z0]);
+		//
+		// }
+		// } else {
+		// for (int i = 0; i <= max - min; i++) {
+		// stringbf.append(values[min + i][y0 + (y1 - y0) * (min + i - x0) / (x1
+		// - x0)][z0 + (z1 - z0)
+		// * (min + i - x0) / (x1 - x0)]);
+		// }
+		// }
+		// }
+		// }
+		// return stringbf.toString();
 	}
 
 	/**

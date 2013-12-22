@@ -9,17 +9,18 @@ import csc5021.tests.SequentialTest;
 
 /**
  * Present a sequences program which can check the associated of a cube and a
- * dictionary
- * <br>Tested by {@link SequentialTest}
+ * dictionary <br>
+ * Tested by {@link SequentialTest}
+ * 
  * @author luongnv89
  * 
  */
-public class Sequential extends SolutionAbstracts{
+public class Sequential extends SolutionAbstracts {
 
 	public Sequential(Cube cube, Dictionary dic) {
 		super(cube, dic);
 	}
-	
+
 	/**
 	 * @param cubePath
 	 * @param dicPath
@@ -29,17 +30,14 @@ public class Sequential extends SolutionAbstracts{
 		super(cubePath, dicPath);
 	}
 
-
-
-	/* (non-Javadoc)
+	/*
+	 * (non-Javadoc)
+	 * 
 	 * @see csc5021.solutions.SolutionAbstracts#checkAssociatedOfDictionary()
-	 *
 	 */
 	@Override
 	public boolean checkAssociatedOfDictionary() {
-		if (!(cube.invariant() && dic.invariant())) {
-			return false;
-		} else if (dic.getLength() > cube.getSize()) {
+		if (!invariant()) {
 			return false;
 		} else {
 			for (int i = 0; i < dic.getSize(); i++) {

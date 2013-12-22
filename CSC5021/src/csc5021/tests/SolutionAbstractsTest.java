@@ -3,7 +3,7 @@
  */
 package csc5021.tests;
 
-import static org.junit.Assert.fail;
+import static org.junit.Assert.*;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -18,19 +18,50 @@ import csc5021.solutions.SolutionAbstracts;
  * @author luongnv89
  * 
  */
-public class SolutionAbstractsTest {
+public abstract class SolutionAbstractsTest {
+	protected String cubePath;
+	protected String cubeInvalid;
+	protected String dicAssociatedPath;
+	protected String dicNoAssociatedPath;
+	protected String dicInvalid;
+	protected String dicTooLong;
+
 	protected Cube cube;
+	protected Cube cube_invalid;
 	protected Dictionary dic_associated;
 	protected Dictionary dic_no_associated;
+	protected Dictionary dic_invalid;
+	protected Dictionary dic_too_long;
+
+	protected SolutionAbstracts solution_associated;
+	protected SolutionAbstracts solution_no_associated;
+	protected SolutionAbstracts solution_dic_invalid;
+	protected SolutionAbstracts solution_cube_invalid;
+	protected SolutionAbstracts solution_dic_too_long;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		cube = new Cube("cube_4_test_solution");
-		dic_associated = new Dictionary("dic_4_test_solution_associated");
-		dic_no_associated = new Dictionary("dic_4_test_solution_no_associated");
+		cubePath = "cube_4_test_solution";
+		cube = new Cube(cubePath);
+
+		cubeInvalid = "cube_3_too_small";
+		cube_invalid = new Cube(cubeInvalid);
+
+		dicAssociatedPath = "dic_3_13_test_solution";
+		dic_associated = new Dictionary(dicAssociatedPath);
+
+		dicNoAssociatedPath = "dic_3_15_test_solution_no_associated";
+		dic_no_associated = new Dictionary(dicNoAssociatedPath);
+
+		dicInvalid = "dic_10_2";
+		dic_invalid = new Dictionary(dicInvalid);
+
+		dicTooLong = "dic_10_100";
+		dic_too_long = new Dictionary(dicTooLong);
+
 	}
 
 	/**
@@ -40,7 +71,7 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testSolutionAbstractsCubeDictionary() {
-		fail("Not yet implemented");
+		assertTrue(solution_associated.invariant());
 	}
 
 	/**
@@ -50,7 +81,7 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testSolutionAbstractsStringString() {
-		fail("Not yet implemented");
+		assertTrue(solution_no_associated.invariant());
 	}
 
 	/**
@@ -60,7 +91,38 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testCheckAssociatedOfDictionary() {
-		fail("Not yet implemented");
+		assertTrue(solution_associated.checkAssociatedOfDictionary());
+		assertFalse(solution_no_associated.checkAssociatedOfDictionary());
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.solutions.SolutionAbstracts#checkAssociatedOfDictionary()}
+	 * .
+	 */
+	@Test
+	public void testCheckAssociatedOfDictionaryDicInvariant() {
+		assertFalse(solution_dic_invalid.checkAssociatedOfDictionary());
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.solutions.SolutionAbstracts#checkAssociatedOfDictionary()}
+	 * .
+	 */
+	@Test
+	public void testCheckAssociatedOfDictionaryCubeInvariant() {
+		assertFalse(solution_cube_invalid.checkAssociatedOfDictionary());
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.solutions.SolutionAbstracts#checkAssociatedOfDictionary()}
+	 * .
+	 */
+	@Test
+	public void testCheckAssociatedOfDictionaryDicTooLongInvariant() {
+		assertFalse(solution_dic_too_long.checkAssociatedOfDictionary());
 	}
 
 	/**
@@ -70,7 +132,7 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testCheckAssociatedOfWord() {
-		fail("Not yet implemented");
+		assertTrue(solution_associated.checkAssociatedOfWord("THUE"));
 	}
 
 	/**
@@ -80,17 +142,9 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testCheckAssociatedOfWordOnABFEString() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.solutions.SolutionAbstracts#checkAssociatedOfWordOnABFE(int, int, int, int, int, int, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testCheckAssociatedOfWordOnABFEIntIntIntIntIntIntString() {
-		fail("Not yet implemented");
+		assertTrue(solution_associated.checkAssociatedOfWordOnABFE("KDC"));
+		assertTrue(solution_associated.checkAssociatedOfWordOnABFE("JUE"));
+		assertFalse(solution_associated.checkAssociatedOfWordOnABFE("JJJ"));
 	}
 
 	/**
@@ -100,17 +154,9 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testCheckAssociatedOfWordOnOCDKString() {
-		fail("Not yet implemented");
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.solutions.SolutionAbstracts#checkAssociatedOfWordOnOCDK(int, int, int, int, java.lang.String)}
-	 * .
-	 */
-	@Test
-	public void testCheckAssociatedOfWordOnOCDKIntIntIntIntString() {
-		fail("Not yet implemented");
+		assertTrue(solution_associated.checkAssociatedOfWordOnOCDK("CMJ"));
+		assertTrue(solution_associated.checkAssociatedOfWordOnOCDK("TPU"));
+		assertFalse(solution_associated.checkAssociatedOfWordOnOCDK("JJJ"));
 	}
 
 	/**
@@ -120,7 +166,10 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testCheckAssociatedOfWordOnOYZ() {
-		fail("Not yet implemented");
+		assertTrue(solution_associated.checkAssociatedOfWordOnOYZ("TJM"));
+		assertTrue(solution_associated.checkAssociatedOfWordOnOYZ("TER"));
+		assertTrue(solution_associated.checkAssociatedOfWordOnOYZ("LCA"));
+		assertFalse(solution_associated.checkAssociatedOfWordOnOYZ("AAA"));
 	}
 
 	/**
@@ -130,7 +179,10 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testCheckAssociatedOfWordOnOXZ() {
-		fail("Not yet implemented");
+		assertTrue(solution_associated.checkAssociatedOfWordOnOXZ("THU"));
+		assertTrue(solution_associated.checkAssociatedOfWordOnOXZ("TRP"));
+		assertTrue(solution_associated.checkAssociatedOfWordOnOXZ("ESX"));
+		assertFalse(solution_associated.checkAssociatedOfWordOnOXZ("AAA"));
 	}
 
 	/**
@@ -140,7 +192,10 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testCheckAssociatedOfWordOnOXY() {
-		fail("Not yet implemented");
+		assertTrue(solution_associated.checkAssociatedOfWordOnOXY("TFP"));
+		assertTrue(solution_associated.checkAssociatedOfWordOnOXY("TBI"));
+		assertTrue(solution_associated.checkAssociatedOfWordOnOXY("EJW"));
+		assertFalse(solution_associated.checkAssociatedOfWordOnOXY("AAA")); 
 	}
 
 	/**
@@ -150,7 +205,8 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testCheckAssociatedOfWordInLine() {
-		fail("Not yet implemented");
+		assertFalse(solution_associated.checkAssociatedOfWordInLine(0, 0, 0, 0, 0, 0, "THU"));
+		assertTrue(solution_associated.checkAssociatedOfWordInLine(0, 0, 0, 3, 0, 0, "THU"));
 	}
 
 	/**
@@ -158,7 +214,32 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testInvariant() {
-		fail("Not yet implemented");
+		assertTrue(solution_associated.invariant());
+		assertTrue(solution_no_associated.invariant());
+	}
+
+	/**
+	 * Test method for {@link csc5021.solutions.SolutionAbstracts#invariant()}.
+	 */
+	@Test
+	public void testInvariantDicInvalid() {
+		assertFalse(solution_dic_invalid.invariant());
+	}
+
+	/**
+	 * Test method for {@link csc5021.solutions.SolutionAbstracts#invariant()}.
+	 */
+	@Test
+	public void testInvariantCubeInvalid() {
+		assertFalse(solution_cube_invalid.invariant());
+	}
+
+	/**
+	 * Test method for {@link csc5021.solutions.SolutionAbstracts#invariant()}.
+	 */
+	@Test
+	public void testInvariantDicTooLong() {
+		assertFalse(solution_dic_too_long.invariant());
 	}
 
 	/**
@@ -166,7 +247,9 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testGetCube() {
-		fail("Not yet implemented");
+		Cube cube = solution_associated.getCube();
+		assertTrue(cube.invariant());
+		assertTrue(cube.getSize() == 4);
 	}
 
 	/**
@@ -174,7 +257,11 @@ public class SolutionAbstractsTest {
 	 */
 	@Test
 	public void testGetDic() {
-		fail("Not yet implemented");
+		Dictionary dic = solution_associated.getDic();
+		assertTrue(dic.invariant());
+		assertTrue(dic.getSize() == 13);
+		assertTrue(dic.getLength() == 3);
+
 	}
 
 }

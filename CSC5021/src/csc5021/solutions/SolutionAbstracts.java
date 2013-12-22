@@ -132,7 +132,7 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	 * @return true if there is existing a line of plane which content the word <br>
 	 *         false otherwise
 	 */
-	public boolean checkAssociatedOfWordOnABFE(int x0, int y0, int z0, int x1, int y1, int z1, String word) {
+	private boolean checkAssociatedOfWordOnABFE(int x0, int y0, int z0, int x1, int y1, int z1, String word) {
 		int deltaX = Math.abs(x1 - x0);
 
 		for (int deltaZ = word.length() - 1; deltaZ < deltaX; deltaZ++) {
@@ -208,7 +208,7 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	 * @return true if there is existing a line of plane which content the word <br>
 	 *         false otherwise
 	 */
-	public boolean checkAssociatedOfWordOnOCDK(int x0, int y0, int x1, int y1, String word) {
+	private boolean checkAssociatedOfWordOnOCDK(int x0, int y0, int x1, int y1, String word) {
 		int deltaX = Math.abs(x1 - x0);
 		for (int deltaZ = word.length() - 1; deltaZ < deltaX; deltaZ++) {
 			// OD
@@ -271,19 +271,15 @@ public abstract class SolutionAbstracts implements HasInvariant {
 				if (checkAssociatedOfWordInLine(x, cube.getSize() - 1 - deltaYZ, 0, x, cube.getSize() - 1, deltaYZ,
 						word))
 					return true;
-				if (deltaYZ < cube.getSize() - 1) {
-					if (checkAssociatedOfWordInLine(x, 0, cube.getSize() - 1 - deltaYZ, x, deltaYZ, cube.getSize() - 1,
-							word))
-						return true;
-				}
+				if (checkAssociatedOfWordInLine(x, 0, cube.getSize() - 1 - deltaYZ, x, deltaYZ, cube.getSize() - 1,
+						word))
+					return true;
 				// The line in plane which is presented by x+z = constant;
 				if (checkAssociatedOfWordInLine(x, 0, deltaYZ, x, deltaYZ, 0, word))
 					return true;
-				if (deltaYZ < cube.getSize() - 1) {
-					if (checkAssociatedOfWordInLine(x, cube.getSize() - 1 - deltaYZ, cube.getSize() - 1, x,
-							cube.getSize() - 1, cube.getSize() - 1 - deltaYZ, word))
-						return true;
-				}
+				if (checkAssociatedOfWordInLine(x, cube.getSize() - 1 - deltaYZ, cube.getSize() - 1, x,
+						cube.getSize() - 1, cube.getSize() - 1 - deltaYZ, word))
+					return true;
 			}
 
 		}
@@ -320,19 +316,15 @@ public abstract class SolutionAbstracts implements HasInvariant {
 				if (checkAssociatedOfWordInLine(cube.getSize() - 1 - deltaXZ, y, 0, cube.getSize() - 1, y, deltaXZ,
 						word))
 					return true;
-				if (deltaXZ < cube.getSize() - 1) {
-					if (checkAssociatedOfWordInLine(0, y, cube.getSize() - 1 - deltaXZ, deltaXZ, y, cube.getSize() - 1,
-							word))
-						return true;
-				}
+				if (checkAssociatedOfWordInLine(0, y, cube.getSize() - 1 - deltaXZ, deltaXZ, y, cube.getSize() - 1,
+						word))
+					return true;
 				// The line in plane which is presented by x+z = constant;
 				if (checkAssociatedOfWordInLine(0, y, deltaXZ, deltaXZ, y, 0, word))
 					return true;
-				if (deltaXZ < cube.getSize() - 1) {
-					if (checkAssociatedOfWordInLine(cube.getSize() - 1 - deltaXZ, y, cube.getSize() - 1,
-							cube.getSize() - 1, y, cube.getSize() - 1 - deltaXZ, word))
-						return true;
-				}
+				if (checkAssociatedOfWordInLine(cube.getSize() - 1 - deltaXZ, y, cube.getSize() - 1,
+						cube.getSize() - 1, y, cube.getSize() - 1 - deltaXZ, word))
+					return true;
 			}
 
 		}
@@ -355,7 +347,6 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	 */
 	public boolean checkAssociatedOfWordOnOXY(String word) {
 		for (int z = 0; z < cube.getSize(); z++) {
-
 			for (int x = 0; x < cube.getSize(); x++) {
 				// The line in plane which is presented by x=constant
 				if (checkAssociatedOfWordInLine(x, 0, z, x, cube.getSize() - 1, z, word))
@@ -366,19 +357,15 @@ public abstract class SolutionAbstracts implements HasInvariant {
 				// The line in plane which is presented by x-y = constant;
 				if (checkAssociatedOfWordInLine(cube.getSize() - 1 - deltaX, 0, z, cube.getSize() - 1, deltaX, z, word))
 					return true;
-				if (deltaX < cube.getSize() - 1) {
-					if (checkAssociatedOfWordInLine(0, cube.getSize() - 1 - deltaX, z, deltaX, cube.getSize() - 1, z,
-							word))
-						return true;
-				}
+				if (checkAssociatedOfWordInLine(0, cube.getSize() - 1 - deltaX, z, deltaX, cube.getSize() - 1, z, word))
+					return true;
+
 				// The line in plane which is presented by x+y = constant;
 				if (checkAssociatedOfWordInLine(0, deltaX, z, deltaX, 0, z, word))
 					return true;
-				if (deltaX < cube.getSize() - 1) {
-					if (checkAssociatedOfWordInLine(cube.getSize() - 1 - deltaX, cube.getSize() - 1, z,
-							cube.getSize() - 1, cube.getSize() - 1 - deltaX, z, word))
-						return true;
-				}
+				if (checkAssociatedOfWordInLine(cube.getSize() - 1 - deltaX, cube.getSize() - 1, z, cube.getSize() - 1,
+						cube.getSize() - 1 - deltaX, z, word))
+					return true;
 			}
 
 		}

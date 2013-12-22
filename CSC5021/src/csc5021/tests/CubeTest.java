@@ -12,6 +12,7 @@ import csc5021.objects.Cube;
 
 /**
  * Test for class {@link Cube}
+ * 
  * @author luongnv89
  * 
  */
@@ -122,24 +123,27 @@ public class CubeTest {
 	 */
 	@Test
 	public void testGetString() {
-		Cube cube110A = new Cube("cube_110_invalid_lattice");
-		String str10 = "AAAAAAAAAA";
+		Cube cube110A = new Cube("cube_4_test_solution");
 
-		assertTrue(cube110A.getString(0, 0, 0, 9, 0, 0).equals(str10));
-		assertTrue(cube110A.getString(0, 0, 0, 0, 9, 0).equals(str10));
-		assertTrue(cube110A.getString(0, 0, 0, 0, 0, 9).equals(str10));
-		assertTrue(cube110A.getString(0, 0, 0, 9, 9, 0).equals(str10));
-		assertTrue(cube110A.getString(0, 0, 0, 9, 0, 9).equals(str10));
-		assertTrue(cube110A.getString(0, 0, 0, 0, 9, 9).equals(str10));
-		assertTrue(cube110A.getString(0, 0, 0, 9, 9, 9).equals(str10));
+		assertTrue(cube110A.getString(0, 0, 0, 0, 0, 0).equals("T"));
+		assertTrue(cube110A.getString(0, 0, 0, 3, 0, 0).equals("THUE"));
+		assertTrue(cube110A.getString(0, 0, 0, 0, 3, 0).equals("TFPL"));
+		assertTrue(cube110A.getString(0, 0, 0, 0, 0, 3).equals("TJML"));
+		assertTrue(cube110A.getString(0, 0, 0, 3, 3, 0).equals("TBIU"));
+		assertTrue(cube110A.getString(0, 0, 0, 3, 0, 3).equals("TRPC"));
+		assertTrue(cube110A.getString(0, 0, 0, 0, 3, 3).equals("TERK"));
+		assertTrue(cube110A.getString(0, 0, 0, 3, 3, 3).equals("TCMJ"));
 
-		assertTrue(cube110A.getString(18, 0, 0, 9, 0, 0).equals(str10));
-		assertTrue(cube110A.getString(0, 18, 0, 0, 9, 0).equals(str10));
-		assertTrue(cube110A.getString(0, 0, 18, 0, 0, 9).equals(str10));
-		assertTrue(cube110A.getString(18, 18, 0, 9, 9, 0).equals(str10));
-		assertTrue(cube110A.getString(18, 0, 18, 9, 0, 9).equals(str10));
-		assertTrue(cube110A.getString(0, 18, 18, 0, 9, 9).equals(str10));
-		assertTrue(cube110A.getString(18, 18, 18, 9, 9, 9).equals(str10));
+		assertTrue(cube110A.getString(3, 0, 0, 0, 0, 0).equals("EUHT"));
+		assertTrue(cube110A.getString(0, 3, 0, 0, 0, 0).equals("LPFT"));
+		assertTrue(cube110A.getString(0, 0, 3, 0, 0, 0).equals("LMJT"));
+		assertTrue(cube110A.getString(3, 3, 0, 0, 0, 0).equals("UIBT"));
+		assertTrue(cube110A.getString(3, 0, 3, 0, 0, 0).equals("CPRT"));
+		assertTrue(cube110A.getString(0, 3, 3, 0, 0, 0).equals("KRET"));
+		assertTrue(cube110A.getString(3, 3, 3, 0, 0, 0).equals("JMCT"));
+
+		assertTrue(cube110A.getString(3, 0, 0, 0, 3, 0).equals("EJWL"));
+
 	}
 
 	/**
@@ -155,11 +159,12 @@ public class CubeTest {
 	 */
 	@Test
 	public void testGetValues() {
-		char[][][] array = cubeValid.getValues();
-		for (int i = 0; i < 10; i++) {
-			for (int j = 0; j < 10; j++) {
-				for (int k = 0; k < 10; k++) {
-					System.out.print(array[i][j][k]);
+		Cube myCube = new Cube("cube_4_test_solution");
+		char[][][] array = myCube.getValues();
+		for (int i = 0; i < myCube.getSize(); i++) {
+			for (int j = 0; j < myCube.getSize(); j++) {
+				for (int k = 0; k < myCube.getSize(); k++) {
+					System.out.print(array[k][j][i]);
 				}
 				System.out.println();
 			}

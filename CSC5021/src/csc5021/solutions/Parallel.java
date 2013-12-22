@@ -11,8 +11,8 @@ import csc5021.tests.ParallelTest;
 
 /**
  * Present the parallel program which is checking the associated of a cube and a
- * dictionary
- * <br>Tested by {@link ParallelTest}
+ * dictionary <br>
+ * Tested by {@link ParallelTest}
  * 
  * @author luongnv89
  * 
@@ -53,9 +53,7 @@ public class Parallel extends SolutionAbstracts {
 	@Override
 	public boolean checkAssociatedOfDictionary() {
 
-		if (!dic.invariant() || !cube.invariant()) {
-			return false;
-		} else if (dic.getLength() > cube.getSize()) {
+		if (!invariant()) {
 			return false;
 		} else {
 			// Parallel
