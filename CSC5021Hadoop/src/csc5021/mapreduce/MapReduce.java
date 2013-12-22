@@ -8,6 +8,8 @@ import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStream;
+import java.io.InputStreamReader;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.net.URI;
@@ -25,22 +27,49 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Progressable;
 
-import csc5021.utilities.Utils;
-
 /**
  * @author luongnv89
  */
 
 public class MapReduce {
 
+	/**
+	 * The local host address of hadoop
+	 */
 	static String hdfsURL = "hdfs://localhost.localdomain:8020";
+	/**
+	 * The size of cube
+	 */
 	static int cubeSize;
-	static String inputDataset;
+	/**
+	 * The path of input dataset
+	 */
+	static Path inputDataset;
+	/**
+	 * Result path
+	 */
+	static Path outputData;
+
+	static Path result;
+	/**
+	 * The path of input cube
+	 */
 	static String cubePath;
+	/**
+	 * The path of input dic
+	 */
 	static String dicPath;
+	/**
+	 * The path of log file
+	 */
 	public static String logFile = "log_";
 
+	/**
+	 * Configuration
+	 */
 	static Configuration conf;
+
+	public static ArrayList<String> listWords = new ArrayList<String>();
 
 	public static void main(String[] args) throws Exception {
 
@@ -51,30 +80,20 @@ public class MapReduce {
 		System.out.println("Dictionary path: " + dicPath);
 		cubePath = args[1];
 		System.out.println("Cube path: " + cubePath);
-		inputDataset = "data_" + startTime;
+		inputDataset = new Path(hdfsURL + "/data_" + startTime);
+		outputData = new Path(hdfsURL + "/data_" + startTime + "/output");
+		result = new Path(hdfsURL + "/data_" + startTime + "/output/part-r-00000");
 		System.out.println("Input data: " + inputDataset);
 		logFile += startTime;
 		System.out.println("Log file: " + logFile);
-		loadDictionary();
+
 		extractCubeData();
+
+		writeDictionary();
+
 		System.out.println("Finished setup....: " + String.valueOf(System.currentTimeMillis() - startTime));
-
-		System.out.println("Create new job");
-
-		// FileSystem hdfs = FileSystem.get(new URI(hdfsURL), conf);
-		// Path file = new Path(hdfsURL + "/" + inputDataset + "/" +
-		// "empty.txt");
-		// OutputStream os = hdfs.create(file, new Progressable() {
-		// public void progress() {
-		// System.out.println("create new data file: " + inputDataset + "/" +
-		// "empty.txt");
-		// }
-		// });
-		// BufferedWriter brHDFS = new BufferedWriter(new OutputStreamWriter(os,
-		// "UTF-8"));
-		// brHDFS.write("This is some text from Louis");
-		// brHDFS.close();
-
+		
+		//Create Mapreduce job
 		Job job = new Job(conf, "MapReduce");
 		job.setJarByClass(MapReduce.class);
 		job.setOutputKeyClass(Text.class);
@@ -86,25 +105,37 @@ public class MapReduce {
 		job.setInputFormatClass(TextInputFormat.class);
 		job.setOutputFormatClass(TextOutputFormat.class);
 
-		FileInputFormat.addInputPath(job, new Path("/" + inputDataset));
-		FileOutputFormat.setOutputPath(job, new Path("/" + inputDataset + "/output"));
+		FileInputFormat.addInputPath(job, inputDataset);
+		FileOutputFormat.setOutputPath(job, outputData);
+		
+		
 		System.out.println("Setup job configuration ... waiting for completed!");
 		job.waitForCompletion(true);
+		
+		
 		long totalTime = System.currentTimeMillis() - startTime;
-
-		if (ShareMemory.getListWords().isEmpty()) {
-			System.out.println("ASSOCIATED!");
-			Utils.writeToFile("\nTotal executed time: " + String.valueOf(totalTime) + "\nASSOCIATED!");
-		} else {
-			System.out.println("NO ASSOCIATED!");
-			Utils.writeToFile("\nTotal executed time: " + String.valueOf(totalTime) + "\nNO ASSOCIATED!"
-					+ "\nThe list of words which could not found: \n");
-			for (int i = 0; i < ShareMemory.getListWords().size(); i++) {
-				Utils.writeToFile(ShareMemory.getListWords().get(i) + " ; ");
-			}
+		
+		//Extract result from output file
+		FileSystem hdfs = FileSystem.get(new URI("hdfs://localhost.localdomain:8020"), new Configuration());
+		InputStream os = hdfs.open(result);
+		BufferedReader brHDFS = new BufferedReader(new InputStreamReader(os, "UTF-8"));
+		String word = brHDFS.readLine();
+		boolean associated = true;
+		while (word != null && associated) {
+			if (word.contains("0"))
+				associated = false;
+			word = brHDFS.readLine();
+		}
+		if (associated)
+			System.out.println("ASSOCIATED! \nTotal time: " + String.valueOf(totalTime));
+		else {
+			System.out.println("NO ASSOCIATED! \nTotal time: " + String.valueOf(totalTime));
 		}
 	}
 
+	/**
+	 * Extract all possible string from cube
+	 */
 	private static void extractCubeData() {
 		System.out.println("Extract cube data from : " + cubePath);
 		splitByZ();
@@ -121,6 +152,9 @@ public class MapReduce {
 		System.out.println("Extracted all file");
 	}
 
+	/**
+	 * Extract all possible from all file which is generated from cube
+	 */
 	private static void extractStringAllFile() {
 		System.out.println("Extract string...");
 		for (int i = 0; i < cubeSize; i++) {
@@ -141,6 +175,9 @@ public class MapReduce {
 		}
 	}
 
+	/**
+	 * Change the column and row of some file which is generated from cube
+	 */
 	private static void revertfiles() {
 
 		for (int i = 0; i < cubeSize; i++) {
@@ -158,13 +195,20 @@ public class MapReduce {
 
 	}
 
+	/**
+	 * Extract the vertical string and cross - right-top -> left-bottom string
+	 * from input file. The input file will be deleted after extracted all
+	 * string.
+	 * 
+	 * @param filePath
+	 */
 	private static void extractString(final String filePath) {
 		ArrayList<StringBuffer> listStringBuffers = new ArrayList<StringBuffer>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(filePath));
 
 			FileSystem hdfs = FileSystem.get(new URI(hdfsURL), conf);
-			Path file = new Path(hdfsURL + "/" + inputDataset + "/" + "extract_" + filePath);
+			Path file = new Path(inputDataset + "/" + "extract_" + filePath);
 			OutputStream os = hdfs.create(file, new Progressable() {
 				public void progress() {
 					System.out.println("create new data file: " + inputDataset + "/" + "extract_" + filePath);
@@ -204,6 +248,11 @@ public class MapReduce {
 		}
 	}
 
+	/**
+	 * Change the column and row of an input file.
+	 * 
+	 * @param filePath
+	 */
 	private static void revertFile(String filePath) {
 		ArrayList<StringBuffer> listStringBuffers = new ArrayList<StringBuffer>();
 		int size;
@@ -233,6 +282,11 @@ public class MapReduce {
 		}
 	}
 
+	/**
+	 * Split the cube by the planes: <br>
+	 * THe planes which has equation is: x+y=constant<br>
+	 * THe planes which has equation is: x-y=constant
+	 */
 	private static void splitByCrossXY() {
 		for (int z = 0; z < cubeSize; z++) {
 			try {
@@ -269,6 +323,9 @@ public class MapReduce {
 		}
 	}
 
+	/**
+	 * Split the cube by the planes which is parallel with OYZ
+	 */
 	private static void splitByX() {
 		for (int z = 0; z < cubeSize; z++) {
 			try {
@@ -295,6 +352,9 @@ public class MapReduce {
 		}
 	}
 
+	/**
+	 * Split cube by the planes which is parallel with OXZ
+	 */
 	private static void splitByY() {
 		for (int z = 0; z < cubeSize; z++) {
 			try {
@@ -314,6 +374,9 @@ public class MapReduce {
 
 	}
 
+	/**
+	 * Split cube by the planes which is parallel with OXY
+	 */
 	private static void splitByZ() {
 		try {
 			BufferedReader bf = new BufferedReader(new FileReader(cubePath));
@@ -336,27 +399,39 @@ public class MapReduce {
 		}
 	}
 
-	private static void loadDictionary() {
-		System.out.println("Load dictionary from: " + dicPath);
-		// System.out.println("Load dictionary from: " + dicPath);
-		BufferedReader br;
+	/**
+	 * Load dictionary
+	 */
+	private static void writeDictionary() {
+		System.out.println("Save dictionary from: " + dicPath + " to HDFS!");
 		try {
-			br = new BufferedReader(new FileReader(dicPath));
+			BufferedReader br = new BufferedReader(new FileReader(dicPath));
+
+			FileSystem hdfs = FileSystem.get(new URI(hdfsURL), conf);
+			Path file = new Path(hdfsURL + "/dic");
+			if (hdfs.exists(file)) {
+				hdfs.delete(file, true);
+			}
+			OutputStream os = hdfs.create(file, new Progressable() {
+				public void progress() {
+					System.out.println("write new word to dictionary !");
+				}
+			});
+			BufferedWriter brHDFS = new BufferedWriter(new OutputStreamWriter(os, "UTF-8"));
+
 			String line = br.readLine();
 
 			while (line != null) {
-				ShareMemory.getListWords().add(line);
+				// Normal string
+				brHDFS.write(line + "\n");
+
 				line = br.readLine();
 			}
-
-			System.out.println("\nCreated dictionary: \nWord length: " + ShareMemory.getListWords().get(0).length());
-			System.out.println("\nSize: " + ShareMemory.getListWords().size());
-			System.out.println("Finished loading dictionary!");
+			br.close();
+			brHDFS.close();
+			hdfs.close();
 		} catch (Exception e) {
-			System.out.println("Cannot load dictionary data!");
 			e.printStackTrace();
-			System.exit(-1);
 		}
 	}
-
 }
