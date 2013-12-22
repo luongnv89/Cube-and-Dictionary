@@ -1,0 +1,100 @@
+/**
+ * 
+ */
+package csc5021.utilities;
+
+import java.io.BufferedWriter;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Random;
+
+import csc5021.mapreduce.ShareMemory;
+
+/**
+ * @author luongnv89
+ * 
+ */
+public class Utilities {
+	public static int getCubeSize(int length) {
+		int uperBound = (int) Math.sqrt(length);
+		int lowerBound = (int) Math.sqrt(uperBound);
+		for (int i = lowerBound; i <= uperBound; i++) {
+			if (i * i * i == length)
+				return i;
+			if (i * i * i > length)
+				return -1;
+		}
+		return -1;
+	}
+
+	/**
+	 * Get randomly a char value from A-Z
+	 * 
+	 * @return
+	 */
+	public static char getRandomCharater() {
+		int index = (new Random()).nextInt(25) + 65;
+		return Character.toChars(index)[0];
+	}
+
+	/**
+	 * Check a word is composed by the character from A-Z
+	 * 
+	 * @param word
+	 * @return true if all the character of word is in A-Z <br>
+	 *         false otherwise
+	 */
+	public static boolean validWord(String word) {
+		char[] array = word.toUpperCase().toCharArray();
+		for (int i = 0; i < array.length; i++) {
+			int index = Character.toUpperCase(array[i]);
+			if (index < 65 || index > 90) {
+				return false;
+			}
+		}
+		return true;
+	}
+
+	/**
+	 * Create new word with the input length and the values is randomly
+	 * 
+	 * @param lengthOfWord
+	 * @return
+	 */
+	public static String createNewWord(int lengthOfWord) {
+		String str = "";
+		for (int i = 0; i < lengthOfWord; i++) {
+			str += getRandomCharater();
+		}
+		return str;
+	}
+
+	/**
+	 * Revert a string
+	 * 
+	 * @param string1
+	 * @return the revert of input string
+	 */
+	public static String revert(String string1) {
+		StringBuffer str = new StringBuffer();
+		char[] array = string1.toCharArray();
+		for (int i = 0; i < array.length; i++) {
+			str.append(array[array.length - i - 1]);
+		}
+		return str.toString();
+	}
+
+	public static void recordTest(String solutionName, int cubeSize, int wordLength, int dicSize, boolean result,
+			String totalTime, String resultfile) {
+		try {
+			BufferedWriter out = new BufferedWriter(new FileWriter(resultfile, true));
+			out.write(solutionName + "; Cube size: " + cubeSize + "; Word length: " + wordLength
+					+ "; Dictionary size: " + dicSize + "; Result: " + String.valueOf(result) + "; Total time: "
+					+ totalTime + "\n");
+			out.close();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+
+	}
+}

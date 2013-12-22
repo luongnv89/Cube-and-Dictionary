@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/cart_get_f.c

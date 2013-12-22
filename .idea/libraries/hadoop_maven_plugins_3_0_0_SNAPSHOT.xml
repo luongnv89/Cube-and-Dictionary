@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="hadoop-maven-plugins-3.0.0-SNAPSHOT">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hadoop-common/hadoop-maven-plugins/target/hadoop-maven-plugins-3.0.0-SNAPSHOT.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

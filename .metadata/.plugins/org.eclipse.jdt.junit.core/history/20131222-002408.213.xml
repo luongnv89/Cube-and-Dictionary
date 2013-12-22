@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><testrun name="UtilitiesTest" project="CSC5021" tests="7" started="7" failures="0" errors="0" ignored="0">
+  <testsuite name="csc5021.tests.UtilitiesTest" time="0.026">
+    <testcase name="testValidCharacter" classname="csc5021.tests.UtilitiesTest" time="0.0"/>
+    <testcase name="testValidWord" classname="csc5021.tests.UtilitiesTest" time="0.0"/>
+    <testcase name="testRecordTest" classname="csc5021.tests.UtilitiesTest" time="0.0"/>
+    <testcase name="testGetRandomCharater" classname="csc5021.tests.UtilitiesTest" time="0.0"/>
+    <testcase name="testInvalidLattices" classname="csc5021.tests.UtilitiesTest" time="0.024"/>
+    <testcase name="testRevert" classname="csc5021.tests.UtilitiesTest" time="0.0"/>
+    <testcase name="testCreateNewWord" classname="csc5021.tests.UtilitiesTest" time="0.002"/>
+  </testsuite>
+</testrun>

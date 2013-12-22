@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/testany_f.c

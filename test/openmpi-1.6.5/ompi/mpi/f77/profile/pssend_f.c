@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/ssend_f.c

@@ -1,0 +1,28 @@
+/**
+ * 
+ */
+package csc5021.dataset;
+
+/**
+ * @author luongnv89
+ *
+ */
+public class DatasetGenerator {
+	int[] sizeOfCube = {4,10,20,50,100,200,500,800,1000};
+	int[] sizeOfDic = {3,10,20,50,100,200,800,1000};
+	int[] lengOfDic = {2,4,10,20,50,80,100};
+	public static String CUBE_ASSOCIATED_PATH = "data/associated/cube";
+	public static String DIC_ASSOCIATED_PATH = "data/associated/dic";
+	public static String CUBE_NO_ASSOCIATED_PATH = "data/noassociated/cube";
+	public static String DIC_NO_ASSOCIATED_PATH = "data/noassociated/dic";
+	
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/comm_spawn_multiple_f.c

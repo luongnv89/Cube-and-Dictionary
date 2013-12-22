@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/comm_remote_size_f.c

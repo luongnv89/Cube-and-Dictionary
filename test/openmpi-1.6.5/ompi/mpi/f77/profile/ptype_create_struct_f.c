@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/type_create_struct_f.c

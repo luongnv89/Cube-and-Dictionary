@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="lib">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/hadoop-common/hadoop-common-project/hadoop-auth-examples/target/hadoop-auth-examples-3.0.0-SNAPSHOT/WEB-INF/lib/commons-codec-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hadoop-common/hadoop-common-project/hadoop-auth-examples/target/hadoop-auth-examples-3.0.0-SNAPSHOT/WEB-INF/lib/hadoop-auth-3.0.0-SNAPSHOT.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hadoop-common/hadoop-common-project/hadoop-auth-examples/target/hadoop-auth-examples-3.0.0-SNAPSHOT/WEB-INF/lib/slf4j-api-1.7.5.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hadoop-common/hadoop-common-project/hadoop-auth-examples/target/hadoop-auth-examples-3.0.0-SNAPSHOT/WEB-INF/lib/log4j-1.2.17.jar!/" />
+      <root url="jar://$PROJECT_DIR$/hadoop-common/hadoop-common-project/hadoop-auth-examples/target/hadoop-auth-examples-3.0.0-SNAPSHOT/WEB-INF/lib/slf4j-log4j12-1.7.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

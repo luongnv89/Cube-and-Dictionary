@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/group_compare_f.c

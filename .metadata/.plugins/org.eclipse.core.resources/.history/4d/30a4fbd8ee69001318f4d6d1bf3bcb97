@@ -1,0 +1,85 @@
+/**
+ * 
+ */
+package mai.process;
+
+import java.util.ArrayList;
+
+import mai.models.Word;
+
+/**
+ * Manage the number of Threads for each parallel program. <br>
+ * Update the status of {@link ShareMemory#associatedDic}.<br>
+ * Used in {@link Parallel}
+ */
+public class ManageThreads {
+	private static int NUMBER_OF_THREADS = 100;
+	ArrayList<MyThread> threadsList = new ArrayList<MyThread>();
+	int currentThread = 0;
+
+	/**
+	 * check if the parallel program finished.
+	 * 
+	 * @return true if there is no running thread.
+	 */
+	public boolean isFinished() {
+		update();
+		return currentThread != 0 && threadsList.size() == 0;
+	}
+
+	/**
+	 * Kill threads which are no longer alive. <br>
+	 * Update the status of {@link ShareMemory#associatedDic}. 
+	 * Traverse all words are visiting or visited (status = 1 or 2),
+	 * check their status is found or not. If not, update {@link ShareMemory#setAssociatedDic(boolean)} = false.
+	 */
+	public void update() {
+		for (int i = 0; i < threadsList.size(); i++) {
+			if (!threadsList.get(i).isAlive()) {
+				threadsList.remove(i);
+			}
+		}
+		for (int wIndex = 0; wIndex < ShareMemory.getListWords().size(); wIndex++) {
+			Word word = ShareMemory.getListWords().get(wIndex);
+			boolean found = false;
+			for (int i = 0; i < threadsList.size(); i++) {
+				if (threadsList.get(i).getWIndex() == wIndex) {
+					found = true;
+					break;
+				}
+			}
+
+			if (!word.isFound() && word.getStatus() == 2 && !found) {
+				System.out.println("Could not found the word: "
+						+ word.getWord());
+				ShareMemory.setAssociatedDic(false);
+				break;
+			}
+			if (wIndex >= ShareMemory.getListWords().size()-1) {
+				break;
+			} else if (ShareMemory.getListWords().get(wIndex + 1).getStatus() == 0) {
+				break;
+			}
+		}
+	}
+
+	/**
+	 * @param thread
+	 * @return true if add a {@link MyThread} successfully, else false.
+	 */
+	public boolean addThread(MyThread t) {
+		update();
+		if (threadsList.size() < NUMBER_OF_THREADS) {
+			currentThread++;
+			threadsList.add(t);
+			threadsList.get(threadsList.size() - 1).start();
+			return true;
+		}
+		return false;
+	}
+
+	public void infor() {
+		System.out.println("Current threads: " + currentThread);
+		System.out.println("Number online thread: " + threadsList.size());
+	}
+}

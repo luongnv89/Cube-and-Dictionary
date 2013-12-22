@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/alloc_mem_f.c

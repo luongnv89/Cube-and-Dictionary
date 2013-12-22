@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/get_processor_name_f.c

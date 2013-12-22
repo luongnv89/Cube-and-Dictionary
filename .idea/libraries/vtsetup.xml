@@ -1,0 +1,9 @@
+<component name="libraryTable">
+  <library name="vtsetup">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/test/openmpi-1.6.5/ompi/contrib/vt/vt/tools/vtsetup/vtsetup.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

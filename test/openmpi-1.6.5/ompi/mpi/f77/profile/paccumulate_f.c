@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/accumulate_f.c

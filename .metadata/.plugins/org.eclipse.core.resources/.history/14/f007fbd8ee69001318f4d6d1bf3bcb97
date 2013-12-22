@@ -1,0 +1,133 @@
+package mai.process;
+
+import mai.models.Cube;
+import mai.models.Dictionary;
+
+/**
+ * check association of a dictionary with a cube by running multithreads at the
+ * same time.
+ */
+public class Parallel {
+
+	ManageThreads manageThreads;
+
+	/**
+	 * initialize {@link ManageThreads}. call
+	 * {@link ShareMemory#setup(Cube, Dictionary)}
+	 * 
+	 * @param cube
+	 * @param dic
+	 */
+	public Parallel(Cube cube, Dictionary dic) {
+
+		ShareMemory.setup(cube, dic);
+		if (ShareMemory.invariant())
+			manageThreads = new ManageThreads();
+
+	}
+
+	/**
+	 * initialize {@link ManageThreads}. call
+	 * {@link ShareMemory#setup(Cube, Dictionary)}
+	 * 
+	 * @param cubePath
+	 * @param dicPath
+	 * @throws Exception
+	 */
+	public Parallel(String cubePath, String dicPath) throws Exception {
+		ShareMemory.setup(new Cube(cubePath), new Dictionary(dicPath));
+		if (ShareMemory.invariant())
+			manageThreads = new ManageThreads();
+	}
+
+	/**
+	 * check a dictionary is associated or not! <br>
+	 * Check invariant of a Cube and a Dictionary. <br>
+	 * Check all dictionary, always check {@link ShareMemory#associatedDic}
+	 * before each time we want to check status of a word. Update the status of
+	 * the word to 2 and {@link ShareMemory#associatedDic} after finish checking
+	 * its association.<br>
+	 * After check all words in the dictionary, return the value of
+	 * {@link ShareMemory#associatedDic}. *
+	 * 
+	 * @return true if the dictionary is associated, else false.
+	 * @throws InterruptedException
+	 */
+	public boolean associatedDictionary() throws InterruptedException {
+		if (ShareMemory.getCube().invariant()
+				&& ShareMemory.getDic().invariant()) {
+
+			for (int wIndex = 0; wIndex < ShareMemory.getDic().getDicSize(); wIndex++) {
+				if (ShareMemory.isAssociatedDic()) {
+					ShareMemory.getListWords().get(wIndex).setStatus(1);
+					associatedWord(wIndex);
+					ShareMemory.getListWords().get(wIndex).setStatus(2);
+					manageThreads.update();
+				}
+			}
+
+			// wait until all threads finish
+			while (!manageThreads.isFinished()) {
+				Thread.sleep(100);
+				System.out
+						.println("Waiting 100ms for all threads finished....");
+			}
+		} else {
+			System.out.println("Initial fail!");
+		}
+
+		return ShareMemory.isAssociatedDic();
+	}
+
+	/**
+	 * check a word is associated or not! <br>
+	 * Get the first char of the word. Traverse all the cube with 3 dimensions
+	 * (z,y,x) to find possible positions that this char is on. Always check is
+	 * the word is found or not before we want to find another position. Got a
+	 * position on the cube where the char is, create a new {@link MyThread} for
+	 * this position.<br>
+	 * Add the thread into {@link ManageThreads}. If {@link ManageThreads}
+	 * remains slots, then add it successfully. If there is no slot, wait until
+	 * there is another thread in this {@link ManageThreads} is killed. Then add
+	 * it.
+	 * 
+	 * @param wIndex
+	 *            is index of a word
+	 * @throws InterruptedException
+	 */
+	private void associatedWord(int wIndex) throws InterruptedException {
+		char first_char = ShareMemory.getDic().getWordList().get(wIndex)
+				.charAt(0);
+
+		for (int z = 0; z < ShareMemory.getCube().getSize(); z++) {
+			if (!ShareMemory.getListWords().get(wIndex).isFound()
+					&& ShareMemory.isAssociatedDic()) {
+
+				for (int y = 0; y < ShareMemory.getCube().getSize(); y++) {
+					if (!ShareMemory.getListWords().get(wIndex).isFound()
+							&& ShareMemory.isAssociatedDic()) {
+
+						for (int x = 0; x < ShareMemory.getCube().getSize(); x++) {
+							if (!ShareMemory.getListWords().get(wIndex)
+									.isFound()
+									&& ShareMemory.isAssociatedDic()) {
+
+								if (first_char == ShareMemory.getCube()
+										.getContent()[x][y][z]) {
+
+									MyThread newThread = new MyThread(wIndex,
+											x, y, z);
+									while (!manageThreads.addThread(newThread)) {
+										Thread.sleep(100);
+									}
+
+								}
+							}
+						}
+					}
+				}
+			}
+		}
+	}
+
+}

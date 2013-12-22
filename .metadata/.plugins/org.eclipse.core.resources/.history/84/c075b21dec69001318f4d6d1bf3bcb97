@@ -1,0 +1,51 @@
+/**
+ * 
+ */
+package mai.process;
+
+import mai.models.Cube;
+import mai.models.Dictionary;
+
+/**
+ * @author luongnv89
+ *
+ */
+public class Parallel2 extends Sequential {
+	private boolean associated = true;
+
+	/**
+	 * @param cube
+	 * @param dic
+	 */
+	public Parallel2(Cube cube, Dictionary dic) {
+		super(cube, dic);
+	}
+	
+	@Override
+	public boolean associatedDictionary() {
+		if (!this.invariant()) {
+			System.out.println("The initial of program is not valid!");
+			return false;
+		} else {
+			for (int word_index = 0; word_index < dictionary.getDicSize(); word_index++) {
+
+				final String word = dictionary.getWordList().get(word_index);
+				Thread t = new Thread(new Runnable() {
+					
+					@Override
+					public void run() {
+						if(!foundWord(word)){
+							associated = false;
+							
+						}
+						
+					}
+				});
+				t.start();
+			}
+			System.out.println("ASSOCIATED!!!");
+			return true;
+		}
+	}
+
+}

@@ -1,0 +1,100 @@
+/**
+ * 
+ */
+package csc5021.solutions;
+
+import java.util.ArrayList;
+
+import csc5021.objects.Cube;
+import csc5021.objects.Dictionary;
+
+/**
+ * Present the parallel program which is checking the associated of a cube and a
+ * dictionary
+ * 
+ * @author luongnv89
+ * 
+ */
+public class Parallel extends SolutionAbstracts {
+	private static final int NUMBER_THREADS = 50;
+	private boolean associated = true;
+	private long startTime = System.currentTimeMillis();
+	private ArrayList<Thread> listThreads;
+
+	public Parallel(Cube cube, Dictionary dic) {
+		super(cube, dic);
+		// TODO Auto-generated constructor stub
+	}
+
+	/**
+	 * @param cubePath
+	 * @param dicPath
+	 * @throws Exception
+	 */
+	public Parallel(String cubePath, String dicPath) throws Exception {
+		super(cubePath, dicPath);
+		listThreads = new ArrayList<Thread>();
+	}
+
+	@Override
+	public boolean checkAssociatedOfDictionary() {
+
+		if (!dic.invariant() || !cube.invariant()) {
+			return false;
+		} else if (dic.getLength() > cube.getSize()) {
+			return false;
+		} else {
+			// Parallel
+			for (int i = 0; i < dic.getSize(); i++) {
+				while (moveToNextWord()) {
+					final int word_index = i;
+					Thread word_thread = new Thread(new Runnable() {
+						@Override
+						public void run() {
+							System.out.println("Thread " + word_index + " started...");
+							if (!checkAssociatedOfWord(dic.getWordByIndex(word_index))) {
+								System.out.println("There is a word not associated: " + dic.getWordByIndex(word_index)
+										+ "\nStop at thread: " + word_index + " at time: "
+										+ String.valueOf(System.currentTimeMillis() - startTime));
+								associated = false;
+							}
+							System.out.println("Thread " + word_index + " stoped!!!");
+
+						}
+					});
+					listThreads.add(word_thread);
+					listThreads.get(listThreads.size() - 1).start();
+				}
+			}
+			boolean stop = false;
+			while (!stop) {
+				if (!associated) {
+					System.out.println("Found associated changed");
+					stop = true;
+					for (int i = 0; i < listThread.length; i++) {
+						if (listThread[i].isAlive()) {
+							System.out.println("Interupt thread: " + i);
+							listThread[i].suspend();
+						} else {
+							System.out.println("Thread number: " + i + " already dead");
+						}
+					}
+				} else {
+					boolean atLeastOneThreadIsRunning = false;
+					for (int i = 0; i < listThread.length; i++) {
+						if (listThread[i].isAlive()) {
+							atLeastOneThreadIsRunning = true;
+							break;
+						}
+					}
+					if (!atLeastOneThreadIsRunning) {
+						System.out.println("All the threads were dead");
+						stop = true;
+					}
+				}
+			}
+
+		}
+		return associated;
+	}
+}

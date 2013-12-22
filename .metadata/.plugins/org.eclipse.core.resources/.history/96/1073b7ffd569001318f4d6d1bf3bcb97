@@ -1,0 +1,6 @@
+SEQUENTIAL SOLUTION; Cube size: 10; Word length: 2; Dictionary size: 100; Result: true; Total time: 61
+PARALLEL SOLUTION; Cube size: 10; Word length: 2; Dictionary size: 100; Result: true; Total time: 18
+SEQUENTIAL SOLUTION; 	Cube size: 10; 	Word length: 2; 	Dictionary size: 100; 	Result: true; 	Total time: 57
+PARALLEL SOLUTION; 	Cube size: 10; 	Word length: 2; 	Dictionary size: 100; 	Result: true; 	Total time: 19
+[SEQ;10;2;100;true;44]
+[PAR;10;2;100;true;23]

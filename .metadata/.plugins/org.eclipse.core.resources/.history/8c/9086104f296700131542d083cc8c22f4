@@ -1,0 +1,32 @@
+@prefix ns: <http://www.owl-ontologies.com/NguyenMai_NguyenLuong_TP.owl#>.
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.
+
+[rule0_0: (?I rdf:type ?A) (?A rdfs:subClassOf ?B) -> (?I rdf:type ?B)]
+[rule0_1: (?A rdfs:subClassOf ?B) (?B rdfs:subClassOf ?C) -> (?A rdfs:subClassOf ?C)]
+
+
+#Weekperiod rules
+[rule2_0: (?weekPeriod rdf:type ns:WeekPeriod)  (?day rdf:type ns:Day) (?day ns:hasDay "Mon") -> (?weekPeriod ns:hasWeekPeriod "weekDays")]
+[rule2_1: (?weekPeriod rdf:type ns:WeekPeriod)  (?day rdf:type ns:Day) (?day ns:hasDay "Tue") -> (?weekPeriod ns:hasWeekPeriod "weekDays")]
+[rule2_2: (?weekPeriod rdf:type ns:WeekPeriod)  (?day rdf:type ns:Day) (?day ns:hasDay "Wed") -> (?weekPeriod ns:hasWeekPeriod "weekDays")]
+[rule2_3: (?weekPeriod rdf:type ns:WeekPeriod)  (?day rdf:type ns:Day) (?day ns:hasDay "Thur") -> (?weekPeriod ns:hasWeekPeriod "weekDays")]
+[rule2_4: (?weekPeriod rdf:type ns:WeekPeriod)  (?day rdf:type ns:Day) (?day ns:hasDay "Fri") -> (?weekPeriod ns:hasWeekPeriod "weekDays")]
+[rule2_5: (?weekPeriod rdf:type ns:WeekPeriod)  (?day rdf:type ns:Day) (?day ns:hasDay "Sat") -> (?weekPeriod ns:hasWeekPeriod "weekend")]
+[rule2_6: (?weekPeriod rdf:type ns:WeekPeriod)  (?day rdf:type ns:Day) (?day ns:hasDay "Sun") -> (?weekPeriod ns:hasWeekPeriod "weekend")]
+
+#Season rules
+[rule3_1: (?season rdf:type ns:Season) (?temperature rdf:type ns:Temperature) (?h rdf:type ns:Humidity) (?h ns:hasHumidity ?hV) (?temperature ns:hasTemperature ?temperatureV)  ge(?hV, 10) ge(?temperatureV, 20) -> (?season ns:hasSeason "Summar")]
+[rule3_11: (?season rdf:type ns:Season) (?temperature rdf:type ns:Temperature) (?h rdf:type ns:Humidity) (?h ns:hasHumidity ?hV) (?temperature ns:hasTemperature ?temperatureV)  lessThan(?hV, 10) ge(?temperatureV, 20) -> (?season ns:hasSeason "Spring")]
+[rule3_2: (?season rdf:type ns:Season) (?temperature rdf:type ns:Temperature) (?temperature ns:hasTemperature ?temperatureV) lessThan(?temperatureV, 20) ge(?temperatureV, 10)  -> (?season ns:hasSeason "Autumn")]
+[rule3_3: (?season rdf:type ns:Season) (?temperature rdf:type ns:Temperature) (?temperature ns:hasTemperature ?temperatureV) lessThan(?temperatureV, 5)  -> (?season ns:hasSeason "Winter")]
+[rule3_4: (?season rdf:type ns:Season) (?temperature rdf:type ns:Temperature) (?temperature ns:hasTemperature ?temperatureV) lessThan(?temperatureV, 10) ge(?temperatureV, 5) -> (?season ns:hasSeason "Spring")]
+
+#Context rules
+
+[rule4_0: (?contextClass rdf:type ns:CurrentContextClass) (?dayPeriod rdf:type ns:DayPeriod) (?weekPeriod rdf:type ns:WeekPeriod) (?season rdf:type ns:Season) (?dayPeriod ns:hasDayPeriod "Matin") (?weekPeriod ns:hasWeekPeriod "JourOuvrable") (?season ns:hasSeason "Ete") -> (?contextClass ns:hasContextClassName "Canicule")]
+[rule4_1: (?contextClass rdf:type ns:CurrentContextClass) (?dayPeriod rdf:type ns:DayPeriod) (?weekPeriod rdf:type ns:WeekPeriod) (?season rdf:type ns:Season) (?dayPeriod ns:hasDayPeriod "Matin") (?weekPeriod ns:hasWeekPeriod "Weekend") (?season ns:hasSeason "Printemps") -> (?contextClass ns:hasContextClassName "BeauTemps")]
+[rule4_2: (?contextClass rdf:type ns:CCurrentContextClass) (?dayPeriod rdf:type ns:DayPeriod) (?weekPeriod rdf:type ns:WeekPeriod) (?season rdf:type ns:Season) (?dayPeriod ns:hasDayPeriod "Soir") (?weekPeriod ns:hasWeekPeriod "JourOuvrable") (?season ns:hasSeason "Automne") -> (?contextClass ns:hasContextClassName "Tristesse")]
+[rule4_3: (?contextClass rdf:type ns:CurrentContextClass) (?dayPeriod rdf:type ns:DayPeriod) (?weekPeriod rdf:type ns:WeekPeriod) (?season rdf:type ns:Season) (?dayPeriod ns:hasDayPeriod "Soir") (?weekPeriod ns:hasWeekPeriod "JourOuvrable") (?season ns:hasSeason "Hiver") -> (?contextClass ns:hasContextClassName "TempsHumide")]
+[rule4_4: (?contextClass rdf:type ns:CurrentContextClass) (?dayPeriod rdf:type ns:DayPeriod) (?weekPeriod rdf:type ns:WeekPeriod) (?season rdf:type ns:Season) (?dayPeriod ns:hasDayPeriod "Soir") (?weekPeriod ns:hasWeekPeriod "Weekend") (?season ns:hasSeason "Printemps") -> (?contextClass ns:hasContextClassName "Romantique")]
+[rule4_5: (?contextClass rdf:type ns:CurrentContextClass) (?dayPeriod rdf:type ns:DayPeriod) (?weekPeriod rdf:type ns:WeekPeriod) (?season rdf:type ns:Season) (?dayPeriod ns:hasDayPeriod "Matin") (?weekPeriod ns:hasWeekPeriod "Weekend") (?season ns:hasSeason "Ete") -> (?contextClass ns:hasContextClassName "Chaleur")]
+[rule4_6: (?contextClass rdf:type ns:CurrentContextClass) (?dayPeriod rdf:type ns:DayPeriod) (?weekPeriod rdf:type ns:WeekPeriod) (?season rdf:type ns:Season) (?dayPeriod ns:hasDayPeriod "Matin") (?weekPeriod ns:hasWeekPeriod "JourOuvrable") (?season ns:hasSeason "Hiver") -> (?contextClass ns:hasContextClassName "Noel")]

@@ -1,0 +1,84 @@
+/**
+ * 
+ */
+package csc5021.tests;
+
+import static org.junit.Assert.fail;
+
+import org.junit.Test;
+
+import csc5021.utilities.Utilities;
+
+/**
+ * @author luongnv89
+ * 
+ */
+public class UtilitiesTest {
+
+	/**
+	 * Test method for {@link csc5021.utilities.Utilities#getRandomCharater()}.
+	 */
+	@Test
+	public void testGetRandomCharater() {
+		for (int i = 0; i < 10; i++) {
+			char c = Utilities.getRandomCharater();
+			System.out.println(c);
+			assertTrue(Utilities.validCharacter(c));
+		}
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.utilities.Utilities#validWord(java.lang.String)}.
+	 */
+	@Test
+	public void testValidWord() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link csc5021.utilities.Utilities#validCharacter(char)}.
+	 */
+	@Test
+	public void testValidCharacter() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for {@link csc5021.utilities.Utilities#createNewWord(int)}.
+	 */
+	@Test
+	public void testCreateNewWord() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.utilities.Utilities#revert(java.lang.String)}.
+	 */
+	@Test
+	public void testRevert() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.utilities.Utilities#recordTest(java.lang.String, int, int, int, boolean, java.lang.String, java.lang.String)}
+	 * .
+	 */
+	@Test
+	public void testRecordTest() {
+		fail("Not yet implemented");
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.utilities.Utilities#invalidLattices(int, java.lang.String)}
+	 * .
+	 */
+	@Test
+	public void testInvalidLattices() {
+		Utilities.invalidLattices(110, "cube_110_invalid_lattice");
+	}
+
+}

@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/abort_f.c

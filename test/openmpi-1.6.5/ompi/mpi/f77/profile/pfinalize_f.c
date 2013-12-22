@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/finalize_f.c

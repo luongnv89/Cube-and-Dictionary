@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/wtime_f.c

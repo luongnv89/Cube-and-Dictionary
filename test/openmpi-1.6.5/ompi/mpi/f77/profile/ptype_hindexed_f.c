@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/type_hindexed_f.c

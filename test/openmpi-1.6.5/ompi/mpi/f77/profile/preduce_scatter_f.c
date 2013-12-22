@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/reduce_scatter_f.c

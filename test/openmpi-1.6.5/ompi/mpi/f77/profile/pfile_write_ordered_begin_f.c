@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/file_write_ordered_begin_f.c

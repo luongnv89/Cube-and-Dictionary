@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/file_write_at_f.c

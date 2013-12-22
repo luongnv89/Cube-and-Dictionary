@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/reduce_local_f.c

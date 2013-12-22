@@ -1,0 +1,20 @@
+/**
+ * 
+ */
+package csc5021.dataset;
+
+/**
+ * @author luongnv89
+ *
+ */
+public class DatasetGenerator {
+
+	/**
+	 * @param args
+	 */
+	public static void main(String[] args) {
+		// TODO Auto-generated method stub
+
+	}
+
+}

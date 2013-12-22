@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/test_cancelled_f.c

@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/barrier_f.c

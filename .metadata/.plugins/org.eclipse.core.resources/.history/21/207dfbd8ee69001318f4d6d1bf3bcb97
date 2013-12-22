@@ -1,0 +1,129 @@
+/**
+ * 
+ */
+package mai.process;
+
+import java.util.ArrayList;
+
+import mai.models.Cube;
+import mai.models.Dictionary;
+import mai.models.Word;
+
+/**
+ * share a variable {@link #associatedDic} within the parallel program.
+ *	Set up a {@link Cube} and a {@link Dictionary} where {@link #associatedDic} is used.
+ *	Variable {@link #listWords} contains {@link Word} which relate to words of a Dictionary.
+ */
+public class ShareMemory {
+	
+	/**
+	 * true if a dictionary is associated with a cube, else false.
+	 * is updated at {@link ManageThreads#update()}
+	 */
+	private static boolean associatedDic = true;
+	
+	/**
+	 * list of {@link Word}
+	 */
+	private static ArrayList<Word> listWords = new ArrayList<>();
+	
+	private static Cube cube;
+	private static Dictionary dic;
+	
+	
+	
+	/**
+	 * Set up:
+	 * <li> a {@link Cube}
+	 * <li> a {@link Dictionary}
+	 * <li> List of {@link Word} correspond to a dictionary.
+	 * @param cube
+	 * @param dic
+	 */
+	public static void setup(Cube cube,Dictionary dic){
+		ShareMemory.setCube(cube);
+		ShareMemory.setDic(dic);
+		ShareMemory.getListWords().clear();
+		
+		for (int i = 0; i < dic.getDicSize(); i++) {
+			ShareMemory.getListWords().add(new Word(i));
+		}
+	}
+	
+	
+	/**
+	 * @return {@link #associatedDic}
+	 */
+	public static boolean isAssociatedDic() {
+		return associatedDic;
+	}
+	
+	/**
+	 * set true if the dictionary is associated.
+	 * Set false if there is a word in the dictionary is not found on a cube.
+	 * @param associated
+	 */
+	public static void setAssociatedDic(boolean associated) {
+		ShareMemory.associatedDic = associated;
+	}
+	
+	/**
+	 * @return {@value #listWords}
+	 */
+	public static ArrayList<Word> getListWords() {
+		return listWords;
+	}
+	
+	/**
+	 * @param listWords
+	 */
+	public static void setListWords(ArrayList<Word> listWords) {
+		ShareMemory.listWords = listWords;
+	}
+	
+	/**
+	 * @return the cube
+	 */
+	public static Cube getCube() {
+		return cube;
+	}
+	
+	/**
+	 * set up a cube
+	 * @param c
+	 */
+	public static void setCube(Cube c) {
+		ShareMemory.cube = c;
+	}
+	
+	
+	/**
+	 * @return a dictionary
+	 */
+	public static Dictionary getDic() {
+		return dic;
+	}
+	
+	/**
+	 * set up a dictionary
+	 * @param d
+	 */
+	public static void setDic(Dictionary d) {
+		ShareMemory.dic = d;
+	}
+
+	/**
+	 * check invariant before executing the program. This is NOT invariant when:
+	 * <li>the length of words in the dictionary is greater than the size of the
+	 * cube. <li>the cube, the dictionary, or both are NOT invariant
+	 */
+	public static boolean invariant() {
+		if (cube.getSize() < dic.getWordLength()) {
+			System.out
+					.println("The size of cube is smaller than the word_length of dictionary. The program cannot run!");
+			return false;
+		}
+
+		return cube.invariant() && dic.invariant();
+	}
+}

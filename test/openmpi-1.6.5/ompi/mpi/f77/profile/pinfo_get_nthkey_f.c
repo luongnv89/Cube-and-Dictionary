@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/info_get_nthkey_f.c

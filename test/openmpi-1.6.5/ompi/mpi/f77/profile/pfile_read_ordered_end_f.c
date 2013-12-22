@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/file_read_ordered_end_f.c

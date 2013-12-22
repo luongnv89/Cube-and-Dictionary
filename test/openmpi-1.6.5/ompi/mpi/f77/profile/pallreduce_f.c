@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/allreduce_f.c

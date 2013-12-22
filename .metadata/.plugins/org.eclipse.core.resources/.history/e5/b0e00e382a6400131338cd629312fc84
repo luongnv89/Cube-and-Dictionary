@@ -1,0 +1,35 @@
+/**
+ * 
+ */
+package louis.mapreduce;
+
+import java.io.IOException;
+
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapreduce.Mapper;
+import org.apache.hadoop.mapreduce.Mapper.*;
+
+/**
+ * @author luongnv89
+ * 
+ */
+public class MaxTempMapper extends Mapper<LongWritable, Text, Text, IntWritable> {
+
+	/*
+	 * (non-Javadoc)
+	 * 
+	 * @see org.apache.hadoop.mapreduce.Mapper#map(java.lang.Object,
+	 * java.lang.Object, org.apache.hadoop.mapreduce.Mapper.Context)
+	 */
+	@Override
+	protected void map(LongWritable key, Text value, Context context) throws IOException, InterruptedException {
+		String line = value.toString();
+		String[] array = line.split(" ");
+		for(int i=0;i<array.length;i++){
+			context.write(new Text(array[i]), new IntWritable(1));
+		}
+	}
+
+}

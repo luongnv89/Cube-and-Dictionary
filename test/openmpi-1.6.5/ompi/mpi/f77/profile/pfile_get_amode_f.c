@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/file_get_amode_f.c

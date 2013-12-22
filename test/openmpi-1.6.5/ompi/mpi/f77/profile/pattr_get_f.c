@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/attr_get_f.c

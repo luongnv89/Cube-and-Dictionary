@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/comm_rank_f.c

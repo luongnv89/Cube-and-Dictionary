@@ -1,0 +1,5 @@
+package louis.mapreduce;
+
+public class Reduce {
+
+}

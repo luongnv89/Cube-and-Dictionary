@@ -1,0 +1,69 @@
+/**
+ * 
+ */
+package csc5021.programs;
+
+import csc5021.objects.Cube;
+import csc5021.objects.Dictionary;
+import csc5021.solutions.Parallel;
+import csc5021.solutions.Sequential;
+import csc5021.solutions.SolutionAbstracts;
+
+/**
+ * @author luongnv89
+ * 
+ */
+public class PerformanceCompare {
+
+	/**
+	 * @param args
+	 * @throws Exception
+	 */
+	public static void main(String[] args) throws Exception {
+
+		System.out.println("Seting up the testing environment....");
+		long start = System.currentTimeMillis();
+		// setup(200, 6, 50);
+		setup("data/cube/cube_500", "data/dic_associated/dic_associated_c_500_l_100_s_20");
+		long setupTime = System.currentTimeMillis() - start;
+//		writeToFile();
+		System.out.println("The setup time: " + String.valueOf(setupTime) + " ms");
+		System.out.println(runtest(par, "PARALLEL"));
+		System.out.println(runtest(seq, "SEQUENCE"));
+		System.exit(0);
+	}
+
+	private static void runtest(String cubePath, String dicPath) throws Exception{
+		Sequential seq = new Sequential(cubePath, dicPath);
+		Parallel par = new Parallel(cubePath, dicPath);
+		
+	}
+	
+	private static boolean runtest(SolutionAbstracts program, String name) {
+		boolean associated;
+		long startTime = System.currentTimeMillis();
+		String solutionName;
+		if(program instanceof Sequential) solutionName = "SEQUENTIAL SOLUTION";
+		else if(program instanceof Parallel) solutionName = "PARALLEL SOLUTION";
+		associated = program.checkAssociatedOfDictionary();
+		long totalTime = System.currentTimeMillis() - startTime;
+		System.out.println(name + " - Total time: " + String.valueOf(totalTime) + " ms");
+		return associated;
+	}
+
+	public static void setup(String pathCube, String pathDic) throws Exception {
+		System.out.println("Creating the cube...");
+		cube = new Cube(pathCube);
+		System.out.println("Finish creating the cube.\nCreating the dictionary...");
+		dic = new Dictionary(pathDic);
+		System.out.println("Setup finished!");
+	}
+
+	public static void setup(int cubeSize, int wordLength, int dicSize) throws Exception {
+		System.out.println("Creating the cube...");
+		cube = new Cube(cubeSize);
+		System.out.println("Finish creating the cube.\nCreating the dictionary...");
+		dic = new Dictionary(wordLength, dicSize);
+		System.out.println("Setup finished!");
+	};
+}

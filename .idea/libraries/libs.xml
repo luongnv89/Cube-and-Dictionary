@@ -1,0 +1,21 @@
+<component name="libraryTable">
+  <library name="libs">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/slf4j-log4j12-1.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/arq-2.8.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/jena-2.6.2.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/jena-2.6.2-tests.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/xercesImpl-2.7.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/slf4j-api-1.5.6.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/iri-0.7.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/log4j-1.2.13.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/wstx-asl-3.2.9.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/lucene-core-2.3.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/stax-api-1.0.1.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/icu4j-3.4.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/JenaPractice/libs/junit-4.5.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

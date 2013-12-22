@@ -1,0 +1,23 @@
+/**
+ * 
+ */
+package mai.process;
+
+import mai.models.Cube;
+import mai.models.Dictionary;
+
+/**
+ * @author luongnv89
+ *
+ */
+public class Parallel2 extends Sequential {
+
+	/**
+	 * @param cube
+	 * @param dic
+	 */
+	public Parallel2(Cube cube, Dictionary dic) {
+		super(cube, dic);
+	}
+
+}

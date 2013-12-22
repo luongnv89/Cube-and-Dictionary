@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/win_get_attr_f.c

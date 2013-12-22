@@ -1,1 +1,0 @@
-../../../../ompi/mpi/f77/file_open_f.c
