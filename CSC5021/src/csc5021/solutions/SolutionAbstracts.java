@@ -6,21 +6,30 @@ package csc5021.solutions;
 import csc5021.interfaces.HasInvariant;
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
+import csc5021.tests.SolutionAbstractsTest;
 import csc5021.utilities.Utilities;
 
 /**
- * Content all the methods which are used to check the associated of a cube and
- * a word
+ * {@link SolutionAbstracts} present an abstract of solution. <br>
+ * Tested by {@link SolutionAbstractsTest}
  * 
  * @author luongnv89
  * 
  */
 public abstract class SolutionAbstracts implements HasInvariant {
 
+	/**
+	 * Cube for checking associated
+	 */
 	protected Cube cube;
+	/**
+	 * Dictionary for checking associated
+	 */
 	protected Dictionary dic;
 
 	/**
+	 * Create new solution from input cube and dic
+	 * 
 	 * @param cube
 	 * @param dic
 	 */
@@ -30,17 +39,18 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	}
 
 	/**
+	 * Create new solution from input path of cube and input path of dictionary
+	 * 
 	 * @param cube
 	 * @param dic
-	 * @throws Exception
 	 */
-	public SolutionAbstracts(String cubePath, String dicPath) throws Exception {
+	public SolutionAbstracts(String cubePath, String dicPath) {
 		this.cube = new Cube(cubePath);
 		this.dic = new Dictionary(dicPath);
 	}
 
 	/**
-	 * Checking is the cube associated with the dictionary?
+	 * Checking the associated of the cube and the dictionary?
 	 * 
 	 * @param cube
 	 * @param dic
@@ -50,7 +60,7 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	public abstract boolean checkAssociatedOfDictionary();
 
 	/**
-	 * Check is the cube associated with a word?
+	 * Checking the associated of the cube with a word
 	 * 
 	 * @param cube
 	 * @param word
@@ -58,6 +68,7 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	 *         false otherwise
 	 */
 	public boolean checkAssociatedOfWord(String word) {
+
 		boolean word_associated = false;
 
 		if (!word_associated)
@@ -118,9 +129,10 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	 * @param z1
 	 * @param cube
 	 * @param word
-	 * @return
+	 * @return true if there is existing a line of plane which content the word <br>
+	 *         false otherwise
 	 */
-	private boolean checkAssociatedOfWordOnABFE(int x0, int y0, int z0, int x1, int y1, int z1, String word) {
+	public boolean checkAssociatedOfWordOnABFE(int x0, int y0, int z0, int x1, int y1, int z1, String word) {
 		int deltaX = Math.abs(x1 - x0);
 
 		for (int deltaZ = word.length() - 1; deltaZ < deltaX; deltaZ++) {
@@ -183,8 +195,8 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	 * Checking the associated of a word with the plane of cube which is
 	 * parallel with the OCDK plane <br>
 	 * Only check the lines below: <li>The lines are in the plane which is
-	 * parallel with the ABFE plane and they parallel with OD <li>The lines are
-	 * in the plane which is parallel with the ABFE plane and they parallel with
+	 * parallel with the OCDK plane and they parallel with OD <li>The lines are
+	 * in the plane which is parallel with the OCDK plane and they parallel with
 	 * CK
 	 * 
 	 * @param x0
@@ -193,9 +205,10 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	 * @param y1
 	 * @param cube
 	 * @param word
-	 * @return
+	 * @return true if there is existing a line of plane which content the word <br>
+	 *         false otherwise
 	 */
-	private boolean checkAssociatedOfWordOnOCDK(int x0, int y0, int x1, int y1, String word) {
+	public boolean checkAssociatedOfWordOnOCDK(int x0, int y0, int x1, int y1, String word) {
 		int deltaX = Math.abs(x1 - x0);
 		for (int deltaZ = word.length() - 1; deltaZ < deltaX; deltaZ++) {
 			// OD
@@ -384,7 +397,8 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	 * @param z1
 	 * @param cube
 	 * @param word
-	 * @return true if the string composed by the line of cube content the word <br>
+	 * @return true if the string composed by the line (or its revert string )of
+	 *         cube content the word <br>
 	 *         false otherwise
 	 */
 	public boolean checkAssociatedOfWordInLine(int x0, int y0, int z0, int x1, int y1, int z1, String word) {
@@ -417,8 +431,5 @@ public abstract class SolutionAbstracts implements HasInvariant {
 	public Dictionary getDic() {
 		return dic;
 	}
-	
-	
-	
 
 }

@@ -15,6 +15,8 @@ import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Progressable;
 
+import csc5021.utilities.Utils;
+
 import java.io.BufferedWriter;
 import java.io.OutputStream;
 import java.io.OutputStreamWriter;
@@ -25,7 +27,7 @@ import java.net.URI;
  */
 
 
-public class Associated {
+public class MapReduce {
     static String hdfsURL = "hdfs://localhost:54310";
 
     public static void main(String[] args) throws Exception {

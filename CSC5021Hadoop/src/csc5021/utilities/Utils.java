@@ -1,11 +1,13 @@
 /**
  *
  */
-package csc5021.mapreduce;
+package csc5021.utilities;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
+
+import csc5021.mapreduce.ShareMemory;
 
 /**
  * @author luongnv89

@@ -5,24 +5,50 @@ package csc5021.tests;
 
 import static org.junit.Assert.*;
 
+import java.util.ArrayList;
+
 import org.junit.Before;
 import org.junit.Test;
 
 import csc5021.objects.Dictionary;
+import csc5021.utilities.Utilities;
 
 /**
+ * Test for class {@link Dictionary}
  * @author luongnv89
  * 
  */
 public class DictionaryTest {
-	Dictionary dic5;
+
+	Dictionary myDic;
+	Dictionary dic_2;
+	Dictionary dic_too_short;
+	Dictionary dic_too_long;
 
 	/**
 	 * @throws java.lang.Exception
 	 */
 	@Before
 	public void setUp() throws Exception {
-		dic5 = new Dictionary("dic5.txt");
+		myDic = new Dictionary("dic_10_100");
+		dic_2 = new Dictionary("dic_10_2");
+		ArrayList<String> listwordsTooShort = new ArrayList<String>();
+		while (listwordsTooShort.size() < 10) {
+			String w = Utilities.createNewWord(1);
+			if (!listwordsTooShort.contains(w)) {
+				listwordsTooShort.add(w);
+			}
+		}
+		dic_too_short = new Dictionary(listwordsTooShort);
+		ArrayList<String> listwordsTooLong = new ArrayList<String>();
+		while (listwordsTooLong.size() < 10) {
+			String w = Utilities.createNewWord(110);
+			if (!listwordsTooLong.contains(w)) {
+				listwordsTooLong.add(w);
+			}
+		}
+		dic_too_long = new Dictionary(listwordsTooLong);
+
 	}
 
 	/**
@@ -30,45 +56,41 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testDictionaryIntInt() {
-		Dictionary newDic = new Dictionary(5, 10);
-		assertEquals(newDic.getLength(), 5);
-		assertEquals(newDic.getSize(), 10);
+		Dictionary dic10_100 = new Dictionary(10, 10);
+		assertTrue(dic10_100.invariant());
+		assertTrue(dic10_100.getLength() == 10);
+		assertTrue(dic10_100.getSize() <= 100);
 	}
 
 	/**
 	 * Test method for
-	 * {@link csc5021.objects.Dictionary#Dictionary(java.lang.String)}.
-	 * 
-	 * @throws Exception
-	 */
-	@Test(expected = Exception.class)
-	public void testDictionaryStringInvalid() throws Exception {
-		Dictionary dic4 = new Dictionary("dic5_invalid.txt");
-		dic4.showContent();
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.objects.Dictionary#Dictionary(java.lang.String)}.
-	 * 
-	 * @throws Exception
-	 */
-	@Test(expected = Exception.class) 
-	public void testDictionaryStringInvalidLetter() throws Exception {
-		Dictionary dic4 = new Dictionary("dic5_invalid_letter.txt");
-		dic4.showContent(); 
-	}
-
-	/**
-	 * Test method for
-	 * {@link csc5021.objects.Dictionary#Dictionary(java.lang.String)}.
-	 * 
-	 * @throws Exception
+	 * {@link csc5021.objects.Dictionary#Dictionary(java.util.ArrayList)}.
 	 */
 	@Test
-	public void testDictionaryString() throws Exception {
-		Dictionary dic4 = new Dictionary("dic4.txt");
-		dic4.showContent();
+	public void testDictionaryArrayListOfString() {
+		ArrayList<String> listwords = new ArrayList<String>();
+		while (listwords.size() < 10) {
+			String w = Utilities.createNewWord(15);
+			if (!listwords.contains(w)) {
+				listwords.add(w);
+			}
+		}
+		Dictionary dic_15_10 = new Dictionary(listwords);
+		assertTrue(dic_15_10.invariant());
+		assertTrue(dic_15_10.getLength() == 15);
+		assertTrue(dic_15_10.getSize() <= 10);
+	}
+
+	/**
+	 * Test method for
+	 * {@link csc5021.objects.Dictionary#Dictionary(java.lang.String)}.
+	 */
+	@Test
+	public void testDictionaryString() {
+		Dictionary dic_10_100 = new Dictionary("dic_10_100");
+		assertTrue(dic_10_100.invariant());
+		assertTrue(dic_10_100.getLength() == 10);
+		assertTrue(dic_10_100.getSize() <= 100);
 	}
 
 	/**
@@ -76,7 +98,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetLength() {
-		assertTrue(dic5.getLength() == 5);
+		assertTrue(myDic.getLength() == 10);
 	}
 
 	/**
@@ -84,7 +106,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetSize() {
-		assertTrue(dic5.getSize() == 21);
+		assertTrue(myDic.getSize() <= 100);
 	}
 
 	/**
@@ -92,7 +114,9 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testGetWordByIndex() {
-		assertTrue(dic5.getWordByIndex(0).equals("ABCIA"));
+		for (int i = 0; i < myDic.getSize(); i++) {
+			System.out.println(myDic.getWordByIndex(i));
+		}
 	}
 
 	/**
@@ -100,15 +124,24 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testInvariant() {
-		assertTrue(dic5.invariant());
+		assertTrue(myDic.invariant());
 	}
 
 	/**
-	 * Test method for {@link csc5021.objects.Dictionary#showContent()}.
+	 * Test method for {@link csc5021.objects.Dictionary#invariant()}.
 	 */
 	@Test
-	public void testShowContent() {
-		dic5.showContent();
+	public void testInvariantInvalidSize() {
+		assertFalse(dic_2.invariant());
+	}
+
+	/**
+	 * Test method for {@link csc5021.objects.Dictionary#invariant()}.
+	 */
+	@Test
+	public void testInvariantInvalidLengthOfWord() {
+		assertFalse(dic_too_short.invariant());
+		assertFalse(dic_too_long.invariant());
 	}
 
 	/**
@@ -117,9 +150,7 @@ public class DictionaryTest {
 	 */
 	@Test
 	public void testSaveToFile() {
-		Dictionary dic6 = new Dictionary(6, 60);
-		dic6.saveToFile("dic6.txt");
-		dic6.showContent();
+		myDic.saveToFile("dic_10_100_copy");
 	}
 
 }

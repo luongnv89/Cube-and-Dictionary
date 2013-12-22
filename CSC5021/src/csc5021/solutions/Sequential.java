@@ -5,11 +5,12 @@ package csc5021.solutions;
 
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
+import csc5021.tests.SequentialTest;
 
 /**
  * Present a sequences program which can check the associated of a cube and a
  * dictionary
- * 
+ * <br>Tested by {@link SequentialTest}
  * @author luongnv89
  * 
  */
@@ -30,6 +31,10 @@ public class Sequential extends SolutionAbstracts{
 
 
 
+	/* (non-Javadoc)
+	 * @see csc5021.solutions.SolutionAbstracts#checkAssociatedOfDictionary()
+	 *
+	 */
 	@Override
 	public boolean checkAssociatedOfDictionary() {
 		if (!(cube.invariant() && dic.invariant())) {

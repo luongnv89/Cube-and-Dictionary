@@ -11,19 +11,22 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import csc5021.interfaces.HasInvariant;
+import csc5021.tests.DictionaryTest;
 import csc5021.utilities.Utilities;
 
 /**
- * Present a dictionary
- * 
+ * Present a dictionary. A dictionary is presented by {@link Dictionary#length}
+ * and {@link Dictionary#listWord}
+ * <br>Tested by {@link DictionaryTest}
  * @author luongnv89
  * 
  */
 public class Dictionary implements HasInvariant {
 
 	/**
-	 * The maximum number of word of dictionary </br>The minimum of size is:
-	 * A2_25 = 600 when the length of word is 2. <br>
+	 * The maximum number of word of dictionary </br>Because of the range of
+	 * characters are from A to Z - 25 different character, thus the minimum of
+	 * size is: A2_25 = 600 when the length of word is 2. <br>
 	 * If the length of word is bigger than 2, the maximum of size of dictionary
 	 * is 1000
 	 */
@@ -54,7 +57,7 @@ public class Dictionary implements HasInvariant {
 	ArrayList<String> listWord;
 
 	/**
-	 * Constructor a new dictionary
+	 * Constructor a new dictionary.
 	 * 
 	 * @param lengthOfWord
 	 *            length of words of dictionary
@@ -67,78 +70,62 @@ public class Dictionary implements HasInvariant {
 			MAX_SIZE = 600;
 		else
 			MAX_SIZE = 1000;
-
-		if (lengthOfWord < MIN_LENGTH || lengthOfWord > MAX_LENGTH) {
-			System.out.println("The length of word isnt valid. The default value will be set for dictionary");
-			this.length = 3;
-		} else {
-			this.length = lengthOfWord;
-		}
+		this.length = lengthOfWord;
 		listWord = new ArrayList<>();
 		initRandomly(size);
 	}
 
-	public Dictionary(ArrayList<String> listWord) throws Exception {
+	/**
+	 * Construct a dictionary by an input array list of words
+	 * 
+	 * @param listWord
+	 * @throws Exception
+	 */
+	public Dictionary(ArrayList<String> listWord) {
 		this.length = listWord.get(0).length();
 		if (this.length == 2)
 			MAX_SIZE = 600;
 		else
 			MAX_SIZE = 1000;
-		if (listWord.size() < Dictionary.MIN_SIZE || listWord.size() > Dictionary.MAX_SIZE) {
-			throw new Exception("The size of input list words is not valid: " + listWord.size());
-		}
-
-		if (this.length < Dictionary.MIN_LENGTH || this.length > MAX_LENGTH) {
-			throw new Exception("The length of input list words is not valid: " + listWord.size());
-		}
-		this.listWord = new ArrayList<>();
-
-		for (int i = 0; i < listWord.size(); i++) {
-			if ((listWord.get(i).length() != this.length) || (!Utilities.validWord(listWord.get(i)))) {
-				throw new Exception("There is an invalid word in list word: " + listWord.get(i));
-			} else {
-				this.listWord.add(listWord.get(i));
-			}
-
-		}
+		this.listWord = new ArrayList<String>();
+		this.listWord.addAll(listWord);
 	}
 
 	/**
-	 * Create a new dictionary from an input text file.
+	 * Construct a new dictionary from an input file.
 	 * 
 	 * @param pathFile
-	 * @throws Exception
 	 */
-	public Dictionary(String pathFile) throws Exception {
-		BufferedReader br = new BufferedReader(new FileReader(pathFile));
+	public Dictionary(String pathFile) {
 		try {
+			BufferedReader br = new BufferedReader(new FileReader(pathFile));
 			String line = br.readLine();
-			if (line == null || line.length() < 2) {
-				throw new Exception("The input file is invalid!");
-			} else {
-				this.length = line.length();
-				if (this.length == 2)
-					MAX_SIZE = 600;
-				else {
-					MAX_SIZE = 1000;
-				}
-				this.listWord = new ArrayList<>();
-				while (line != null) {
-					if (line.length() != length || !Utilities.validWord(line)) {
-						throw new Exception("Invalid word: " + line);
-					} else {
-						listWord.add(line);
-						line = br.readLine();
-					}
-				}
+
+			this.length = line.length();
+			if (this.length == 2)
+				MAX_SIZE = 600;
+			else {
+				MAX_SIZE = 1000;
 			}
-		} finally {
+			this.listWord = new ArrayList<>();
+			while (line != null) {
+				listWord.add(line);
+				line = br.readLine();
+			}
 			br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 	}
 
 	/**
-	 * Initilisation randomly the list words of dictionary
+	 * Create randomly the list words of dictionary
+	 * 
+	 * @param sizeOfDict
+	 *            number of word will be created. <br>
+	 *            Each word will be generated randomly, if after 5 times
+	 *            generated randomly, cannot generate any new word, the
+	 *            generator will be stop
 	 */
 	private void initRandomly(int sizeOfDict) {
 		listWord.clear();
@@ -199,19 +186,23 @@ public class Dictionary implements HasInvariant {
 	 */
 	@Override
 	public boolean invariant() {
+
 		int size = getSize();
+
 		// Check size of dictionary
 		if (size < MIN_SIZE || size > MAX_SIZE) {
 			System.out.println("The size of dictionary isn't valid: " + size
 					+ "\n It must be smaller than 1001 and bigger than 2");
 			return false;
 		}
+
 		// Check length of words of dictionary
 		if (this.length < 2 || this.length > 100) {
 			System.out.println("The length of word isn't valid: " + length
 					+ "\nThe length of word must be longer than 1 and shorter than 101");
 			return false;
 		}
+
 		// Check valid of each word in dictionary
 		for (int i = 0; i < size; i++) {
 			String currWord = getWordByIndex(i);
@@ -221,18 +212,6 @@ public class Dictionary implements HasInvariant {
 			}
 		}
 		return true;
-	}
-
-	/**
-	 * Show the content of dictionary
-	 */
-	public void showContent() {
-		String str = "";
-		str += "Index \t Value \n";
-		for (int i = 0; i < listWord.size(); i++) {
-			str += i + " \t " + listWord.get(i) + "\n";
-		}
-		System.out.println(str);
 	}
 
 	/**

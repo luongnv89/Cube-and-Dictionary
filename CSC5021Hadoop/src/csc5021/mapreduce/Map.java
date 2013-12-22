@@ -5,6 +5,8 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Mapper;
 
+import csc5021.utilities.Utils;
+
 import java.io.IOException;
 
 public class Map extends Mapper<LongWritable, Text, Text, IntWritable> {

@@ -11,11 +11,13 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import csc5021.interfaces.HasInvariant;
+import csc5021.tests.CubeTest;
 import csc5021.utilities.Utilities;
 
 /**
- * The {@link Cube} class present a lattice with the size is {@link Cube#size}
- * and the content values is {@link Cube#values}
+ * The {@link Cube} present the common structure of alien genetic material <br>
+ * The content of cube is present by the 3d array {@link Cube#values}.
+ * <br> Tested by {@link CubeTest}
  * 
  * @author luongnv89
  * 
@@ -36,16 +38,16 @@ public class Cube implements HasInvariant {
 	private static final int MAX_DIFF_LETTERS = 100;
 
 	/**
-	 * Size of lattice
+	 * Size of cube
 	 */
 	int size;
 	/**
-	 * Values of lattice
+	 * content of cube
 	 */
 	char[][][] values;
 
 	/**
-	 * Constructor a Cube by size. The values of Cube is randomly
+	 * Construct randomly a cube with the size of cube is input
 	 * 
 	 * @param size
 	 * @throws Exception
@@ -62,19 +64,16 @@ public class Cube implements HasInvariant {
 	}
 
 	/**
-	 * Create a cube from text file
+	 * Construct a cube from input file.
 	 * 
 	 * @param pathFile
 	 * @throws Exception
 	 */
-	public Cube(String pathFile) throws Exception {
-		@SuppressWarnings("resource")
-		BufferedReader br = new BufferedReader(new FileReader(pathFile));
-
-		String line = br.readLine();
-		if (line == null || line.length() < 3) {
-			throw new Exception("The input file is invalid!");
-		} else {
+	@SuppressWarnings("resource")
+	public Cube(String pathFile){
+		try {
+			BufferedReader br = new BufferedReader(new FileReader(pathFile));
+			String line = br.readLine();
 			this.size = line.length();
 			values = new char[this.size][this.size][this.size];
 			// for each lattice
@@ -88,22 +87,10 @@ public class Cube implements HasInvariant {
 					line = br.readLine();
 				}
 			}
+		} catch (Exception e) {
+			e.printStackTrace();
 		}
 
-	}
-
-	/**
-	 * @return the size
-	 */
-	public int getSize() {
-		return size;
-	}
-
-	/**
-	 * @return the values
-	 */
-	public char[][][] getValues() {
-		return values;
 	}
 
 	/*
@@ -122,42 +109,69 @@ public class Cube implements HasInvariant {
 			return false;
 		}
 
-		// x = 0-> size-1
-		for (int i = 0; i < this.size; i++) {
-			int nbLetters = 0;
-			ArrayList<Character> listCharacter = new ArrayList<>();
-			// Check the number of letters of this lattice
-			for (int j = 0; j < this.size; j++) {
-				for (int k = 0; k < this.size; k++) {
-					if (!listCharacter.contains(values[i][j][k])) {
-						nbLetters++;
-						listCharacter.add(values[i][j][k]);
-					}
-				}
-			}
-			if (nbLetters < 2 || nbLetters > 100) {
-				System.out
-						.println("Invalid cube! There are " + nbLetters + " different letters in lattice of x : " + i);
-				return false;
-			}
-		}
+		// Check the number of different letters in a lattice and check the
+		// validation of each letter in cube
+		if (!checkNumberOfLetters(1))
+			return false;
+		if (!checkNumberOfLetters(2))
+			return false;
+		if (!checkNumberOfLetters(3))
+			return false;
 
 		return true;
 	}
 
 	/**
-	 * Show the value of Cube
+	 * Check the number of different letters in a lattice.
+	 * 
+	 * @param direction
+	 * <br>
+	 *            1 - check for the lattices which parallel with OXY <br>
+	 *            2 - check for the lattices which parallel with OYZ <br>
+	 *            3 - check for the lattices which parallel with OXZ
+	 * @return true if the lattice has the number of different letters which is
+	 *         bigger than 2 and smaller than 101. <br>
+	 *         false otherwise
 	 */
-	public void showValues() {
-		for (int i = 0; i < this.size; i++) {
-			for (int j = 0; j < this.size; j++) {
-				for (int k = 0; k < this.size; k++) {
-					System.out.print(values[i][j][k] + " ");
+	private boolean checkNumberOfLetters(int direction) {
+		for (int a = 0; a < this.size; a++) {
+			int nbLetters = 0;
+			ArrayList<Character> listCharacter = new ArrayList<>();
+			for (int b = 0; b < this.size; b++) {
+				for (int c = 0; c < this.size; c++) {
+					char ch = 0;
+					switch (direction) {
+					case 1:
+						ch = values[c][b][a];
+						break;
+					case 2:
+						ch = values[a][c][b];
+						break;
+					case 3:
+						ch = values[b][a][c];
+						break;
+
+					default:
+						System.out.println("Error input direction!");
+						break;
+					}
+					if (!Utilities.validCharacter(ch)) {
+						System.out.println("There is an invalid character in cube: " + ch);
+						return false;
+					}
+					if (!listCharacter.contains(ch)) {
+						nbLetters++;
+						listCharacter.add(ch);
+					}
 				}
-				System.out.println();
 			}
-			System.out.println();
+			if (nbLetters < 2 || nbLetters > 100) {
+				System.out
+						.println("Invalid cube! There are " + nbLetters + " different letters in lattice of x : " + a);
+				return false;
+			}
 		}
+		return true;
 	}
 
 	/**
@@ -183,7 +197,8 @@ public class Cube implements HasInvariant {
 	}
 
 	/**
-	 * create randomly values for lattice
+	 * Create randomly values for cube with check the number of different
+	 * letters in the lattices which is parallel with OYZ
 	 */
 	private void initRandomly() {
 		for (int i = 0; i < this.size; i++) {
@@ -213,8 +228,9 @@ public class Cube implements HasInvariant {
 	/**
 	 * 
 	 * Get string is composed by the characters from the point (x0,y0,z0) to the
-	 * point (x1,y1,z1) of cube
-	 * <br> In this case, we assume that two points are in a line of cube
+	 * point (x1,y1,z1) of cube <br>
+	 * In this case, we assume that two points are always in a line of cube
+	 * 
 	 * @param x0
 	 * @param y0
 	 * @param z0
@@ -278,8 +294,21 @@ public class Cube implements HasInvariant {
 				}
 			}
 		}
-//		System.out.println(stringbf.toString());
 		return stringbf.toString();
 	}
-	
+
+	/**
+	 * @return the size of cube
+	 */
+	public int getSize() {
+		return size;
+	}
+
+	/**
+	 * @return the values of cube
+	 */
+	public char[][][] getValues() {
+		return values;
+	}
+
 }

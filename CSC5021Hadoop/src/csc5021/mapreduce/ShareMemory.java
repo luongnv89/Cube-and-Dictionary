@@ -7,6 +7,7 @@ import org.apache.hadoop.util.Progressable;
 
 import csc5021.interfaces.HasInvariant;
 import csc5021.objects.Feature;
+import csc5021.utilities.Utils;
 
 import java.io.*;
 import java.net.URI;

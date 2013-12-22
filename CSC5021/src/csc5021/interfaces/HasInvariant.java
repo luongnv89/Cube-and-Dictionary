@@ -8,5 +8,9 @@ package csc5021.interfaces;
  *
  */
 public interface HasInvariant {
+	
+	/** Check the invariant
+	 * @return
+	 */
 	public boolean invariant();
 }

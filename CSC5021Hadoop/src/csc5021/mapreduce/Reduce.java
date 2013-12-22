@@ -4,6 +4,8 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Reducer;
 
+import csc5021.utilities.Utils;
+
 import java.io.IOException;
 
 public class Reduce extends Reducer<Text, IntWritable, Text, IntWritable> {

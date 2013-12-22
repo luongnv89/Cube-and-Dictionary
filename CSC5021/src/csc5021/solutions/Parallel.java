@@ -7,18 +7,32 @@ import java.util.ArrayList;
 
 import csc5021.objects.Cube;
 import csc5021.objects.Dictionary;
+import csc5021.tests.ParallelTest;
 
 /**
  * Present the parallel program which is checking the associated of a cube and a
  * dictionary
+ * <br>Tested by {@link ParallelTest}
  * 
  * @author luongnv89
  * 
  */
 public class Parallel extends SolutionAbstracts {
-	private static final int NUMBER_THREADS = 50;
+	/**
+	 * Maximum number of threads which are running parallel
+	 */
+	private static final int MAX_THREADS = 50;
+	/**
+	 * The value of associated of cube and dictionary
+	 */
 	private boolean associated = true;
+	/**
+	 * Starting time
+	 */
 	private long startTime = System.currentTimeMillis();
+	/**
+	 * List all currently running threads
+	 */
 	private ArrayList<Thread> listThreads;
 
 	public Parallel(Cube cube, Dictionary dic) {
@@ -46,20 +60,28 @@ public class Parallel extends SolutionAbstracts {
 		} else {
 			// Parallel
 			for (int i = 0; i < dic.getSize(); i++) {
-
+				// Check if the associated variable hasn't changed yet.
 				if (associated) {
 
 					final int word_index = i;
+					// Create new thread to checking the associated for current
+					// word of dictionary
 					Thread word_thread = new Thread(new Runnable() {
 						@Override
 						public void run() {
+
 							System.out.println("Thread " + word_index + " started...");
+
 							if (!checkAssociatedOfWord(dic.getWordByIndex(word_index))) {
+								// Found a word which is not associated with the
+								// dictionary.
 								System.out.println("There is a word not associated: " + dic.getWordByIndex(word_index)
 										+ "\nStop at thread: " + word_index + " at time: "
 										+ String.valueOf(System.currentTimeMillis() - startTime));
+								// Change the value of associated variable
 								associated = false;
 								System.out.println("Interupt all alive threds....");
+								// Interupt all other threads
 								for (int t = 0; t < listThreads.size(); t++) {
 									if (listThreads.get(t).isAlive())
 										listThreads.get(t).interrupt();
@@ -72,27 +94,21 @@ public class Parallel extends SolutionAbstracts {
 					listThreads.add(word_thread);
 					listThreads.get(listThreads.size() - 1).start();
 
-					// Check if there is some slot for new thread
+					// Waiting until there is some free slot for new thread in
+					// list threads
 					while (!moveToNextWord() && associated) {
 						System.out.println("Waiting for other thread finished!");
-						// try {
-						// Thread.sleep(100);
-						// } catch (InterruptedException e) {
-						// // TODO Auto-generated catch block
-						// e.printStackTrace();
-						// }
-
 					}
 
 				}
 			}
 
+			// Waiting until all threads finished
 			while (isThereAliveThreads()) {
 				System.out.println("Waiting for all thread finished!");
 				try {
 					Thread.sleep(100);
 				} catch (InterruptedException e) {
-					// TODO Auto-generated catch block
 					e.printStackTrace();
 				}
 
@@ -120,18 +136,19 @@ public class Parallel extends SolutionAbstracts {
 	 * Check if can create new thread
 	 * 
 	 * @return true if there are some slot for new thread <br>
-	 *         false if there are {@link Parallel#NUMBER_THREADS} threads still
+	 *         false if there are {@link Parallel#MAX_THREADS} threads still
 	 *         running.
 	 */
 	private boolean moveToNextWord() {
 		removeFinishThread();
-		if (listThreads.size() < NUMBER_THREADS)
+		if (listThreads.size() < MAX_THREADS)
 			return true;
 		return false;
 	}
 
 	/**
-	 * 
+	 * Remove all finished thread from list threads to free some slot for other
+	 * threads
 	 */
 	private void removeFinishThread() {
 		for (int i = 0; i < listThreads.size(); i++) {
