@@ -28,6 +28,26 @@ import org.apache.hadoop.mapreduce.lib.output.TextOutputFormat;
 import org.apache.hadoop.util.Progressable;
 
 /**
+ * Implement Mapreduce of Hadoop to solve the problem. <br>
+ * Tutorial to install environment:<br>
+ * {@link http
+ * ://learninghadoopblog.wordpress.com/2013/08/03/hadoop-0-23-9-single
+ * -node-setup-on-ubuntu-13-04/}
+ * 
+ * <br>To run test:
+ * <li>Export MapReduce to .jar file.
+ * <li>$ hadoop jar path_to_jar_file  path_to_dictionary_file path_to_cube_file
+ * <br>Notes: The dictionary and cube file on local machine. (Don't need to copyFromLocal.... as the tutorial)
+ * <p>
+ * <bold>Output<bold>
+ * <br>The result will show on the console.
+ * <br>ASSOCIATED (or NO ASSOCIATED)
+ * <br>Total time: ms
+ * 
+ * <br>This version install and test on single node, so the program spend a lot of time to configuration, manage job...
+ * That why the executed time of this version is much longer than sequential version.
+ * <br>I do not have chance to test on distributed system.
+ * 
  * @author luongnv89
  */
 
@@ -92,8 +112,8 @@ public class MapReduce {
 		writeDictionary();
 
 		System.out.println("Finished setup....: " + String.valueOf(System.currentTimeMillis() - startTime));
-		
-		//Create Mapreduce job
+
+		// Create Mapreduce job
 		Job job = new Job(conf, "MapReduce");
 		job.setJarByClass(MapReduce.class);
 		job.setOutputKeyClass(Text.class);
@@ -107,15 +127,13 @@ public class MapReduce {
 
 		FileInputFormat.addInputPath(job, inputDataset);
 		FileOutputFormat.setOutputPath(job, outputData);
-		
-		
+
 		System.out.println("Setup job configuration ... waiting for completed!");
 		job.waitForCompletion(true);
-		
-		
+
 		long totalTime = System.currentTimeMillis() - startTime;
-		
-		//Extract result from output file
+
+		// Extract result from output file
 		FileSystem hdfs = FileSystem.get(new URI("hdfs://localhost.localdomain:8020"), new Configuration());
 		InputStream os = hdfs.open(result);
 		BufferedReader brHDFS = new BufferedReader(new InputStreamReader(os, "UTF-8"));
