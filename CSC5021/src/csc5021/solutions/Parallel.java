@@ -13,6 +13,10 @@ import csc5021.tests.ParallelTest;
  * Present the parallel program which is checking the associated of a cube and a
  * dictionary <br>
  * Tested by {@link ParallelTest}
+ * <br>The program is going to check the associated for each word of dictionary. For each word, the program will created a child thread to check for that word.
+ * <br>At one moment, there is maximum {@link Parallel#MAX_THREADS} number of threads are running.
+ * <br>If any thread found some word which is not associated with the cube, the variable {@link Parallel#associated} will be changed, and won't have any new thread created.
+ * 
  * 
  * @author luongnv89
  * 
