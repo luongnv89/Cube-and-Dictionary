@@ -36,8 +36,8 @@ public class DatasetGenerator {
 	/**
 	 * List possible size of cube. The size of cube is in range from 4 to 1000.
 	 */
-	static int[] cubeSizes = { 4, 10, 50, 200, 500 };
-	// static int[] cubeSizes = {800,1000};
+//	static int[] cubeSizes = { 4, 10, 50, 200, 500 };
+	 static int[] cubeSizes = {800,1000};
 	/**
 	 * List possible size of dictionary. The size of dictionary is in range from
 	 * 3 to 1000.
@@ -65,7 +65,7 @@ public class DatasetGenerator {
 		for (int cube_size = 0; cube_size < cubeSizes.length; cube_size++) {
 			Cube c = new Cube(cubeSizes[cube_size]);
 			c.saveToFile(CUBE_PATH + "/cube_" + cubeSizes[cube_size]);
-			System.out.println("Create new Dictionary: " + "cube_" + cubeSizes[cube_size]);
+			System.out.println("Create new cube: " + "cube_" + cubeSizes[cube_size]);
 			for (int dic_size = 0; dic_size < dictionarySizes.length; dic_size++) {
 				for (int word_length = 0; word_length < wordLengths.length; word_length++) {
 					if (wordLengths[word_length] <= cubeSizes[cube_size]) {
@@ -82,7 +82,7 @@ public class DatasetGenerator {
 								+ "_l_" + wordLengths[word_length] + "_s_" + dictionarySizes[dic_size]);
 					}
 				}
-			}
+			} 
 		}
 		System.out.println("FINISHED!");
 	}

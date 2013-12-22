@@ -248,7 +248,7 @@ public class Cube implements HasInvariant {
 		int dx = (x1 - x0) / delta;
 		int dy = (y1 - y0) / delta;
 		int dz = (z1 - z0) / delta;
-
+ 
 		StringBuffer stringbf = new StringBuffer();
 		for (int i = 0; i <= delta; i++) {
 			stringbf.append(values[x0 + dx * i][y0 + dy * i][z0 + dz * i]);

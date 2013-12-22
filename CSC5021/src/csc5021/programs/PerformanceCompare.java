@@ -16,8 +16,8 @@ import csc5021.utilities.Utilities;
  */
 public class PerformanceCompare {
 	// List possible size of cube
-	static int[] cube = { 4, 10, 50, 200, 500 };
-	// static int[] sizeOfCube = {800,1000};
+//	static int[] cube = { 4, 10, 50, 200, 500 };
+	static int[] cube = {800,1000};
 	// List possible size of dic
 	static int[] dic = { 3, 20, 100, 500};
 	// List possible length of word
@@ -56,7 +56,7 @@ public class PerformanceCompare {
 						final String dicNoAssociatedPath = DIC_NO_ASSOCIATED_PATH + "/dic_noassociated_c_" + cube[c]
 								+ "_l_" + word[w] + "_s_" + dic[d];
 
-						runtest(cubePath, dicAssociatedPath);
+						runtest(cubePath, dicAssociatedPath); 
 						runtest(cubePath, dicNoAssociatedPath);
 					}
 				}

@@ -7,7 +7,7 @@ import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
-import csc5021.mapreduce.ShareMemory;
+import csc5021.mapreduce.MapReduce;
 
 /**
  * @author luongnv89
@@ -15,7 +15,7 @@ import csc5021.mapreduce.ShareMemory;
 public class Utils {
     public static void writeToFile(String msg) {
         try {
-            BufferedWriter out = new BufferedWriter(new FileWriter(ShareMemory.getRESULT_PATH(), true));
+            BufferedWriter out = new BufferedWriter(new FileWriter(MapReduce.logFile, true));
             out.write(msg);
             out.close();
         } catch (IOException e) {
