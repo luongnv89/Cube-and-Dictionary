@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="jar" name="CSC5021Hadoop:jar">
-    <output-path>$PROJECT_DIR$/..</output-path>
-    <root id="archive" name="MapReduceTutorial.jar">
-      <element id="module-output" name="CSC5021Hadoop" />
-      <element id="extracted-dir" path="$PROJECT_DIR$/libs/hadoop-core.jar" path-in-jar="/" />
-    </root>
-  </artifact>
-</component>
